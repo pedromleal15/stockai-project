@@ -2843,12 +2843,37 @@ body[data-page-direction="backward"] .page.active {
 
 /* Product table */
 .product-table-wrap {
-  margin: 16px 32px 0;
+  margin: 16px 32px 32px;
   background: transparent;
   border: none;
   border-radius: 0;
   overflow-x: hidden; overflow-y: visible;
   display: flex; flex-direction: column; gap: 8px;
+}
+
+/* Table-block header — matches "Spending by Categories" reference pattern */
+.table-block-header {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.table-block-title {
+  font-size: 15px; font-weight: 600;
+  color: var(--neutral-900);
+  letter-spacing: -0.01em;
+}
+
+/* Sortable column header indicator — pair of stacked arrows like the reference */
+.th-sort {
+  display: inline-flex; align-items: center; gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 160ms ease;
+}
+.th-sort:hover { color: var(--neutral-900); }
+.th-sort-icon {
+  flex-shrink: 0;
+  color: var(--neutral-500);
+  transition: opacity 160ms ease;
 }
 
 /* table-content-wrap holds search + action-bar + table-block — not a card itself */
@@ -7250,16 +7275,19 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
           </div><!-- /action-bar-top -->
 
           <div class="table-block">
+          <div class="table-block-header">
+            <div class="table-block-title">Replenishment items</div>
+          </div>
           <table class="product-table">
             <thead>
               <tr>
                 <th><input type="checkbox" style="accent-color:var(--accent);"></th>
-                <th>Product</th>
-                <th>Stocks</th>
-                <th>Coverage</th>
-                <th>AI recommendation</th>
-                <th class="th-yours">Your quantity</th>
-                <th>Coverage after</th>
+                <th><span class="th-sort">Product <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.55"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
+                <th><span class="th-sort">Stocks <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
+                <th><span class="th-sort">Coverage <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.55"/></svg></span></th>
+                <th><span class="th-sort">AI recommendation <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
+                <th class="th-yours"><span class="th-sort">Your quantity <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
+                <th><span class="th-sort">Coverage after <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
               </tr>
             </thead>
             <tbody>
