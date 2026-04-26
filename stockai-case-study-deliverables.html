@@ -1266,13 +1266,14 @@ body[data-page-direction="backward"] .page.active {
   border-bottom-width: 0.5px;
 }
 
-/* Problem titles — soft red gradient (rose → coral, low intensity) */
+/* Problem titles — soft red gradient (light left → darker right) + subtle glow */
 #page-2 .audit-problem-title {
-  background: linear-gradient(135deg, #fda4af 0%, #f87171 55%, #fb7185 100%);
+  background: linear-gradient(90deg, #fecdd3 0%, #fda4af 35%, #f87171 70%, #dc2626 100%);
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
           color: transparent;
+  filter: drop-shadow(0 0 6px rgba(248,113,113,0.22));
 }
 
 /* Heuristic chips — 3-tone semantic palette
