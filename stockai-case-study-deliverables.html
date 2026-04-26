@@ -1168,6 +1168,40 @@ body[data-page-direction="backward"] .page.active {
   background: #ffffff;
 }
 
+/* Pain Points card — rotating red conic stroke (subtle) */
+#page-1 .p1-grid > .card:nth-child(2) {
+  position: relative; isolation: isolate;
+}
+#page-1 .p1-grid > .card:nth-child(2)::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--pain-angle, 0deg),
+    transparent 0deg,
+    rgba(239,68,68,0.0) 70deg,
+    rgba(248,113,113,0.55) 110deg,
+    rgba(239,68,68,0.85) 130deg,
+    rgba(248,113,113,0.55) 150deg,
+    rgba(239,68,68,0.0) 190deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000, #000) content-box,
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  animation: painSpin 7s linear infinite;
+  z-index: 4;
+}
+@keyframes painSpin { to { --pain-angle: 360deg; } }
+@property --pain-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@media (prefers-reduced-motion: reduce) {
+  #page-1 .p1-grid > .card:nth-child(2)::after { animation: none; }
+}
+
 /* =====================================================
    PAGE 2 — DESIGN AUDIT
    Page is light/white. Deep blue lives ONLY inside .audit-hero
