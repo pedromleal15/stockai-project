@@ -3126,9 +3126,27 @@ body[data-page-direction="backward"] .page.active {
 }
 /* Action bar moved to the top — standalone floating card */
 .action-bar-row.action-bar-top {
-  padding: 16px;
+  padding: 0;
   border-bottom: none;
   background: #ffffff;
+  flex-direction: column;
+  align-items: stretch;
+}
+.action-bar-top-header {
+  padding: 14px 20px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.action-bar-top-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--neutral-900);
+  letter-spacing: -0.01em;
+}
+.action-bar-top-sub {
+  font-size: 12px; color: var(--neutral-500);
+  margin-top: 2px;
+}
+.action-bar-row.action-bar-top > .action-bar-left {
+  padding: 14px;
 }
 /* table-section-banner — standalone card, no inner separator */
 .product-table-wrap > .table-section-banner {
@@ -7232,6 +7250,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 
           <!-- Action stats bar — moved above the table -->
           <div class="action-bar-row action-bar-top">
+            <div class="action-bar-top-header">
+              <div class="action-bar-top-title">Replenishment summary</div>
+              <div class="action-bar-top-sub">Live cycle metrics — updates as you adjust quantities</div>
+            </div>
             <div class="action-bar-left">
               <!-- Stat card 1: total units -->
               <div class="stat-card stat-card-neutral">
