@@ -713,6 +713,34 @@ body[data-page-direction="backward"] .page.active {
 .page-title { font-size: 26px; font-weight: 700; line-height: 32px; color: var(--neutral-900); }
 .page-subtitle { font-size: 14px; color: var(--neutral-500); margin-top: 6px; max-width: 64ch; line-height: 20px; }
 
+/* Live-prototype invitation line — Inter Medium with pulsing dot */
+.page-cta-line {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--neutral-700);
+  margin-top: 14px;
+  padding: 8px 12px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(47,111,237,0.18);
+  border-radius: 999px;
+  letter-spacing: 0;
+  max-width: 64ch;
+}
+.page-cta-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #2f6fed;
+  box-shadow: 0 0 0 3px rgba(47,111,237,0.20);
+  flex-shrink: 0;
+  animation: ctaDotPulse 2.2s ease-in-out infinite;
+}
+@keyframes ctaDotPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(47,111,237,0.20); }
+  50%      { box-shadow: 0 0 0 6px rgba(47,111,237,0.08); }
+}
+
 /* =====================================================
    REUSABLE COMPONENTS
    ===================================================== */
@@ -6987,6 +7015,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
       <div class="page-eyebrow">Deliverable 5 of 6</div>
       <div class="page-title">High Fidelity</div>
       <div class="page-subtitle">Core moment: AI-Powered Product Review — the redesigned replenishment review screen.</div>
+      <div class="page-cta-line">
+        <span class="page-cta-dot" aria-hidden="true"></span>
+        Live prototype — go ahead, click around. Toggle dark mode, drag the canvas cards, override the AI, zoom in &amp; out. Every interaction below this line is real.
+      </div>
     </div>
 
     <div class="hifi-actions">
