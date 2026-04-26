@@ -2813,22 +2813,29 @@ body[data-page-direction="backward"] .page.active {
 /* Expanded rail — shows text labels next to icons */
 .app-rail.expanded { width: 188px; align-items: stretch; padding: 56px 12px 16px; }
 .app-rail.expanded .rail-icon {
-  width: 100%; height: 36px; border-radius: var(--r-md);
+  width: 100%; height: 40px; border-radius: var(--r-md);
   display: flex; align-items: center; gap: 12px;
   padding: 0 10px; justify-content: flex-start;
+}
+.app-rail.expanded .rail-icon > svg {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  order: 0;
 }
 .app-rail.expanded .rail-icon::after {
   content: attr(data-label);
   font-size: 13px; font-weight: 500;
   color: var(--neutral-700);
   white-space: nowrap;
+  order: 1;
 }
 .app-rail.expanded .rail-icon.active::after,
 .app-rail.expanded .rail-icon#railCanvas.active::after { color: var(--accent); font-weight: 600; }
 .app-rail.expanded .rail-beta-badge {
   position: static;
-  margin-left: auto;
+  margin-left: 6px;
   transform: none;
+  order: 2; /* SVG → label → Beta */
 }
 /* Keep the StockAI avatar pinned bottom-left at its native size (don't stretch) */
 .app-rail.expanded .rail-avatar {
@@ -7033,7 +7040,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
         <div class="rail-icon active" data-label="Replenishment" title="Replenishment">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#2f6fed" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#2f6fed" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#2f6fed" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#2f6fed" stroke-width="1.8"/></svg>
         </div>
-        <div class="rail-icon rail-icon--canvas" data-label="Canvas Mode" title="Canvas" id="railCanvas">
+        <div class="rail-icon rail-icon--canvas" data-label="Canva" title="Canvas" id="railCanvas">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
             <path d="M7 3H4a1 1 0 0 0-1 1v3M17 3h3a1 1 0 0 1 1 1v3M7 21H4a1 1 0 0 1-1-1v-3M17 21h3a1 1 0 0 0 1-1v-3" stroke="#a1a1aa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -7044,7 +7051,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#a1a1aa" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#a1a1aa" stroke-width="1.8"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#a1a1aa" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
         <div style="flex:1"></div>
-        <div class="rail-icon" title="Settings">
+        <div class="rail-icon" data-label="Configurations" title="Settings">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke="#a1a1aa" stroke-width="1.8"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="#a1a1aa" stroke-width="1.8"/></svg>
         </div>
         <div class="rail-avatar"><img src="data:image/png;base64,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" alt="StockAI"><span class="rail-avatar-label">Stock AI</span></div>
