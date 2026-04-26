@@ -5800,6 +5800,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 .agents-grid > .agent-card:nth-child(4) { animation-delay: 240ms; }
 .agents-grid > .agent-card:nth-child(5) { animation-delay: 300ms; }
 .agents-grid > .agent-card:nth-child(6) { animation-delay: 360ms; }
+.agents-grid > .agent-card:nth-child(7) { animation-delay: 420ms; }
 .agent-avatar {
   width: 44px; height: 44px; border-radius: 12px;
   background: linear-gradient(135deg, var(--g1), var(--g2));
@@ -9024,7 +9025,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
         <div class="agents-header">
           <div>
             <div class="agents-title">Your AI team</div>
-            <div class="agents-sub"><span id="agentsCount">5</span> specialists ready to help</div>
+            <div class="agents-sub"><span id="agentsCount">6</span> specialists ready to help</div>
           </div>
           <button class="btn btn-primary agents-new-btn" onclick="openAgentModal()">
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -9066,6 +9067,13 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
             <div class="agent-name">Inventory Auditor</div>
             <div class="agent-spec">Catches anomalies, duplicates, and data integrity issues.</div>
             <div class="agent-stats"><span>14 chats</span><span>•</span><span>98% accuracy</span></div>
+            <button class="btn btn-secondary agent-chat-btn">Chat</button>
+          </div>
+          <div class="agent-card" data-agent="competitive">
+            <div class="agent-avatar" style="--g1:#0ea5e9;--g2:#1e40af">🛰️</div>
+            <div class="agent-name">Competitive Watch</div>
+            <div class="agent-spec">nextail, autone, optiply marketing observations — pricing, launches, positioning shifts.</div>
+            <div class="agent-stats"><span>6 chats</span><span>•</span><span>Live tracking</span></div>
             <button class="btn btn-secondary agent-chat-btn">Chat</button>
           </div>
           <button class="agent-card agent-card--new" onclick="openAgentModal()">
