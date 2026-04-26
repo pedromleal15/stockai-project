@@ -3031,6 +3031,12 @@ body[data-page-direction="backward"] .page.active {
   padding: 14px 16px 20px;
   border-top: 1px solid var(--border);
 }
+/* Action bar moved to the top — between filters and the table */
+.action-bar-row.action-bar-top {
+  padding: 12px 16px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--neutral-50);
+}
 .table-page-nav { display: flex; align-items: center; gap: 4px; }
 .page-nav-btn {
   width: 28px; height: 28px; border-radius: var(--r-md);
@@ -7123,6 +7129,92 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               </button>
             </div>
           </div>
+
+          <!-- Action stats bar — moved above the table -->
+          <div class="action-bar-row action-bar-top">
+            <div class="action-bar-left">
+              <!-- Stat card 1: total units -->
+              <div class="stat-card stat-card-neutral">
+                <div class="stat-card-label">Total units to replenish</div>
+                <div class="stat-card-body">
+                  <div class="stat-card-body-left">
+                    <div class="stat-card-value"><span class="fx-count" data-count-to="4340">0</span></div>
+                    <div class="stat-card-sub">units across 620 SKUs</div>
+                  </div>
+                  <svg width="54" height="28" viewBox="0 0 54 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                    <rect x="0" y="17" width="6" height="11" rx="1.5" fill="#e4e4e7"/>
+                    <rect x="8" y="11" width="6" height="17" rx="1.5" fill="#e4e4e7"/>
+                    <rect x="16" y="19" width="6" height="9" rx="1.5" fill="#d4d4d8"/>
+                    <rect x="24" y="6" width="6" height="22" rx="1.5" fill="#d4d4d8"/>
+                    <rect x="32" y="14" width="6" height="14" rx="1.5" fill="#a1a1aa"/>
+                    <rect x="40" y="15" width="6" height="13" rx="1.5" fill="#71717a"/>
+                    <rect x="48" y="4" width="6" height="24" rx="1.5" fill="#52525b"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Stat card 2: coverage uplift -->
+              <div class="stat-card stat-card-success">
+                <div class="stat-card-label">Projected coverage uplift</div>
+                <div class="stat-card-body">
+                  <div class="stat-card-body-left">
+                    <div class="stat-card-value" style="color:var(--success);">+<span class="fx-count" data-count-to="28">0</span> pts</div>
+                    <div class="stat-card-sub" style="color:#16a34a;">from 64% → 92% avg</div>
+                  </div>
+                  <svg width="58" height="28" viewBox="0 0 58 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                    <defs>
+                      <linearGradient id="sg-success" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#16a34a" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M 0 24 C 5 22 9 21 16 19 C 25 16 29 17 38 13 C 46 9 50 7 58 4 L 58 28 L 0 28 Z" fill="url(#sg-success)"/>
+                    <path d="M 0 24 C 5 22 9 21 16 19 C 25 16 29 17 38 13 C 46 9 50 7 58 4" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="58" cy="4" r="2.5" fill="#16a34a"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Stat card 3: AI accepted -->
+              <div class="stat-card stat-card-accent">
+                <div class="stat-card-label">AI recommendations accepted</div>
+                <div class="stat-card-body">
+                  <div class="stat-card-body-left">
+                    <div class="stat-card-value"><span class="fx-count" data-count-to="612">0</span> / <span class="fx-count" data-count-to="620">0</span></div>
+                    <div class="stat-card-sub" style="color:#2f6fed;">98.7% acceptance rate</div>
+                  </div>
+                  <svg width="52" height="52" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;align-self:center;" class="stat-donut-blue">
+                    <circle cx="18" cy="18" r="12" stroke="#dbeafe" stroke-width="3" fill="none" class="donut-track"/>
+                    <circle cx="18" cy="18" r="12" stroke="#2f6fed" stroke-width="3" fill="none"
+                      stroke-dasharray="74.6 75.4" stroke-linecap="round"
+                      transform="rotate(-90 18 18)" class="donut-fill"/>
+                    <text x="18" y="21" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#1d4ed8" class="donut-label">99%</text>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Stat card 4: overrides -->
+              <div class="stat-card stat-card-danger">
+                <div class="stat-card-label">Overridden below AI rec</div>
+                <div class="stat-card-body">
+                  <div class="stat-card-body-left">
+                    <div class="stat-card-value" style="color:var(--destructive);"><span class="fx-count" data-count-to="1">0</span></div>
+                    <a href="#" class="review-link" style="margin-top:4px;" onclick="event.preventDefault();">
+                      Review <svg width="10" height="10" fill="none" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2.5"/></svg>
+                    </a>
+                  </div>
+                  <svg width="46" height="28" viewBox="0 0 46 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                    <rect x="0" y="13" width="8" height="15" rx="1.5" fill="#fecaca"/>
+                    <rect x="9.5" y="23" width="8" height="5" rx="1.5" fill="#fecaca"/>
+                    <rect x="19" y="8" width="8" height="20" rx="1.5" fill="#fecaca"/>
+                    <rect x="28.5" y="18" width="8" height="10" rx="1.5" fill="#fecaca"/>
+                    <rect x="38" y="23" width="8" height="5" rx="1.5" fill="#ef4444"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div><!-- /action-bar-top -->
+
           <table class="product-table">
             <thead>
               <tr>
@@ -7426,89 +7518,6 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                 </div>
               </div>
             </div>
-          <div class="action-bar-row">
-            <div class="action-bar-left">
-              <!-- Stat card 1: total units -->
-              <div class="stat-card stat-card-neutral">
-                <div class="stat-card-label">Total units to replenish</div>
-                <div class="stat-card-body">
-                  <div class="stat-card-body-left">
-                    <div class="stat-card-value"><span class="fx-count" data-count-to="4340">0</span></div>
-                    <div class="stat-card-sub">units across 620 SKUs</div>
-                  </div>
-                  <svg width="54" height="28" viewBox="0 0 54 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-                    <rect x="0" y="17" width="6" height="11" rx="1.5" fill="#e4e4e7"/>
-                    <rect x="8" y="11" width="6" height="17" rx="1.5" fill="#e4e4e7"/>
-                    <rect x="16" y="19" width="6" height="9" rx="1.5" fill="#d4d4d8"/>
-                    <rect x="24" y="6" width="6" height="22" rx="1.5" fill="#d4d4d8"/>
-                    <rect x="32" y="14" width="6" height="14" rx="1.5" fill="#a1a1aa"/>
-                    <rect x="40" y="15" width="6" height="13" rx="1.5" fill="#71717a"/>
-                    <rect x="48" y="4" width="6" height="24" rx="1.5" fill="#52525b"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Stat card 2: coverage uplift -->
-              <div class="stat-card stat-card-success">
-                <div class="stat-card-label">Projected coverage uplift</div>
-                <div class="stat-card-body">
-                  <div class="stat-card-body-left">
-                    <div class="stat-card-value" style="color:var(--success);">+<span class="fx-count" data-count-to="28">0</span> pts</div>
-                    <div class="stat-card-sub" style="color:#16a34a;">from 64% → 92% avg</div>
-                  </div>
-                  <svg width="58" height="28" viewBox="0 0 58 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-                    <defs>
-                      <linearGradient id="sg-success" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#16a34a" stop-opacity="0.2"/>
-                        <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
-                      </linearGradient>
-                    </defs>
-                    <path d="M 0 24 C 5 22 9 21 16 19 C 25 16 29 17 38 13 C 46 9 50 7 58 4 L 58 28 L 0 28 Z" fill="url(#sg-success)"/>
-                    <path d="M 0 24 C 5 22 9 21 16 19 C 25 16 29 17 38 13 C 46 9 50 7 58 4" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="58" cy="4" r="2.5" fill="#16a34a"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Stat card 3: AI accepted -->
-              <div class="stat-card stat-card-accent">
-                <div class="stat-card-label">AI recommendations accepted</div>
-                <div class="stat-card-body">
-                  <div class="stat-card-body-left">
-                    <div class="stat-card-value"><span class="fx-count" data-count-to="612">0</span> / <span class="fx-count" data-count-to="620">0</span></div>
-                    <div class="stat-card-sub" style="color:#2f6fed;">98.7% acceptance rate</div>
-                  </div>
-                  <svg width="52" height="52" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;align-self:center;" class="stat-donut-blue">
-                    <circle cx="18" cy="18" r="12" stroke="#dbeafe" stroke-width="3" fill="none" class="donut-track"/>
-                    <circle cx="18" cy="18" r="12" stroke="#2f6fed" stroke-width="3" fill="none"
-                      stroke-dasharray="74.6 75.4" stroke-linecap="round"
-                      transform="rotate(-90 18 18)" class="donut-fill"/>
-                    <text x="18" y="21" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#1d4ed8" class="donut-label">99%</text>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Stat card 4: overrides -->
-              <div class="stat-card stat-card-danger">
-                <div class="stat-card-label">Overridden below AI rec</div>
-                <div class="stat-card-body">
-                  <div class="stat-card-body-left">
-                    <div class="stat-card-value" style="color:var(--destructive);"><span class="fx-count" data-count-to="1">0</span></div>
-                    <a href="#" class="review-link" style="margin-top:4px;" onclick="event.preventDefault();">
-                      Review <svg width="10" height="10" fill="none" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2.5"/></svg>
-                    </a>
-                  </div>
-                  <svg width="46" height="28" viewBox="0 0 46 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-                    <rect x="0" y="13" width="8" height="15" rx="1.5" fill="#fecaca"/>
-                    <rect x="9.5" y="23" width="8" height="5" rx="1.5" fill="#fecaca"/>
-                    <rect x="19" y="8" width="8" height="20" rx="1.5" fill="#fecaca"/>
-                    <rect x="28.5" y="18" width="8" height="10" rx="1.5" fill="#fecaca"/>
-                    <rect x="38" y="23" width="8" height="5" rx="1.5" fill="#ef4444"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div><!-- /action-bar-row -->
           </div><!-- /table-footer -->
           </div><!-- /table-content-wrap -->
         </div><!-- /product-table-wrap -->
