@@ -1362,14 +1362,32 @@ body[data-page-direction="backward"] .page.active {
   border-bottom-width: 0.5px;
 }
 
-/* Problem titles — soft red gradient (light left → darker right) + subtle glow */
+/* Problem titles — soft red gradient (light left → darker right) + subtle animated glow */
 #page-2 .audit-problem-title {
-  background: linear-gradient(90deg, #fecdd3 0%, #fda4af 35%, #f87171 70%, #dc2626 100%);
+  background: linear-gradient(
+    90deg,
+    #fecdd3 0%,
+    #fda4af 18%,
+    #f87171 35%,
+    #fecdd3 50%,
+    #fda4af 68%,
+    #f87171 85%,
+    #dc2626 100%
+  );
+  background-size: 220% 100%;
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
           color: transparent;
   filter: drop-shadow(0 0 6px rgba(248,113,113,0.22));
+  animation: titleGlowSweep 6.5s ease-in-out infinite;
+}
+@keyframes titleGlowSweep {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -120% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #page-2 .audit-problem-title { animation: none; }
 }
 
 /* Heuristic chips — 3-tone semantic palette
