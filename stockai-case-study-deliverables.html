@@ -9035,42 +9035,42 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 
         <div class="agents-grid" id="agentsGrid">
           <div class="agent-card" data-agent="competitive">
-            <div class="agent-avatar" style="--g1:#0ea5e9;--g2:#1e40af">🛰️</div>
+            <div class="agent-avatar" style="--g1:#0ea5e9;--g2:#1e40af"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div>
             <div class="agent-name">Competitive Watch</div>
             <div class="agent-spec">nextail, autone, optiply marketing observations — pricing, launches, positioning shifts.</div>
             <div class="agent-stats"><span>6 chats</span><span>•</span><span>Live tracking</span></div>
             <button class="btn btn-secondary agent-chat-btn">Chat</button>
           </div>
           <div class="agent-card" data-agent="sales">
-            <div class="agent-avatar" style="--g1:#3b82f6;--g2:#7c3aed">📊</div>
+            <div class="agent-avatar" style="--g1:#3b82f6;--g2:#7c3aed"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg></div>
             <div class="agent-name">Sales Strategist</div>
             <div class="agent-spec">Closes deals, finds upsell windows, and drafts outbound.</div>
             <div class="agent-stats"><span>23 chats</span><span>•</span><span>96% accuracy</span></div>
             <button class="btn btn-secondary agent-chat-btn">Chat</button>
           </div>
           <div class="agent-card" data-agent="replen">
-            <div class="agent-avatar" style="--g1:#10b981;--g2:#16a34a">📦</div>
+            <div class="agent-avatar" style="--g1:#10b981;--g2:#16a34a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg></div>
             <div class="agent-name">Replenishment Expert</div>
             <div class="agent-spec">Optimizes order quantities and cycle timing across SKUs.</div>
             <div class="agent-stats"><span>41 chats</span><span>•</span><span>97% accuracy</span></div>
             <button class="btn btn-secondary agent-chat-btn">Chat</button>
           </div>
           <div class="agent-card" data-agent="forecast">
-            <div class="agent-avatar" style="--g1:#f59e0b;--g2:#ea580c">📈</div>
+            <div class="agent-avatar" style="--g1:#f59e0b;--g2:#ea580c"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-5 4 3 5-7"/><circle cx="20" cy="5" r="1.6" fill="#fff"/></svg></div>
             <div class="agent-name">Forecasting Analyst</div>
             <div class="agent-spec">Predicts demand spikes and surfaces seasonality patterns.</div>
             <div class="agent-stats"><span>17 chats</span><span>•</span><span>94% accuracy</span></div>
             <button class="btn btn-secondary agent-chat-btn">Chat</button>
           </div>
           <div class="agent-card" data-agent="supplier">
-            <div class="agent-avatar" style="--g1:#ec4899;--g2:#be185d">🤝</div>
+            <div class="agent-avatar" style="--g1:#ec4899;--g2:#be185d"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 4-4 6 6"/><path d="M14 14l3 3 4-4-7-7-3 3"/><path d="M3 21l3-3M18 6l3-3"/></svg></div>
             <div class="agent-name">Supplier Negotiator</div>
             <div class="agent-spec">Benchmarks pricing and flags better terms across vendors.</div>
             <div class="agent-stats"><span>9 chats</span><span>•</span><span>92% accuracy</span></div>
             <button class="btn btn-secondary agent-chat-btn">Chat</button>
           </div>
           <div class="agent-card" data-agent="auditor">
-            <div class="agent-avatar" style="--g1:#6366f1;--g2:#4f46e5">🔍</div>
+            <div class="agent-avatar" style="--g1:#6366f1;--g2:#4f46e5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
             <div class="agent-name">Inventory Auditor</div>
             <div class="agent-spec">Catches anomalies, duplicates, and data integrity issues.</div>
             <div class="agent-stats"><span>14 chats</span><span>•</span><span>98% accuracy</span></div>
@@ -10656,7 +10656,7 @@ function saveAgent() {
   ];
   const p = palettes[Math.floor(Math.random() * palettes.length)];
   card.innerHTML = `
-    <div class="agent-avatar" style="--g1:${p[0]};--g2:${p[1]}">✨</div>
+    <div class="agent-avatar" style="--g1:${p[0]};--g2:${p[1]}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.6L18 9l-4.4 1.4L12 15l-1.6-4.6L6 9l4.4-1.4L12 3z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7L19 15z"/></svg></div>
     <div class="agent-name">${escapeHtml(name)}</div>
     <div class="agent-spec">${escapeHtml(spec)}</div>
     <div class="agent-stats"><span>0 chats</span><span>•</span><span>just now</span></div>
