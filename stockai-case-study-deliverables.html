@@ -2848,18 +2848,31 @@ body[data-page-direction="backward"] .page.active {
   border: none;
   border-radius: 0;
   overflow-x: hidden; overflow-y: visible;
-  display: flex; flex-direction: column; gap: 16px;
+  display: flex; flex-direction: column; gap: 8px;
 }
 
-/* Hi-Fi floating card pattern — each section is its own white card */
+/* table-content-wrap holds search + action-bar + table-block — not a card itself */
+.table-content-wrap {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+/* Hi-Fi floating card pattern */
 .product-table-wrap > .table-section-banner,
-.product-table-wrap > .action-bar-row.action-bar-top,
-.product-table-wrap > .table-content-wrap {
+.table-content-wrap > .table-search-bar,
+.table-content-wrap > .action-bar-row.action-bar-top,
+.table-content-wrap > .table-block {
   background: #ffffff;
   border: 1px solid var(--border);
   border-radius: var(--r-xl);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+}
+/* Override defaults for standalone search-bar card */
+.table-content-wrap > .table-search-bar {
+  border-bottom: 1px solid var(--border);
 }
 .product-table { width: 100%; border-collapse: collapse; }
 .product-table thead tr {
@@ -7236,6 +7249,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
             </div>
           </div><!-- /action-bar-top -->
 
+          <div class="table-block">
           <table class="product-table">
             <thead>
               <tr>
@@ -7540,6 +7554,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               </div>
             </div>
           </div><!-- /table-footer -->
+          </div><!-- /table-block -->
           </div><!-- /table-content-wrap -->
         </div><!-- /product-table-wrap -->
 
