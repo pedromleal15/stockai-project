@@ -2862,6 +2862,25 @@ body[data-page-direction="backward"] .page.active {
   letter-spacing: -0.01em;
 }
 
+/* Compact rows — tighter density inspired by reference table */
+.table-block .product-table td {
+  padding: 8px 12px;
+}
+.table-block .product-table thead th {
+  padding: 10px 12px;
+}
+.table-block .product-cell {
+  gap: 10px;
+}
+.table-block .product-img {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+}
+.table-block .product-name { font-size: 13.5px; }
+.table-block .product-sku  { font-size: 11px; margin-top: 1px; }
+.table-block .stock-units  { font-size: 13.5px; }
+.table-block .stock-transit { font-size: 11.5px; margin-top: 1px; }
+
 /* Sortable column header indicator — pair of stacked arrows like the reference */
 .th-sort {
   display: inline-flex; align-items: center; gap: 4px;
