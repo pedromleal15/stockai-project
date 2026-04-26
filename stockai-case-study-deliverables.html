@@ -2830,7 +2830,19 @@ body[data-page-direction="backward"] .page.active {
   margin-left: auto;
   transform: none;
 }
-.app-rail.expanded .rail-avatar { padding: 8px 10px; }
+/* Keep the StockAI avatar pinned bottom-left at its native size (don't stretch) */
+.app-rail.expanded .rail-avatar {
+  padding: 0;
+  margin-top: auto;
+  align-self: flex-start;
+  flex-direction: row; align-items: center; gap: 8px;
+}
+.app-rail.expanded .rail-avatar img {
+  width: 30px; height: 30px; flex-shrink: 0;
+}
+.app-rail.expanded .rail-avatar-label {
+  font-size: 11px; color: var(--neutral-700); letter-spacing: 0;
+}
 .hifi-wrapper.hifi-dark .rail-expand {
   background: #0d1322;
   border-color: rgba(99,140,255,0.32);
