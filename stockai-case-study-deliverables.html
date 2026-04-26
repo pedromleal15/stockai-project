@@ -8218,11 +8218,13 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <button class="ctb-btn ctb-view" data-tool="fit" data-tip="Reset zoom (100%)">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 9V4h5M21 9V4h-5M3 15v5h5M21 15v5h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
-              <button class="ctb-btn ctb-view" data-tool="zoom-out" data-tip="Zoom out">
+              <button id="zoomOutBtn" class="ctb-btn ctb-view" data-tool="zoom-out" data-tip="Zoom out">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M8 11h6M21 21l-4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span class="cave-tooltip" id="zoomOutTooltip">Click me.</span>
               </button>
-              <button class="ctb-btn ctb-view" data-tool="zoom-in" data-tip="Zoom in">
+              <button id="zoomInBtn" class="ctb-btn ctb-view" data-tool="zoom-in" data-tip="Zoom in">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M11 8v6M8 11h6M21 21l-4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span class="cave-tooltip" id="zoomInTooltip">Click me.</span>
               </button>
               <span class="ctb-zoom-level" id="ctbZoomLevel">100%</span>
             </div>
@@ -8660,7 +8662,7 @@ function showPage(num, tab) {
   window.scrollTo({ top: 0, behavior: 'instant' });
   // Hide Hi-Fi onboarding tooltips when leaving page 5
   if (num !== 5) {
-    ['caveTooltip', 'darkTooltip', 'railBetaTooltip'].forEach(id => {
+    ['caveTooltip', 'darkTooltip', 'railBetaTooltip', 'zoomInTooltip', 'zoomOutTooltip'].forEach(id => {
       const t = document.getElementById(id);
       if (t) t.classList.remove('visible');
     });
@@ -8699,7 +8701,9 @@ function showPage(num, tab) {
   const tipAnchors = {
     caveTooltip: 'caveTrack',
     darkTooltip: 'darkTrack',
-    railBetaTooltip: 'railCanvas'
+    railBetaTooltip: 'railCanvas',
+    zoomInTooltip: 'zoomInBtn',
+    zoomOutTooltip: 'zoomOutBtn'
   };
   Object.entries(tipAnchors).forEach(([tipId, anchorId]) => {
     document.addEventListener('click', function(e) {
@@ -9140,10 +9144,40 @@ if (document.readyState === 'loading') {
         if (!t) return;
         if (on) { t.classList.remove('visible'); t.dataset.dismissed = '1'; }
       });
+      // Zoom tooltips — only visible inside the Canvas view
+      ['zoomInTooltip', 'zoomOutTooltip'].forEach(id => {
+        const t = document.getElementById(id);
+        if (!t) return;
+        if (on) {
+          delete t.dataset.dismissed;
+          // Defer so the toolbar is in its final position before measuring
+          setTimeout(() => showCanvasTip(id, id === 'zoomInTooltip' ? 'zoomInBtn' : 'zoomOutBtn'), 350);
+        } else {
+          t.classList.remove('visible');
+          t.dataset.dismissed = '1';
+        }
+      });
       // Recompute connection paths once canvas-area becomes visible (offsetWidth was 0 before)
       if (on && typeof bindCanvasConnections.update === 'function') {
         requestAnimationFrame(() => requestAnimationFrame(bindCanvasConnections.update));
       }
+    }
+    // Same positioning routine as showTip in showPage(5) — exposed for canvas zoom tips
+    function showCanvasTip(tipId, anchorId) {
+      const tip = document.getElementById(tipId);
+      const anchor = document.getElementById(anchorId);
+      if (!tip || !anchor || tip.dataset.dismissed) return;
+      if (tip.parentElement !== document.body) document.body.appendChild(tip);
+      const r = anchor.getBoundingClientRect();
+      const docTop  = r.top  + window.scrollY;
+      const docLeft = r.left + window.scrollX;
+      tip.style.visibility = 'hidden';
+      tip.classList.add('visible');
+      requestAnimationFrame(() => {
+        tip.style.top  = (docTop  - tip.offsetHeight - 10) + 'px';
+        tip.style.left = (docLeft + r.width / 2 - tip.offsetWidth / 2) + 'px';
+        tip.style.visibility = '';
+      });
     }
 
     btn.addEventListener('click', () => setCanvas(true));
