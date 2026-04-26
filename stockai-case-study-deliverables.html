@@ -1254,6 +1254,12 @@ body[data-page-direction="backward"] .page.active {
   50%      { box-shadow: 0 0 0 6px rgba(239,68,68,0.10); }
 }
 
+/* Thinner + more translucent rotating border on Critical / High cards */
+#page-2 .audit-problem-card::before {
+  padding: 1px;            /* was 2px → thinner */
+  opacity: 0.55;           /* halves the conic + drop-shadow intensity */
+}
+
 /* ===== Copy refactor table — translucent ===== */
 #page-2 .audit-refactor {
   background: rgba(255,255,255,0.05);
