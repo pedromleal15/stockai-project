@@ -2843,9 +2843,23 @@ body[data-page-direction="backward"] .page.active {
 
 /* Product table */
 .product-table-wrap {
-  margin: 16px 32px 0; background: white;
-  border: 1px solid var(--border); border-radius: var(--r-xl);
+  margin: 16px 32px 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   overflow-x: hidden; overflow-y: visible;
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+/* Hi-Fi floating card pattern — each section is its own white card */
+.product-table-wrap > .table-section-banner,
+.product-table-wrap > .action-bar-row.action-bar-top,
+.product-table-wrap > .table-content-wrap {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 .product-table { width: 100%; border-collapse: collapse; }
 .product-table thead tr {
@@ -3031,11 +3045,18 @@ body[data-page-direction="backward"] .page.active {
   padding: 14px 16px 20px;
   border-top: 1px solid var(--border);
 }
-/* Action bar moved to the top — between filters and the table */
+/* Action bar moved to the top — standalone floating card */
 .action-bar-row.action-bar-top {
-  padding: 12px 16px 14px;
-  border-bottom: 1px solid var(--border);
-  background: var(--neutral-50);
+  padding: 16px;
+  border-bottom: none;
+  background: #ffffff;
+}
+/* table-section-banner — standalone card, no inner separator */
+.product-table-wrap > .table-section-banner {
+  border-bottom: none;
+  border-radius: var(--r-xl);
+  background: #ffffff;
+  padding: 12px 16px;
 }
 .table-page-nav { display: flex; align-items: center; gap: 4px; }
 .page-nav-btn {
