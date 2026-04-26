@@ -1266,6 +1266,8 @@ body[data-page-direction="backward"] .page.active {
     radial-gradient(ellipse at 30% 0%, rgba(99,140,255,0.18) 0%, transparent 60%),
     linear-gradient(140deg, #0d1a45 0%, #1a2a5e 100%);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  /* Match the design system radius on the right corners (top-right + bottom-right) */
+  border-radius: 0 var(--r-xl) var(--r-xl) 0;
 }
 
 /* ===== Copy refactor table — translucent ===== */
