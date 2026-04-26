@@ -891,6 +891,12 @@ body[data-page-direction="backward"] .page.active {
   background: linear-gradient(135deg, #2f6fed 0%, #7c3aed 100%);
   display: grid; place-items: center;
   font-weight: 700; font-size: 16px; color: white; flex-shrink: 0;
+  overflow: hidden;
+}
+.persona-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .persona-name {
   font-size: 16px; font-weight: 700;
@@ -1150,9 +1156,9 @@ body[data-page-direction="backward"] .page.active {
   display: block;
 }
 .stockai-brand-name {
-  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
-  font-size: 13px; font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif !important;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: -0.015em;
   color: var(--neutral-900);
 }
 
@@ -5289,7 +5295,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
     <!-- Persona -->
     <div class="card persona-card">
       <div class="persona-header">
-        <div class="persona-avatar">SC</div>
+        <div class="persona-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=192&h=192&fit=crop&crop=faces&auto=format" alt="Sarah Chen, Inventory Planning Manager" loading="lazy" /></div>
         <div>
           <div class="persona-name">Sarah Chen</div>
           <div class="persona-role">Inventory Planning Manager · Mid-size retail chain</div>
