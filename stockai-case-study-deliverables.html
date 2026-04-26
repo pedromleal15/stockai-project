@@ -1197,6 +1197,51 @@ body[data-page-direction="backward"] .page.active {
   color: #fca5a5;
 }
 
+/* ===== Audit hero — both sides on the dark blue tone ===== */
+#page-2 .audit-hero {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+#page-2 .audit-diagnosis-side { color: rgba(255,255,255,0.85); }
+#page-2 .audit-diagnosis-label { color: rgba(255,255,255,0.55); }
+#page-2 .diag-tldr {
+  background: rgba(255,255,255,0.05);
+  border-left: 3px solid rgba(125,180,255,0.65);
+  color: rgba(255,255,255,0.92);
+}
+#page-2 .diag-tldr em { color: #fdba74; font-style: normal; font-weight: 600; }
+#page-2 .diag-item {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.85);
+}
+#page-2 .diag-item:hover { background: rgba(255,255,255,0.07); }
+#page-2 .diag-item.sev-critical {
+  background: rgba(239,68,68,0.10);
+  border-color: rgba(239,68,68,0.30);
+}
+#page-2 .diag-item.sev-high {
+  background: rgba(249,115,22,0.10);
+  border-color: rgba(249,115,22,0.30);
+}
+#page-2 .diag-cat { color: #ffffff; }
+#page-2 .diag-text { color: rgba(255,255,255,0.82); }
+#page-2 .diag-text strong { color: #ffffff; }
+#page-2 .diag-text .hl-red { color: #fca5a5; }
+#page-2 .diag-text .hl-amber { color: #fdba74; }
+#page-2 .diag-text code {
+  background: rgba(255,255,255,0.10);
+  color: #e0e7ff;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+#page-2 .diag-sev {
+  background: rgba(255,255,255,0.10);
+  color: #ffffff;
+}
+
 .audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
 .audit-screen { padding: 0; overflow: hidden; }
 .audit-screen-header {
