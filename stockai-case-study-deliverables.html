@@ -1163,145 +1163,76 @@ body[data-page-direction="backward"] .page.active {
 }
 
 /* =====================================================
-   PAGE 2 — DESIGN AUDIT  ·  Deep blue + glass cards
+   PAGE 2 — DESIGN AUDIT
+   Page is light/white. Deep blue lives ONLY inside .audit-hero
+   (with animated 4-color glow blobs).
    ===================================================== */
-#page-2 {
+#page-2 { background: var(--bg); }
+
+/* ===== Audit hero — full-width navy card with animated glows ===== */
+#page-2 .audit-hero {
   position: relative;
   isolation: isolate;
-  color: rgba(255,255,255,0.92);
+  overflow: hidden;
+  background: linear-gradient(180deg, #0f1f4a 0%, #0a1838 60%, #08122d 100%);
+  border: 1px solid rgba(15,23,42,0.10);
+  box-shadow: 0 12px 40px rgba(15,23,42,0.18);
+}
+/* Animated blobs: purple · blue · cyan · yellow */
+#page-2 .audit-hero::before {
+  content: '';
+  position: absolute; inset: -25%;
   background:
-    radial-gradient(ellipse at 18% 8%,  rgba(99,140,255,0.28) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 65%, rgba(140,108,255,0.18) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 102%, rgba(58,90,200,0.22) 0%, transparent 60%),
-    linear-gradient(180deg, #0f1f4a 0%, #0a1838 60%, #08122d 100%);
-}
-/* Abstract dot-grid texture overlay */
-#page-2::before {
-  content: ''; position: absolute; inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1.2px);
-  background-size: 22px 22px;
-  pointer-events: none;
+    radial-gradient(circle at 18% 22%, rgba(167,139,250,0.55) 0%, transparent 30%),
+    radial-gradient(circle at 78% 28%, rgba(99,140,255,0.50)  0%, transparent 30%),
+    radial-gradient(circle at 30% 82%, rgba(125,211,252,0.45) 0%, transparent 30%),
+    radial-gradient(circle at 82% 76%, rgba(253,224,71,0.32)  0%, transparent 30%);
+  filter: blur(40px);
   z-index: 0;
-}
-/* Soft glow blob behind cards (left) */
-#page-2::after {
-  content: ''; position: absolute;
-  top: 18%; left: -12%; width: 520px; height: 520px;
-  background: radial-gradient(circle, rgba(99,140,255,0.35) 0%, transparent 60%);
-  filter: blur(60px);
   pointer-events: none;
+  animation: heroGlowDrift 22s ease-in-out infinite alternate;
+}
+#page-2 .audit-hero::after {
+  content: '';
+  position: absolute; inset: -15%;
+  background:
+    radial-gradient(circle at 65% 18%, rgba(167,139,250,0.30) 0%, transparent 28%),
+    radial-gradient(circle at 22% 55%, rgba(125,211,252,0.30) 0%, transparent 28%),
+    radial-gradient(circle at 88% 60%, rgba(253,224,71,0.20)  0%, transparent 28%);
+  filter: blur(50px);
   z-index: 0;
+  pointer-events: none;
+  animation: heroGlowDrift2 28s ease-in-out infinite alternate;
 }
-#page-2 > * { position: relative; z-index: 1; }
-
-/* Header text on blue */
-#page-2 .page-eyebrow { color: rgba(255,255,255,0.55); }
-#page-2 .page-title   { color: #ffffff; }
-#page-2 .page-subtitle { color: rgba(255,255,255,0.72); }
-#page-2 .page-header { border-bottom-color: rgba(255,255,255,0.10); }
-
-/* ===== Screens gallery — translucent glass panel ===== */
-#page-2 .screens-gallery {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(14px) saturate(1.25);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.07);
+#page-2 .audit-hero > * { position: relative; z-index: 1; }
+@keyframes heroGlowDrift {
+  0%   { transform: translate(0, 0)        scale(1)    rotate(0deg); }
+  33%  { transform: translate(28px, -22px) scale(1.10) rotate(14deg); }
+  66%  { transform: translate(-22px, 26px) scale(0.95) rotate(-10deg); }
+  100% { transform: translate(18px, 8px)   scale(1.05) rotate(6deg); }
 }
-#page-2 .screens-gallery-title { color: #fff; }
-#page-2 .screens-gallery-sub   { color: rgba(255,255,255,0.65); }
-#page-2 .screens-gallery .badge-neutral {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.78);
+@keyframes heroGlowDrift2 {
+  0%   { transform: translate(0, 0)         scale(1)    rotate(0deg); }
+  50%  { transform: translate(-30px, 18px)  scale(1.08) rotate(-12deg); }
+  100% { transform: translate(20px, -14px)  scale(0.96) rotate(10deg); }
 }
-#page-2 .screen-thumb-frame {
-  background: rgba(255,255,255,0.04);
-  border-color: rgba(255,255,255,0.10);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-}
-#page-2 .screen-thumb-frame:hover { border-color: rgba(255,255,255,0.20); }
-#page-2 .screen-thumb-label { color: rgba(255,255,255,0.85); }
-#page-2 .screen-thumb-step {
-  background: rgba(255,255,255,0.10);
-  color: rgba(255,255,255,0.85);
+@media (prefers-reduced-motion: reduce) {
+  #page-2 .audit-hero::before,
+  #page-2 .audit-hero::after { animation: none; }
 }
 
-/* ===== Audit problems grid — glass cards ===== */
-#page-2 .audit-problem-card {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.10);
-  backdrop-filter: blur(14px) saturate(1.25);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
-}
-#page-2 .audit-problem-card-title { color: #fff; }
-#page-2 .audit-problem-card-count { color: rgba(255,255,255,0.62); }
-#page-2 .audit-problem-title      { color: #ffffff; }
-#page-2 .audit-problem-desc       { color: rgba(255,255,255,0.78); }
-#page-2 .audit-heuristic {
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(255,255,255,0.13);
-  color: rgba(255,255,255,0.82);
+/* ===== Clarity Score card — deep navy gradient (left half of hero) ===== */
+#page-2 .audit-score-side {
+  background:
+    radial-gradient(ellipse at 30% 0%, rgba(99,140,255,0.18) 0%, transparent 60%),
+    linear-gradient(140deg, #0d1a45 0%, #1a2a5e 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  border-radius: 0 var(--r-xl) var(--r-xl) 0;
+  border-right: 1px solid rgba(255,255,255,0.10);
 }
 
-/* ===== Audit screen mockups (Screen 1 / Screen 2) — glass shell ===== */
-#page-2 .audit-screen {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.10);
-  backdrop-filter: blur(14px) saturate(1.25);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
-}
-#page-2 .audit-screen-header { border-bottom-color: rgba(255,255,255,0.08); }
-#page-2 .audit-screen-title  { color: #ffffff; }
-/* Inner mock screen stays white for fidelity, with subtle bezel */
-#page-2 .mock-screen {
-  background: #ffffff;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-}
-#page-2 .annotation {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.85);
-}
-#page-2 .annotation-text       { color: rgba(255,255,255,0.85); }
-#page-2 .annotation-text strong { color: #ffffff; }
-#page-2 .annotation-num {
-  background: rgba(255,255,255,0.10);
-  color: #ffffff;
-  border-color: rgba(255,255,255,0.18);
-}
-
-/* Adjust badge variants on blue bg */
-#page-2 .badge-warning {
-  background: rgba(249,115,22,0.18);
-  border-color: rgba(249,115,22,0.40);
-  color: #fdba74;
-}
-#page-2 .badge-critical {
-  background: rgba(239,68,68,0.18);
-  border-color: rgba(239,68,68,0.40);
-  color: #fca5a5;
-}
-#page-2 .badge-error {
-  background: rgba(239,68,68,0.18);
-  border-color: rgba(239,68,68,0.40);
-  color: #fca5a5;
-}
-
-/* ===== Audit hero — both sides on the dark blue tone ===== */
-#page-2 .audit-hero {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(14px) saturate(1.25);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.06);
-}
-#page-2 .audit-diagnosis-side { color: rgba(255,255,255,0.85); }
+/* ===== Diagnosis side — text + items styled for the blue bg ===== */
+#page-2 .audit-diagnosis-side  { color: rgba(255,255,255,0.85); }
 #page-2 .audit-diagnosis-label { color: rgba(255,255,255,0.55); }
 #page-2 .diag-tldr {
   background: rgba(255,255,255,0.05);
@@ -1310,11 +1241,13 @@ body[data-page-direction="backward"] .page.active {
 }
 #page-2 .diag-tldr em { color: #fdba74; font-style: normal; font-weight: 600; }
 #page-2 .diag-item {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.05);
   border-color: rgba(255,255,255,0.10);
   color: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px) saturate(1.1);
+  -webkit-backdrop-filter: blur(8px) saturate(1.1);
 }
-#page-2 .diag-item:hover { background: rgba(255,255,255,0.07); }
+#page-2 .diag-item:hover { background: rgba(255,255,255,0.08); }
 #page-2 .diag-item.sev-critical {
   background: rgba(239,68,68,0.10);
   border-color: rgba(239,68,68,0.30);
@@ -1326,7 +1259,7 @@ body[data-page-direction="backward"] .page.active {
 #page-2 .diag-cat { color: #ffffff; }
 #page-2 .diag-text { color: rgba(255,255,255,0.82); }
 #page-2 .diag-text strong { color: #ffffff; }
-#page-2 .diag-text .hl-red { color: #fca5a5; }
+#page-2 .diag-text .hl-red   { color: #fca5a5; }
 #page-2 .diag-text .hl-amber { color: #fdba74; }
 #page-2 .diag-text code {
   background: rgba(255,255,255,0.10);
@@ -1337,7 +1270,7 @@ body[data-page-direction="backward"] .page.active {
   background: rgba(255,255,255,0.10);
   color: #ffffff;
 }
-/* Force all diag-dots to red with a soft pulse — preserves the hover scale */
+/* All diag-dots red with soft pulse */
 #page-2 .diag-dot,
 #page-2 .diag-item.sev-critical .diag-dot,
 #page-2 .diag-item.sev-high     .diag-dot {
@@ -1350,36 +1283,25 @@ body[data-page-direction="backward"] .page.active {
   50%      { box-shadow: 0 0 0 6px rgba(239,68,68,0.10); }
 }
 
-/* Thinner + more translucent rotating border on Critical / High cards */
+/* Thinner conic stroke on Critical / High cards (cards are back to white) */
 #page-2 .audit-problem-card::before {
-  padding: 1px;            /* was 2px → thinner */
-  opacity: 0.55;           /* halves the conic + drop-shadow intensity */
+  padding: 1px;
+  opacity: 0.65;
 }
 
-/* Thinner + more translucent divider between problem items */
-#page-2 .audit-problem-item {
-  border-bottom-color: rgba(255,255,255,0.06);
-  border-bottom-width: 0.5px;
-}
-
-/* Problem titles — soft red gradient (light left → darker right) + subtle animated glow */
+/* Problem titles — soft red gradient with animated glow sweep */
 #page-2 .audit-problem-title {
   background: linear-gradient(
     90deg,
-    #fecdd3 0%,
-    #fda4af 18%,
-    #f87171 35%,
-    #fecdd3 50%,
-    #fda4af 68%,
-    #f87171 85%,
-    #dc2626 100%
+    #fda4af 0%, #f87171 18%, #ef4444 35%,
+    #fda4af 50%, #f87171 68%, #ef4444 85%, #b91c1c 100%
   );
   background-size: 220% 100%;
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
           color: transparent;
-  filter: drop-shadow(0 0 6px rgba(248,113,113,0.22));
+  filter: drop-shadow(0 0 5px rgba(239,68,68,0.18));
   animation: titleGlowSweep 6.5s ease-in-out infinite;
 }
 @keyframes titleGlowSweep {
@@ -1390,89 +1312,23 @@ body[data-page-direction="backward"] .page.active {
   #page-2 .audit-problem-title { animation: none; }
 }
 
-/* Heuristic chips — 3-tone semantic palette
-   • Blue   = Nielsen / NN/g heuristics
-   • Violet = Cognitive laws (Miller, Hick, Jakob, Peak-End, Tesler)
-   • Teal   = UX principles & patterns */
-#page-2 .audit-heuristic {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.10);
-  color: rgba(255,255,255,0.82);
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
+/* Heuristic chips — 3-tone palette tuned for white bg
+   Blue = Nielsen/NN/g · Violet = cognitive laws · Teal = UX patterns */
 #page-2 .audit-heuristic.h-blue {
-  background: rgba(99,140,255,0.14);
-  border-color: rgba(99,140,255,0.32);
-  color: #bfd1ff;
+  background: rgba(59,130,246,0.10);
+  border: 1px solid rgba(59,130,246,0.28);
+  color: #1d4ed8;
 }
 #page-2 .audit-heuristic.h-violet {
-  background: rgba(167,139,250,0.14);
-  border-color: rgba(167,139,250,0.32);
-  color: #ddd6fe;
+  background: rgba(139,92,246,0.10);
+  border: 1px solid rgba(139,92,246,0.28);
+  color: #6d28d9;
 }
 #page-2 .audit-heuristic.h-teal {
-  background: rgba(45,212,191,0.14);
-  border-color: rgba(45,212,191,0.32);
-  color: #99f6e4;
+  background: rgba(20,184,166,0.10);
+  border: 1px solid rgba(20,184,166,0.28);
+  color: #0f766e;
 }
-
-/* Clarity Score card — deep navy blue gradient (was near-black) */
-#page-2 .audit-score-side {
-  background:
-    radial-gradient(ellipse at 30% 0%, rgba(99,140,255,0.18) 0%, transparent 60%),
-    linear-gradient(140deg, #0d1a45 0%, #1a2a5e 100%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-  /* Match the design system radius on the right corners (top-right + bottom-right) */
-  border-radius: 0 var(--r-xl) var(--r-xl) 0;
-  /* Right-edge stroke — same color as the parent audit-hero border */
-  border-right: 1px solid rgba(255,255,255,0.10);
-}
-
-/* ===== Copy refactor table — translucent ===== */
-#page-2 .audit-refactor {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.10);
-  backdrop-filter: blur(14px) saturate(1.25);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
-}
-#page-2 .audit-refactor-header { border-bottom-color: rgba(255,255,255,0.10); }
-#page-2 .audit-refactor-title  { color: #ffffff; }
-#page-2 .audit-refactor-sub    { color: rgba(255,255,255,0.65); }
-#page-2 .audit-refactor-table th {
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.62);
-  border-bottom-color: rgba(255,255,255,0.10);
-}
-#page-2 .audit-refactor-table td {
-  color: rgba(255,255,255,0.78);
-  border-bottom-color: rgba(255,255,255,0.07);
-}
-#page-2 .audit-refactor-table td.current {
-  color: rgba(255,255,255,0.40);
-  text-decoration-color: rgba(255,255,255,0.30);
-}
-#page-2 .audit-refactor-table td.proposed { color: #ffffff; }
-#page-2 .audit-refactor-table td.proposed strong { color: #86efac; }
-#page-2 .audit-refactor-arrow { color: rgba(255,255,255,0.30); }
-
-/* ===== Structural improvements grid — glass tiles ===== */
-#page-2 .audit-improvement {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.10);
-  backdrop-filter: blur(12px) saturate(1.2);
-  -webkit-backdrop-filter: blur(12px) saturate(1.2);
-}
-#page-2 .audit-improvement-title { color: #ffffff; }
-#page-2 .audit-improvement-desc  { color: rgba(255,255,255,0.78); }
-/* Tinted icon chips on dark surface */
-#page-2 .audit-improvement-icon.blue   { background: rgba(99,140,255,0.18);  color: #93c5fd; }
-#page-2 .audit-improvement-icon.green  { background: rgba(34,197,94,0.18);   color: #86efac; }
-#page-2 .audit-improvement-icon.amber  { background: rgba(249,115,22,0.18);  color: #fdba74; }
-#page-2 .audit-improvement-icon.purple { background: rgba(139,92,246,0.18);  color: #c4b5fd; }
-#page-2 .audit-improvement-icon.teal   { background: rgba(20,184,166,0.18);  color: #5eead4; }
-#page-2 .audit-improvement-icon.rose   { background: rgba(244,63,94,0.18);   color: #fda4af; }
 
 .audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
 .audit-screen { padding: 0; overflow: hidden; }
