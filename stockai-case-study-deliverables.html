@@ -2305,8 +2305,20 @@ body[data-page-direction="backward"] .page.active {
 .hifi-wrapper.hifi-dark .table-section-banner .btn-secondary svg circle,
 .hifi-wrapper.hifi-dark .table-section-banner .btn-secondary svg path,
 .hifi-wrapper.hifi-dark .table-section-banner .btn-secondary svg polyline { stroke: #ffffff; }
-.hifi-wrapper.hifi-dark .btn-primary { background: #f0f0f5; color: #0f0f12; }
-.hifi-wrapper.hifi-dark .btn-primary:hover { background: #d8d8e8; }
+/* Submit (primary) — brand blue in dark mode */
+.hifi-wrapper.hifi-dark .btn-primary {
+  background: #2f6fed; color: #ffffff;
+  border-color: rgba(99,140,255,0.55);
+}
+.hifi-wrapper.hifi-dark .btn-primary:hover { background: #1d4ed8; }
+.hifi-wrapper.hifi-dark .btn-primary svg [stroke] { stroke: #ffffff; }
+/* Share (accent) — flat black-and-white in dark mode */
+.hifi-wrapper.hifi-dark .btn-accent {
+  background: #ffffff; color: #0d1322;
+  border-color: rgba(255,255,255,0.18);
+}
+.hifi-wrapper.hifi-dark .btn-accent:hover { background: #e9edf6; }
+.hifi-wrapper.hifi-dark .btn-accent svg [stroke] { stroke: #0d1322; }
 .hifi-wrapper.hifi-dark .mode-toggle { background: #2a2a38; }
 .hifi-wrapper.hifi-dark .mode-toggle-btn.active {
   background: #3a3a48; color: var(--neutral-900);
