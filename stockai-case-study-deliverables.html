@@ -2862,24 +2862,46 @@ body[data-page-direction="backward"] .page.active {
   letter-spacing: -0.01em;
 }
 
-/* Compact rows — tighter density inspired by reference table */
+/* Compact rows — aggressive density (40px img + 4px td padding) */
 .table-block .product-table td {
-  padding: 8px 12px;
+  padding: 4px 10px;
+  vertical-align: middle;
 }
 .table-block .product-table thead th {
-  padding: 10px 12px;
+  padding: 8px 10px;
 }
-.table-block .product-cell {
-  gap: 10px;
-}
+.table-block .product-cell { gap: 10px; }
 .table-block .product-img {
-  width: 40px; height: 40px;
+  width: 36px; height: 36px;
   border-radius: 8px;
 }
-.table-block .product-name { font-size: 13.5px; }
+.table-block .product-name { font-size: 13px; line-height: 1.2; }
 .table-block .product-sku  { font-size: 11px; margin-top: 1px; }
-.table-block .stock-units  { font-size: 13.5px; }
-.table-block .stock-transit { font-size: 11.5px; margin-top: 1px; }
+.table-block .stock-units  { font-size: 13px; line-height: 1.2; }
+.table-block .stock-transit { font-size: 11px; margin-top: 0; }
+.table-block .stat-card-sub { font-size: 11px; margin-top: 0; }
+.table-block .ai-rec-confidence,
+.table-block .ai-rec-units,
+.table-block .ai-rec-rationale { line-height: 1.2; }
+.table-block .ai-rec-rationale { margin-top: 1px; font-size: 11px; }
+.table-block .ai-rec-units { font-size: 13px; margin-top: 1px; }
+.table-block .qty-input,
+.table-block .qty-input-wrap input { height: 26px; font-size: 12.5px; }
+.table-block .qty-meta,
+.table-block .qty-meta-line { font-size: 11px; line-height: 1.25; margin-top: 1px; }
+/* Collapse the inline warning callout that bloats Leather Crossbody Bag's row */
+.table-block .qty-warning,
+.table-block .stockout-warning,
+.table-block .coverage-warning {
+  font-size: 10.5px; line-height: 1.3;
+  padding: 4px 6px; margin-top: 4px;
+}
+.table-block .cov-bar-wrap { margin-top: 2px; }
+.table-block .cov-spark-chart { height: 18px !important; }
+/* Badges inside cells — keep tight */
+.table-block .badge-stock,
+.table-block tr td .badge,
+.table-block .row-badge { padding: 1px 6px; font-size: 10.5px; }
 
 /* Sortable column header indicator — pair of stacked arrows like the reference */
 .th-sort {
