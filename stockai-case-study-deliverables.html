@@ -2238,8 +2238,24 @@ body[data-page-direction="backward"] .page.active {
 .hifi-wrapper.hifi-dark .replen-header,
 .hifi-wrapper.hifi-dark .mode-toggle-row { background: #13131a; border-color: var(--border); }
 .hifi-wrapper.hifi-dark .ai-banner {
-  background: linear-gradient(135deg, #1a2540 0%, #1e1535 45%, #201428 100%);
-  border-color: rgba(109,40,217,0.35);
+  background: linear-gradient(135deg, #0a1f12 0%, #0d2618 50%, #06140b 100%);
+  border-color: rgba(34,197,94,0.32);
+}
+.hifi-wrapper.hifi-dark .ai-banner::before {
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(34,197,94,0.22) 0%, transparent 60%) !important;
+}
+.hifi-wrapper.hifi-dark .ai-banner-icon {
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 55%, #4ade80 100%);
+  box-shadow: 0 6px 18px -6px rgba(34,197,94,0.55);
+}
+.hifi-wrapper.hifi-dark .ai-banner-title { color: #ecf3ed; }
+.hifi-wrapper.hifi-dark .ai-banner-sub   { color: #9aa89c; }
+.hifi-wrapper.hifi-dark .ai-banner .ai-review-btn {
+  border-color: rgba(34,197,94,0.45) !important;
+  color: #86efac !important;
+}
+.hifi-wrapper.hifi-dark .ai-banner .ai-review-btn:hover {
+  background: rgba(34,197,94,0.10) !important;
 }
 .hifi-wrapper.hifi-dark .product-table th,
 .hifi-wrapper.hifi-dark .product-table td { border-color: var(--border); }
