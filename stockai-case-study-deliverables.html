@@ -10006,6 +10006,18 @@ if (document.readyState === 'loading') {
 
     function setCanvas(on) {
       const wrapper = document.querySelector('#page-5 .hifi-wrapper');
+      // Sync sibling views: Canvas lives inside the Replenishment app-main,
+      // so Home/Agents must be hidden and Replenishment must be visible.
+      const mainReplen = wrapper.querySelector('.app-main:not(.app-main--home):not(.app-main--agents)');
+      const mainHome   = document.getElementById('appMainHome');
+      const mainAgents = document.getElementById('appMainAgents');
+      if (on) {
+        if (mainReplen) mainReplen.hidden = false;
+        if (mainHome)   mainHome.hidden = true;
+        if (mainAgents) mainAgents.hidden = true;
+        // Clear any other rail-icon active state
+        wrapper.querySelectorAll('.app-rail .rail-icon').forEach(i => i.classList.remove('active'));
+      }
       wrapper.classList.toggle('canvas-mode', on);
       btn.classList.toggle('active', on);
       if (replenBtn) replenBtn.classList.toggle('active', !on);
