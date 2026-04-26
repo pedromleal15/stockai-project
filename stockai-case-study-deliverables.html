@@ -1266,6 +1266,33 @@ body[data-page-direction="backward"] .page.active {
   border-bottom-width: 0.5px;
 }
 
+/* Heuristic chips — 3-tone semantic palette
+   • Blue   = Nielsen / NN/g heuristics
+   • Violet = Cognitive laws (Miller, Hick, Jakob, Peak-End, Tesler)
+   • Teal   = UX principles & patterns */
+#page-2 .audit-heuristic {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.82);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+#page-2 .audit-heuristic.h-blue {
+  background: rgba(99,140,255,0.14);
+  border-color: rgba(99,140,255,0.32);
+  color: #bfd1ff;
+}
+#page-2 .audit-heuristic.h-violet {
+  background: rgba(167,139,250,0.14);
+  border-color: rgba(167,139,250,0.32);
+  color: #ddd6fe;
+}
+#page-2 .audit-heuristic.h-teal {
+  background: rgba(45,212,191,0.14);
+  border-color: rgba(45,212,191,0.32);
+  color: #99f6e4;
+}
+
 /* Clarity Score card — deep navy blue gradient (was near-black) */
 #page-2 .audit-score-side {
   background:
@@ -8475,6 +8502,23 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initScrollMinimap);
 } else {
   initScrollMinimap();
+}
+
+/* Color-classify Page 2 heuristic chips (semantic 3-tone palette) */
+function classifyHeuristicChips() {
+  const COG = /Miller|Hick|Jakob|Peak-End|Tesler/i;
+  const NIE = /Nielsen|NN\/g/i;
+  document.querySelectorAll('#page-2 .audit-heuristic').forEach(el => {
+    const t = el.textContent.trim();
+    if (NIE.test(t))      el.classList.add('h-blue');
+    else if (COG.test(t)) el.classList.add('h-violet');
+    else                  el.classList.add('h-teal');
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', classifyHeuristicChips);
+} else {
+  classifyHeuristicChips();
 }
 
 /* ===== Framer-style motion system — fade + rise + word split + hover lift ===== */
