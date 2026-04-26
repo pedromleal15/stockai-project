@@ -2203,46 +2203,66 @@ body[data-page-direction="backward"] .page.active {
 
 /* ===== DARK MODE ===== */
 .hifi-wrapper.hifi-dark {
-  --bg:            #0f0f12;
-  --surface:       #18181d;
-  --border:        #2a2a35;
-  --border-strong: #3a3a48;
-  --neutral-0:     #18181d;
-  --neutral-50:    #1e1e25;
-  --neutral-100:   #232330;
-  --neutral-150:   #2a2a38;
-  --neutral-200:   #32323f;
-  --neutral-300:   #44445a;
-  --neutral-400:   #6b6b82;
-  --neutral-500:   #9090aa;
-  --neutral-700:   #c4c4d4;
-  --neutral-900:   #f0f0f5;
-  --primary:       #f0f0f5;
-  --primary-hover: #d8d8e8;
-  --accent-soft:   rgba(47,111,237,0.15);
-  --success-soft:  rgba(22,163,74,0.15);
+  /* Dark blue palette — near-black base with the brand blue accent (#2f6fed) */
+  --bg:            #060912;
+  --surface:       #0d1322;
+  --border:        #18223a;
+  --border-strong: #243152;
+  --neutral-0:     #0d1322;
+  --neutral-50:    #131a2c;
+  --neutral-100:   #1a2236;
+  --neutral-150:   #232c44;
+  --neutral-200:   #2c3650;
+  --neutral-300:   #3d4a68;
+  --neutral-400:   #6b7596;
+  --neutral-500:   #9aa3c0;
+  --neutral-700:   #d3d8e8;
+  --neutral-900:   #ecf0fb;
+  --primary:       #2f6fed;
+  --primary-hover: #1d4ed8;
+  --accent:        #2f6fed;
+  --accent-soft:   rgba(47,111,237,0.18);
+  --success-soft:  rgba(34,197,94,0.18);
   --warning-soft:  rgba(234,88,12,0.15);
   background: var(--bg);
   border-color: var(--border-strong);
 }
 .hifi-wrapper.hifi-dark .app-rail {
-  background: #1e1e28;
+  background: #0a0f1c;
   border-color: var(--border);
 }
 .hifi-wrapper.hifi-dark .app-main {
   background:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-    radial-gradient(ellipse 80% 40% at 70% -10%, rgba(47,111,237,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 30% at 5% 110%, rgba(109,40,217,0.08) 0%, transparent 55%),
-    #1a1a22;
+    linear-gradient(rgba(47,111,237,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47,111,237,0.05) 1px, transparent 1px),
+    #060912;
+  background-size: 24px 24px, 24px 24px, 100% 100%;
   background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%, 100% 100%;
 }
-.hifi-wrapper.hifi-dark .replen-header,
-.hifi-wrapper.hifi-dark .mode-toggle-row { background: #13131a; border-color: var(--border); }
+.hifi-wrapper.hifi-dark .replen-header {
+  background: #04070d;
+  border-bottom: 1px solid rgba(47,111,237,0.18);
+}
+.hifi-wrapper.hifi-dark .mode-toggle-row { background: #0d1322; border-color: rgba(47,111,237,0.12); }
 .hifi-wrapper.hifi-dark .ai-banner {
-  background: linear-gradient(135deg, #1a2540 0%, #1e1535 45%, #201428 100%);
-  border-color: rgba(109,40,217,0.35);
+  background: linear-gradient(135deg, #0c1a3e 0%, #0e2454 50%, #08152e 100%);
+  border-color: rgba(47,111,237,0.35);
+}
+.hifi-wrapper.hifi-dark .ai-banner::before {
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(99,140,255,0.25) 0%, transparent 60%) !important;
+}
+.hifi-wrapper.hifi-dark .ai-banner-icon {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2f6fed 55%, #6366f1 100%);
+  box-shadow: 0 6px 18px -6px rgba(47,111,237,0.55);
+}
+.hifi-wrapper.hifi-dark .ai-banner-title { color: #ecf0fb; }
+.hifi-wrapper.hifi-dark .ai-banner-sub   { color: #9aa3c0; }
+.hifi-wrapper.hifi-dark .ai-banner .ai-review-btn {
+  border-color: rgba(99,140,255,0.45) !important;
+  color: #93c5fd !important;
+}
+.hifi-wrapper.hifi-dark .ai-banner .ai-review-btn:hover {
+  background: rgba(47,111,237,0.10) !important;
 }
 .hifi-wrapper.hifi-dark .product-table th,
 .hifi-wrapper.hifi-dark .product-table td { border-color: var(--border); }
@@ -2285,8 +2305,20 @@ body[data-page-direction="backward"] .page.active {
 .hifi-wrapper.hifi-dark .table-section-banner .btn-secondary svg circle,
 .hifi-wrapper.hifi-dark .table-section-banner .btn-secondary svg path,
 .hifi-wrapper.hifi-dark .table-section-banner .btn-secondary svg polyline { stroke: #ffffff; }
-.hifi-wrapper.hifi-dark .btn-primary { background: #f0f0f5; color: #0f0f12; }
-.hifi-wrapper.hifi-dark .btn-primary:hover { background: #d8d8e8; }
+/* Submit (primary) — brand blue in dark mode */
+.hifi-wrapper.hifi-dark .btn-primary {
+  background: #2f6fed; color: #ffffff;
+  border-color: rgba(99,140,255,0.55);
+}
+.hifi-wrapper.hifi-dark .btn-primary:hover { background: #1d4ed8; }
+.hifi-wrapper.hifi-dark .btn-primary svg [stroke] { stroke: #ffffff; }
+/* Share (accent) — flat black-and-white in dark mode */
+.hifi-wrapper.hifi-dark .btn-accent {
+  background: #ffffff; color: #0d1322;
+  border-color: rgba(255,255,255,0.18);
+}
+.hifi-wrapper.hifi-dark .btn-accent:hover { background: #e9edf6; }
+.hifi-wrapper.hifi-dark .btn-accent svg [stroke] { stroke: #0d1322; }
 .hifi-wrapper.hifi-dark .mode-toggle { background: #2a2a38; }
 .hifi-wrapper.hifi-dark .mode-toggle-btn.active {
   background: #3a3a48; color: var(--neutral-900);
@@ -2301,20 +2333,20 @@ body[data-page-direction="backward"] .page.active {
   background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.30);
 }
 
-/* ── Dark mode: table wrap ─────────────────────────────── */
+/* ── Dark mode: table wrap (transparent — cards float on app-main) ─── */
 .hifi-wrapper.hifi-dark .product-table-wrap {
-  background: #18181d;
-  border-color: var(--border);
+  background: transparent;
+  border: none;
 }
 .hifi-wrapper.hifi-dark .table-footer {
-  background: #18181d; border-color: var(--border);
+  background: #0d1322; border-color: rgba(47,111,237,0.12);
 }
 
 /* ── Dark mode: section banner ──── */
 .hifi-wrapper.hifi-dark .table-section-banner {
-  background: #18181d;
-  border-bottom-color: #2a2a35;
-  color: #9090aa;
+  background: #0d1322;
+  border-bottom-color: rgba(47,111,237,0.12);
+  color: #9aa3c0;
 }
 .hifi-wrapper.hifi-dark .table-section-banner .inline-count {
   background: #2a2a38; color: #c4c4d4;
@@ -2460,9 +2492,15 @@ body[data-page-direction="backward"] .page.active {
 .hifi-wrapper.hifi-dark .dark-toggle:hover { background: #32323f; }
 
 /* ── Dark mode: Canva Dashboard ─────────────────────────── */
-.hifi-wrapper.hifi-dark .canva-dash { background: #13131a; }
+.hifi-wrapper.hifi-dark .canva-dash { background: transparent; }
 .hifi-wrapper.hifi-dark .cdash-main {
-  background: #18181d; border-right-color: var(--border);
+  background: #0d1322;
+  border-color: rgba(47,111,237,0.14);
+  border-right: 1px solid rgba(47,111,237,0.14);
+}
+.hifi-wrapper.hifi-dark .cdash-side {
+  background: #0d1322;
+  border-color: rgba(47,111,237,0.14);
 }
 .hifi-wrapper.hifi-dark .cdash-title { color: #f0f0f5; }
 .hifi-wrapper.hifi-dark .cdash-date-btn {
@@ -2486,8 +2524,7 @@ body[data-page-direction="backward"] .page.active {
 .hifi-wrapper.hifi-dark .cdash-status-ordered { background: rgba(22,163,74,0.18); color: #4ade80; }
 .hifi-wrapper.hifi-dark .cdash-status-override { background: rgba(234,179,8,0.15); color: #fbbf24; }
 .hifi-wrapper.hifi-dark .cdash-status-skipped { background: #232330; color: #6b6b82; }
-.hifi-wrapper.hifi-dark .cdash-side { background: #13131a; }
-.hifi-wrapper.hifi-dark .cdash-side-card { background: #1e1e25; border-color: #2a2a35; }
+.hifi-wrapper.hifi-dark .cdash-side-card { background: #131a2c; border-color: rgba(47,111,237,0.12); }
 .hifi-wrapper.hifi-dark .cdash-side-title { color: #f0f0f5; }
 .hifi-wrapper.hifi-dark .cdash-side-link { color: #93c5fd; }
 .hifi-wrapper.hifi-dark .cdash-legend-row { color: #9090aa; }
@@ -2630,11 +2667,16 @@ body[data-page-direction="backward"] .page.active {
 .table-content-wrap { transition: opacity 0.28s ease-out, transform 0.28s ease-out; }
 .canva-dash {
   display: none; opacity: 0; transform: translateY(14px);
-  flex-direction: row; background: #f8f8fb;
+  flex-direction: row; background: transparent;
+  gap: 12px; padding: 0;
 }
 .cdash-main {
   flex: 1; padding: 20px 22px; display: flex; flex-direction: column; gap: 18px;
-  overflow-y: auto; border-right: 1px solid #e4e4e7; background: #ffffff; min-width: 0;
+  overflow-y: auto; border-right: 1px solid #e4e4e7; background: #ffffff;
+  min-width: 0;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 .cdash-header { display: flex; align-items: center; justify-content: space-between; }
 .cdash-title { font-family: 'Inter',sans-serif; font-size: 14.5px; font-weight: 600; color: #18181b; }
@@ -2695,7 +2737,11 @@ body[data-page-direction="backward"] .page.active {
 .cdash-conf-med { background: #f59e0b; }
 .cdash-side {
   width: 256px; flex-shrink: 0; padding: 18px 16px;
-  background: #f8f8fb; display: flex; flex-direction: column; gap: 12px; overflow-y: auto;
+  background: #ffffff;
+  display: flex; flex-direction: column; gap: 12px; overflow-y: auto;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 .cdash-side-card { background: #ffffff; border-radius: 12px; border: 1px solid #e4e4e7; padding: 14px; }
 .cdash-side-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
@@ -2792,11 +2838,11 @@ body[data-page-direction="backward"] .page.active {
 /* AI Banner */
 .ai-banner {
   margin: 20px 32px 0;
-  background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 45%, #fce7f3 100%);
-  border: 1px solid rgba(139,92,246,0.22); border-radius: var(--r-xl);
+  background: linear-gradient(135deg, #bfd1ff 0%, #93b3ff 35%, #7c8eff 60%, #a78bfa 100%);
+  border: 1px solid rgba(99,140,255,0.40); border-radius: var(--r-xl);
   padding: 14px 20px;
   display: flex; align-items: center; gap: 16px;
-  box-shadow: 0 1px 14px rgba(124,58,237,0.09), inset 0 1px 0 rgba(255,255,255,0.55);
+  box-shadow: 0 4px 20px -4px rgba(47,111,237,0.28), inset 0 1px 0 rgba(255,255,255,0.40);
   position: relative; overflow: hidden; cursor: default;
 }
 .ai-banner > * { position: relative; z-index: 1; }
@@ -2843,9 +2889,137 @@ body[data-page-direction="backward"] .page.active {
 
 /* Product table */
 .product-table-wrap {
-  margin: 16px 32px 0; background: white;
-  border: 1px solid var(--border); border-radius: var(--r-xl);
+  margin: 16px 32px 32px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   overflow-x: hidden; overflow-y: visible;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+/* Table-block header — matches "Spending by Categories" reference pattern */
+.table-block-header {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.table-block-title {
+  font-size: 15px; font-weight: 600;
+  color: var(--neutral-900);
+  letter-spacing: -0.01em;
+}
+
+/* Compact rows — aggressive density (40px img + 4px td padding) */
+.table-block .product-table td {
+  padding: 4px 10px;
+  vertical-align: middle;
+}
+.table-block .product-table thead th {
+  padding: 8px 10px;
+}
+.table-block .product-cell { gap: 10px; }
+.table-block .product-img {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+}
+.table-block .product-name { font-size: 13px; line-height: 1.2; }
+.table-block .product-sku  { font-size: 11px; margin-top: 1px; }
+.table-block .stock-units  { font-size: 13px; line-height: 1.2; }
+.table-block .stock-transit { font-size: 11px; margin-top: 0; }
+.table-block .stat-card-sub { font-size: 11px; margin-top: 0; }
+.table-block .ai-rec-confidence,
+.table-block .ai-rec-units,
+.table-block .ai-rec-rationale { line-height: 1.2; }
+.table-block .ai-rec-rationale { margin-top: 1px; font-size: 11px; }
+.table-block .ai-rec-units { font-size: 13px; margin-top: 1px; }
+.table-block .qty-input,
+.table-block .qty-input-wrap input { height: 26px; font-size: 12.5px; }
+.table-block .qty-meta,
+.table-block .qty-meta-line { font-size: 11px; line-height: 1.25; margin-top: 1px; }
+/* Collapse the inline warning callout that bloats Leather Crossbody Bag's row */
+.table-block .qty-warning,
+.table-block .stockout-warning,
+.table-block .coverage-warning {
+  font-size: 10.5px; line-height: 1.3;
+  padding: 4px 6px; margin-top: 4px;
+}
+.table-block .cov-bar-wrap { margin-top: 2px; }
+.table-block .cov-spark-chart { height: 18px !important; }
+/* Badges inside cells — keep tight */
+.table-block .badge-stock,
+.table-block tr td .badge,
+.table-block .row-badge { padding: 1px 6px; font-size: 10.5px; }
+
+/* Sortable column header indicator — pair of stacked arrows like the reference */
+.th-sort {
+  display: inline-flex; align-items: center; gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 160ms ease;
+}
+.th-sort:hover { color: var(--neutral-900); }
+.th-sort-icon {
+  flex-shrink: 0;
+  color: var(--neutral-500);
+  transition: opacity 160ms ease;
+}
+
+/* table-content-wrap holds search + action-bar + table-block — not a card itself */
+.table-content-wrap {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+/* Hi-Fi floating card pattern */
+.product-table-wrap > .table-section-banner,
+.table-content-wrap > .table-search-bar,
+.table-content-wrap > .action-bar-row.action-bar-top,
+.table-content-wrap > .table-block {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* Dark mode floating cards — dark blue surfaces */
+.hifi-wrapper.hifi-dark .product-table-wrap > .table-section-banner,
+.hifi-wrapper.hifi-dark .table-content-wrap > .table-search-bar,
+.hifi-wrapper.hifi-dark .table-content-wrap > .action-bar-row.action-bar-top,
+.hifi-wrapper.hifi-dark .table-content-wrap > .table-block {
+  background: #0d1322;
+  border-color: rgba(47,111,237,0.14);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px -1px rgba(0,0,0,0.3);
+}
+.hifi-wrapper.hifi-dark .table-block-header,
+.hifi-wrapper.hifi-dark .action-bar-top-header {
+  border-bottom-color: rgba(47,111,237,0.12);
+}
+.hifi-wrapper.hifi-dark .table-block-title,
+.hifi-wrapper.hifi-dark .action-bar-top-title { color: #ecf0fb; }
+.hifi-wrapper.hifi-dark .action-bar-top-sub { color: #9aa3c0; }
+
+/* Dark canvas (cv-cards + dotted bg) — dark blue */
+.hifi-wrapper.hifi-dark .canvas-area {
+  background-color: #080d1c;
+  background-image: radial-gradient(circle, rgba(47,111,237,0.12) 1.3px, transparent 1.3px);
+}
+.hifi-wrapper.hifi-dark .cv-card {
+  background: #0d1322;
+  border-color: rgba(47,111,237,0.16);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.45), 0 1px 3px rgba(0,0,0,0.3);
+}
+.hifi-wrapper.hifi-dark .cv-card-header { border-bottom-color: rgba(47,111,237,0.12); }
+.hifi-wrapper.hifi-dark .cv-card-title { color: #ecf0fb; }
+.hifi-wrapper.hifi-dark .cv-card-meta,
+.hifi-wrapper.hifi-dark .cv-card-footer,
+.hifi-wrapper.hifi-dark .cv-card-badge { color: #9aa3c0; background: rgba(47,111,237,0.14); }
+.hifi-wrapper.hifi-dark .cv-conn { stroke: rgba(99,140,255,0.32); }
+.hifi-wrapper.hifi-dark .cv-conn--dashed { stroke: rgba(99,140,255,0.22); }
+/* Override defaults for standalone search-bar card */
+.table-content-wrap > .table-search-bar {
+  border-bottom: 1px solid var(--border);
 }
 .product-table { width: 100%; border-collapse: collapse; }
 .product-table thead tr {
@@ -2963,6 +3137,18 @@ body[data-page-direction="backward"] .page.active {
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
 }
 .product-sku { font-size: 11.5px; color: var(--neutral-400); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.product-flag {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 4px; padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10.5px; font-weight: 600;
+  line-height: 1.2; white-space: nowrap;
+}
+.product-flag.is-danger {
+  background: rgba(239,68,68,0.10);
+  color: #b91c1c;
+  border: 1px solid rgba(239,68,68,0.28);
+}
 
 /* Stock cell */
 .stock-units { font-size: 14px; font-weight: 400; color: var(--neutral-900); }
@@ -3030,6 +3216,37 @@ body[data-page-direction="backward"] .page.active {
 .table-footer .action-bar-row {
   padding: 14px 16px 20px;
   border-top: 1px solid var(--border);
+}
+/* Action bar moved to the top — standalone floating card */
+.action-bar-row.action-bar-top {
+  padding: 0;
+  border-bottom: none;
+  background: #ffffff;
+  flex-direction: column;
+  align-items: stretch;
+}
+.action-bar-top-header {
+  padding: 14px 20px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.action-bar-top-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--neutral-900);
+  letter-spacing: -0.01em;
+}
+.action-bar-top-sub {
+  font-size: 12px; color: var(--neutral-500);
+  margin-top: 2px;
+}
+.action-bar-row.action-bar-top > .action-bar-left {
+  padding: 14px;
+}
+/* table-section-banner — standalone card, no inner separator */
+.product-table-wrap > .table-section-banner {
+  border-bottom: none;
+  border-radius: var(--r-xl);
+  background: #ffffff;
+  padding: 12px 16px;
 }
 .table-page-nav { display: flex; align-items: center; gap: 4px; }
 .page-nav-btn {
@@ -3306,6 +3523,15 @@ body[data-page-direction="backward"] .page.active {
   background: #ecfdf5; color: var(--success);
 }
 .cov-after-delta.warn { background: #fef3c7; color: #92400e; }
+/* Dark mode — deeper, less luminous pill bg */
+.hifi-wrapper.hifi-dark .cov-after-delta {
+  background: rgba(22,163,74,0.14);
+  color: #6ee7a8;
+}
+.hifi-wrapper.hifi-dark .cov-after-delta.warn {
+  background: rgba(234,179,8,0.14);
+  color: #fcd34d;
+}
 
 /* Attention section header inside table (legacy, unused — kept in case) */
 .table-section-row td {
@@ -3367,15 +3593,17 @@ body[data-page-direction="backward"] .page.active {
 }
 .ask-ai-bar {
   display: flex; align-items: center; gap: 6px; flex-shrink: 0;
-  width: 200px; height: 20.19px;
+  width: 240px; height: 20.19px;
 }
 .ask-ai-bar-icon {
   width: 14px; height: 14px; flex-shrink: 0; color: #7c3aed; opacity: 0.85;
 }
 .ask-ai-input {
-  width: 88px; border: none; background: transparent; outline: none;
+  width: 100%; min-width: 0; flex: 1;
+  border: none; background: transparent; outline: none;
   font-family: var(--font); font-size: 12.5px; color: #4c1d95;
   caret-color: #7c3aed;
+  text-overflow: ellipsis;
 }
 .ask-ai-input::placeholder { color: #7c3aed; opacity: 0.65; }
 .ask-ai-send {
@@ -7100,7 +7328,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                 <path d="M12 3L13.5 8.5H19L14.5 11.5L16 17L12 14L8 17L9.5 11.5L5 8.5H10.5L12 3Z" opacity="0.9"/>
                 <path d="M19 3L19.8 5.2L22 6L19.8 6.8L19 9L18.2 6.8L16 6L18.2 5.2L19 3Z" opacity="0.7"/>
               </svg>
-              <input class="ask-ai-input" type="text" placeholder="Ask AI…" />
+              <input class="ask-ai-input" type="text" placeholder="Ask your AI team agents…" />
             </div>
             <button class="ask-ai-send" aria-label="Send AI query">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
@@ -7123,16 +7351,110 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               </button>
             </div>
           </div>
+
+          <!-- Action stats bar — moved above the table -->
+          <div class="action-bar-row action-bar-top">
+            <div class="action-bar-top-header">
+              <div class="action-bar-top-title">Replenishment summary</div>
+              <div class="action-bar-top-sub">Live cycle metrics — updates as you adjust quantities</div>
+            </div>
+            <div class="action-bar-left">
+              <!-- Stat card 1: total units -->
+              <div class="stat-card stat-card-neutral">
+                <div class="stat-card-label">Total units to replenish</div>
+                <div class="stat-card-body">
+                  <div class="stat-card-body-left">
+                    <div class="stat-card-value"><span class="fx-count" data-count-to="4340">0</span></div>
+                    <div class="stat-card-sub">units across 620 SKUs</div>
+                  </div>
+                  <svg width="54" height="28" viewBox="0 0 54 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                    <rect x="0" y="17" width="6" height="11" rx="1.5" fill="#e4e4e7"/>
+                    <rect x="8" y="11" width="6" height="17" rx="1.5" fill="#e4e4e7"/>
+                    <rect x="16" y="19" width="6" height="9" rx="1.5" fill="#d4d4d8"/>
+                    <rect x="24" y="6" width="6" height="22" rx="1.5" fill="#d4d4d8"/>
+                    <rect x="32" y="14" width="6" height="14" rx="1.5" fill="#a1a1aa"/>
+                    <rect x="40" y="15" width="6" height="13" rx="1.5" fill="#71717a"/>
+                    <rect x="48" y="4" width="6" height="24" rx="1.5" fill="#52525b"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Stat card 2: coverage uplift -->
+              <div class="stat-card stat-card-success">
+                <div class="stat-card-label">Projected coverage uplift</div>
+                <div class="stat-card-body">
+                  <div class="stat-card-body-left">
+                    <div class="stat-card-value" style="color:var(--success);">+<span class="fx-count" data-count-to="28">0</span> pts</div>
+                    <div class="stat-card-sub" style="color:#16a34a;">from 64% → 92% avg</div>
+                  </div>
+                  <svg width="58" height="28" viewBox="0 0 58 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                    <defs>
+                      <linearGradient id="sg-success" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#16a34a" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M 0 24 C 5 22 9 21 16 19 C 25 16 29 17 38 13 C 46 9 50 7 58 4 L 58 28 L 0 28 Z" fill="url(#sg-success)"/>
+                    <path d="M 0 24 C 5 22 9 21 16 19 C 25 16 29 17 38 13 C 46 9 50 7 58 4" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="58" cy="4" r="2.5" fill="#16a34a"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Stat card 3: AI accepted -->
+              <div class="stat-card stat-card-accent">
+                <div class="stat-card-label">AI recommendations accepted</div>
+                <div class="stat-card-body">
+                  <div class="stat-card-body-left">
+                    <div class="stat-card-value"><span class="fx-count" data-count-to="612">0</span> / <span class="fx-count" data-count-to="620">0</span></div>
+                    <div class="stat-card-sub" style="color:#2f6fed;">98.7% acceptance rate</div>
+                  </div>
+                  <svg width="52" height="52" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;align-self:center;" class="stat-donut-blue">
+                    <circle cx="18" cy="18" r="12" stroke="#dbeafe" stroke-width="3" fill="none" class="donut-track"/>
+                    <circle cx="18" cy="18" r="12" stroke="#2f6fed" stroke-width="3" fill="none"
+                      stroke-dasharray="74.6 75.4" stroke-linecap="round"
+                      transform="rotate(-90 18 18)" class="donut-fill"/>
+                    <text x="18" y="21" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#1d4ed8" class="donut-label">99%</text>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Stat card 4: overrides -->
+              <div class="stat-card stat-card-danger">
+                <div class="stat-card-label">Overridden below AI rec</div>
+                <div class="stat-card-body">
+                  <div class="stat-card-body-left">
+                    <div class="stat-card-value" style="color:var(--destructive);"><span class="fx-count" data-count-to="1">0</span></div>
+                    <a href="#" class="review-link" style="margin-top:4px;" onclick="event.preventDefault();">
+                      Review <svg width="10" height="10" fill="none" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2.5"/></svg>
+                    </a>
+                  </div>
+                  <svg width="46" height="28" viewBox="0 0 46 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                    <rect x="0" y="13" width="8" height="15" rx="1.5" fill="#fecaca"/>
+                    <rect x="9.5" y="23" width="8" height="5" rx="1.5" fill="#fecaca"/>
+                    <rect x="19" y="8" width="8" height="20" rx="1.5" fill="#fecaca"/>
+                    <rect x="28.5" y="18" width="8" height="10" rx="1.5" fill="#fecaca"/>
+                    <rect x="38" y="23" width="8" height="5" rx="1.5" fill="#ef4444"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div><!-- /action-bar-top -->
+
+          <div class="table-block">
+          <div class="table-block-header">
+            <div class="table-block-title">Replenishment items</div>
+          </div>
           <table class="product-table">
             <thead>
               <tr>
                 <th><input type="checkbox" style="accent-color:var(--accent);"></th>
-                <th>Product</th>
-                <th>Stocks</th>
-                <th>Coverage</th>
-                <th>AI recommendation</th>
-                <th class="th-yours">Your quantity</th>
-                <th>Coverage after</th>
+                <th><span class="th-sort">Product <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.55"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
+                <th><span class="th-sort">Stocks <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
+                <th><span class="th-sort">Coverage <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.55"/></svg></span></th>
+                <th><span class="th-sort">AI recommendation <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
+                <th class="th-yours"><span class="th-sort">Your quantity <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
+                <th><span class="th-sort">Coverage after <svg class="th-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1 L8 4 H2 Z" fill="currentColor" opacity="0.25"/><path d="M5 9 L2 6 H8 Z" fill="currentColor" opacity="0.25"/></svg></span></th>
               </tr>
             </thead>
             <tbody>
@@ -7215,6 +7537,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                     <div>
                       <div class="product-name">Leather Crossbody Bag</div>
                       <div class="product-sku">BAG-2024-BRN-045</div>
+                      <span class="product-flag is-danger">
+                        <svg width="9" height="9" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Expected stockout in 14 days
+                      </span>
                     </div>
                   </div>
                 </td>
@@ -7259,7 +7585,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                   <div style="font-size:11px;color:#92400e;margin-top:4px;font-weight:600;">Overridden · -34% from AI</div>
                   <div class="override-warn">
                     <svg width="11" height="11" fill="none" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span>Coverage drops to <strong>47%</strong>. Expected stockout in <strong>14 days</strong>.</span>
+                    <span>Coverage drops to <strong>47%</strong>.</span>
                   </div>
                 </td>
                 <td>
@@ -7426,90 +7752,8 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                 </div>
               </div>
             </div>
-          <div class="action-bar-row">
-            <div class="action-bar-left">
-              <!-- Stat card 1: total units -->
-              <div class="stat-card stat-card-neutral">
-                <div class="stat-card-label">Total units to replenish</div>
-                <div class="stat-card-body">
-                  <div class="stat-card-body-left">
-                    <div class="stat-card-value"><span class="fx-count" data-count-to="4340">0</span></div>
-                    <div class="stat-card-sub">units across 620 SKUs</div>
-                  </div>
-                  <svg width="54" height="28" viewBox="0 0 54 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-                    <rect x="0" y="17" width="6" height="11" rx="1.5" fill="#e4e4e7"/>
-                    <rect x="8" y="11" width="6" height="17" rx="1.5" fill="#e4e4e7"/>
-                    <rect x="16" y="19" width="6" height="9" rx="1.5" fill="#d4d4d8"/>
-                    <rect x="24" y="6" width="6" height="22" rx="1.5" fill="#d4d4d8"/>
-                    <rect x="32" y="14" width="6" height="14" rx="1.5" fill="#a1a1aa"/>
-                    <rect x="40" y="15" width="6" height="13" rx="1.5" fill="#71717a"/>
-                    <rect x="48" y="4" width="6" height="24" rx="1.5" fill="#52525b"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Stat card 2: coverage uplift -->
-              <div class="stat-card stat-card-success">
-                <div class="stat-card-label">Projected coverage uplift</div>
-                <div class="stat-card-body">
-                  <div class="stat-card-body-left">
-                    <div class="stat-card-value" style="color:var(--success);">+<span class="fx-count" data-count-to="28">0</span> pts</div>
-                    <div class="stat-card-sub" style="color:#16a34a;">from 64% → 92% avg</div>
-                  </div>
-                  <svg width="58" height="28" viewBox="0 0 58 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-                    <defs>
-                      <linearGradient id="sg-success" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#16a34a" stop-opacity="0.2"/>
-                        <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
-                      </linearGradient>
-                    </defs>
-                    <path d="M 0 24 C 5 22 9 21 16 19 C 25 16 29 17 38 13 C 46 9 50 7 58 4 L 58 28 L 0 28 Z" fill="url(#sg-success)"/>
-                    <path d="M 0 24 C 5 22 9 21 16 19 C 25 16 29 17 38 13 C 46 9 50 7 58 4" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="58" cy="4" r="2.5" fill="#16a34a"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Stat card 3: AI accepted -->
-              <div class="stat-card stat-card-accent">
-                <div class="stat-card-label">AI recommendations accepted</div>
-                <div class="stat-card-body">
-                  <div class="stat-card-body-left">
-                    <div class="stat-card-value"><span class="fx-count" data-count-to="612">0</span> / <span class="fx-count" data-count-to="620">0</span></div>
-                    <div class="stat-card-sub" style="color:#2f6fed;">98.7% acceptance rate</div>
-                  </div>
-                  <svg width="52" height="52" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;align-self:center;" class="stat-donut-blue">
-                    <circle cx="18" cy="18" r="12" stroke="#dbeafe" stroke-width="3" fill="none" class="donut-track"/>
-                    <circle cx="18" cy="18" r="12" stroke="#2f6fed" stroke-width="3" fill="none"
-                      stroke-dasharray="74.6 75.4" stroke-linecap="round"
-                      transform="rotate(-90 18 18)" class="donut-fill"/>
-                    <text x="18" y="21" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#1d4ed8" class="donut-label">99%</text>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Stat card 4: overrides -->
-              <div class="stat-card stat-card-danger">
-                <div class="stat-card-label">Overridden below AI rec</div>
-                <div class="stat-card-body">
-                  <div class="stat-card-body-left">
-                    <div class="stat-card-value" style="color:var(--destructive);"><span class="fx-count" data-count-to="1">0</span></div>
-                    <a href="#" class="review-link" style="margin-top:4px;" onclick="event.preventDefault();">
-                      Review <svg width="10" height="10" fill="none" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2.5"/></svg>
-                    </a>
-                  </div>
-                  <svg width="46" height="28" viewBox="0 0 46 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-                    <rect x="0" y="13" width="8" height="15" rx="1.5" fill="#fecaca"/>
-                    <rect x="9.5" y="23" width="8" height="5" rx="1.5" fill="#fecaca"/>
-                    <rect x="19" y="8" width="8" height="20" rx="1.5" fill="#fecaca"/>
-                    <rect x="28.5" y="18" width="8" height="10" rx="1.5" fill="#fecaca"/>
-                    <rect x="38" y="23" width="8" height="5" rx="1.5" fill="#ef4444"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div><!-- /action-bar-row -->
           </div><!-- /table-footer -->
+          </div><!-- /table-block -->
           </div><!-- /table-content-wrap -->
         </div><!-- /product-table-wrap -->
 
