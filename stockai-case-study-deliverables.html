@@ -1260,6 +1260,14 @@ body[data-page-direction="backward"] .page.active {
   opacity: 0.55;           /* halves the conic + drop-shadow intensity */
 }
 
+/* Clarity Score card — deep navy blue gradient (was near-black) */
+#page-2 .audit-score-side {
+  background:
+    radial-gradient(ellipse at 30% 0%, rgba(99,140,255,0.18) 0%, transparent 60%),
+    linear-gradient(140deg, #0d1a45 0%, #1a2a5e 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
 /* ===== Copy refactor table — translucent ===== */
 #page-2 .audit-refactor {
   background: rgba(255,255,255,0.05);
