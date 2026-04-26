@@ -1592,7 +1592,13 @@ body[data-page-direction="backward"] .page.active {
 .diag-item:hover { background: var(--neutral-50); }
 .diag-marker {
   display: inline-flex; flex-direction: row; align-items: center;
-  gap: 8px; padding-top: 2px; white-space: nowrap;
+  gap: 8px; white-space: nowrap;
+  align-self: start;
+  margin-top: 1px;
+}
+.diag-cat {
+  display: flex; align-items: center;
+  min-height: 18px; /* matches marker pill height to align horizontally */
 }
 .diag-dot {
   width: 7px; height: 7px; border-radius: 50%;
