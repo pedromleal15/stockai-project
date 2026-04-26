@@ -2203,63 +2203,63 @@ body[data-page-direction="backward"] .page.active {
 
 /* ===== DARK MODE ===== */
 .hifi-wrapper.hifi-dark {
-  /* Dark green palette inspired by reference: near-black base with bright green accent */
-  --bg:            #060906;
-  --surface:       #0d120e;
-  --border:        #1a2218;
-  --border-strong: #25302a;
-  --neutral-0:     #0d120e;
-  --neutral-50:    #131a14;
-  --neutral-100:   #1a221c;
-  --neutral-150:   #232c25;
-  --neutral-200:   #2c372f;
-  --neutral-300:   #3d4a3f;
-  --neutral-400:   #6b7a6f;
-  --neutral-500:   #9aa89c;
-  --neutral-700:   #d3dcd5;
-  --neutral-900:   #ecf3ed;
-  --primary:       #22c55e;
-  --primary-hover: #16a34a;
-  --accent:        #22c55e;
-  --accent-soft:   rgba(34,197,94,0.16);
+  /* Dark blue palette — near-black base with the brand blue accent (#2f6fed) */
+  --bg:            #060912;
+  --surface:       #0d1322;
+  --border:        #18223a;
+  --border-strong: #243152;
+  --neutral-0:     #0d1322;
+  --neutral-50:    #131a2c;
+  --neutral-100:   #1a2236;
+  --neutral-150:   #232c44;
+  --neutral-200:   #2c3650;
+  --neutral-300:   #3d4a68;
+  --neutral-400:   #6b7596;
+  --neutral-500:   #9aa3c0;
+  --neutral-700:   #d3d8e8;
+  --neutral-900:   #ecf0fb;
+  --primary:       #2f6fed;
+  --primary-hover: #1d4ed8;
+  --accent:        #2f6fed;
+  --accent-soft:   rgba(47,111,237,0.18);
   --success-soft:  rgba(34,197,94,0.18);
   --warning-soft:  rgba(234,88,12,0.15);
   background: var(--bg);
   border-color: var(--border-strong);
 }
 .hifi-wrapper.hifi-dark .app-rail {
-  background: #0a0f0b;
+  background: #0a0f1c;
   border-color: var(--border);
 }
 .hifi-wrapper.hifi-dark .app-main {
   background:
-    linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px),
-    #060906;
+    linear-gradient(rgba(47,111,237,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47,111,237,0.05) 1px, transparent 1px),
+    #060912;
   background-size: 24px 24px, 24px 24px, 100% 100%;
   background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%, 100% 100%;
 }
-.hifi-wrapper.hifi-dark .replen-header { background: transparent; border-color: rgba(34,197,94,0.10); }
-.hifi-wrapper.hifi-dark .mode-toggle-row { background: #0d120e; border-color: rgba(34,197,94,0.10); }
+.hifi-wrapper.hifi-dark .replen-header { background: transparent; border-color: rgba(47,111,237,0.12); }
+.hifi-wrapper.hifi-dark .mode-toggle-row { background: #0d1322; border-color: rgba(47,111,237,0.12); }
 .hifi-wrapper.hifi-dark .ai-banner {
-  background: linear-gradient(135deg, #0a1f12 0%, #0d2618 50%, #06140b 100%);
-  border-color: rgba(34,197,94,0.32);
+  background: linear-gradient(135deg, #0c1a3e 0%, #0e2454 50%, #08152e 100%);
+  border-color: rgba(47,111,237,0.35);
 }
 .hifi-wrapper.hifi-dark .ai-banner::before {
-  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(34,197,94,0.22) 0%, transparent 60%) !important;
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(99,140,255,0.25) 0%, transparent 60%) !important;
 }
 .hifi-wrapper.hifi-dark .ai-banner-icon {
-  background: linear-gradient(135deg, #16a34a 0%, #22c55e 55%, #4ade80 100%);
-  box-shadow: 0 6px 18px -6px rgba(34,197,94,0.55);
+  background: linear-gradient(135deg, #1d4ed8 0%, #2f6fed 55%, #6366f1 100%);
+  box-shadow: 0 6px 18px -6px rgba(47,111,237,0.55);
 }
-.hifi-wrapper.hifi-dark .ai-banner-title { color: #ecf3ed; }
-.hifi-wrapper.hifi-dark .ai-banner-sub   { color: #9aa89c; }
+.hifi-wrapper.hifi-dark .ai-banner-title { color: #ecf0fb; }
+.hifi-wrapper.hifi-dark .ai-banner-sub   { color: #9aa3c0; }
 .hifi-wrapper.hifi-dark .ai-banner .ai-review-btn {
-  border-color: rgba(34,197,94,0.45) !important;
-  color: #86efac !important;
+  border-color: rgba(99,140,255,0.45) !important;
+  color: #93c5fd !important;
 }
 .hifi-wrapper.hifi-dark .ai-banner .ai-review-btn:hover {
-  background: rgba(34,197,94,0.10) !important;
+  background: rgba(47,111,237,0.10) !important;
 }
 .hifi-wrapper.hifi-dark .product-table th,
 .hifi-wrapper.hifi-dark .product-table td { border-color: var(--border); }
@@ -2324,14 +2324,14 @@ body[data-page-direction="backward"] .page.active {
   border: none;
 }
 .hifi-wrapper.hifi-dark .table-footer {
-  background: #0d120e; border-color: rgba(34,197,94,0.10);
+  background: #0d1322; border-color: rgba(47,111,237,0.12);
 }
 
 /* ── Dark mode: section banner ──── */
 .hifi-wrapper.hifi-dark .table-section-banner {
-  background: #0d120e;
-  border-bottom-color: rgba(34,197,94,0.10);
-  color: #9aa89c;
+  background: #0d1322;
+  border-bottom-color: rgba(47,111,237,0.12);
+  color: #9aa3c0;
 }
 .hifi-wrapper.hifi-dark .table-section-banner .inline-count {
   background: #2a2a38; color: #c4c4d4;
@@ -2954,40 +2954,40 @@ body[data-page-direction="backward"] .page.active {
   overflow: hidden;
 }
 
-/* Dark mode floating cards — dark green surfaces */
+/* Dark mode floating cards — dark blue surfaces */
 .hifi-wrapper.hifi-dark .product-table-wrap > .table-section-banner,
 .hifi-wrapper.hifi-dark .table-content-wrap > .table-search-bar,
 .hifi-wrapper.hifi-dark .table-content-wrap > .action-bar-row.action-bar-top,
 .hifi-wrapper.hifi-dark .table-content-wrap > .table-block {
-  background: #0d120e;
-  border-color: rgba(34,197,94,0.12);
+  background: #0d1322;
+  border-color: rgba(47,111,237,0.14);
   box-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px -1px rgba(0,0,0,0.3);
 }
 .hifi-wrapper.hifi-dark .table-block-header,
 .hifi-wrapper.hifi-dark .action-bar-top-header {
-  border-bottom-color: rgba(34,197,94,0.10);
+  border-bottom-color: rgba(47,111,237,0.12);
 }
 .hifi-wrapper.hifi-dark .table-block-title,
-.hifi-wrapper.hifi-dark .action-bar-top-title { color: #ecf3ed; }
-.hifi-wrapper.hifi-dark .action-bar-top-sub { color: #9aa89c; }
+.hifi-wrapper.hifi-dark .action-bar-top-title { color: #ecf0fb; }
+.hifi-wrapper.hifi-dark .action-bar-top-sub { color: #9aa3c0; }
 
-/* Dark canvas (cv-cards + dotted bg) — dark green */
+/* Dark canvas (cv-cards + dotted bg) — dark blue */
 .hifi-wrapper.hifi-dark .canvas-area {
-  background-color: #080d09;
-  background-image: radial-gradient(circle, rgba(34,197,94,0.10) 1.3px, transparent 1.3px);
+  background-color: #080d1c;
+  background-image: radial-gradient(circle, rgba(47,111,237,0.12) 1.3px, transparent 1.3px);
 }
 .hifi-wrapper.hifi-dark .cv-card {
-  background: #0d120e;
-  border-color: rgba(34,197,94,0.14);
+  background: #0d1322;
+  border-color: rgba(47,111,237,0.16);
   box-shadow: 0 2px 12px rgba(0,0,0,0.45), 0 1px 3px rgba(0,0,0,0.3);
 }
-.hifi-wrapper.hifi-dark .cv-card-header { border-bottom-color: rgba(34,197,94,0.10); }
-.hifi-wrapper.hifi-dark .cv-card-title { color: #ecf3ed; }
+.hifi-wrapper.hifi-dark .cv-card-header { border-bottom-color: rgba(47,111,237,0.12); }
+.hifi-wrapper.hifi-dark .cv-card-title { color: #ecf0fb; }
 .hifi-wrapper.hifi-dark .cv-card-meta,
 .hifi-wrapper.hifi-dark .cv-card-footer,
-.hifi-wrapper.hifi-dark .cv-card-badge { color: #9aa89c; background: rgba(34,197,94,0.12); }
-.hifi-wrapper.hifi-dark .cv-conn { stroke: rgba(34,197,94,0.30); }
-.hifi-wrapper.hifi-dark .cv-conn--dashed { stroke: rgba(34,197,94,0.22); }
+.hifi-wrapper.hifi-dark .cv-card-badge { color: #9aa3c0; background: rgba(47,111,237,0.14); }
+.hifi-wrapper.hifi-dark .cv-conn { stroke: rgba(99,140,255,0.32); }
+.hifi-wrapper.hifi-dark .cv-conn--dashed { stroke: rgba(99,140,255,0.22); }
 /* Override defaults for standalone search-bar card */
 .table-content-wrap > .table-search-bar {
   border-bottom: 1px solid var(--border);
@@ -7288,7 +7288,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                 <path d="M12 3L13.5 8.5H19L14.5 11.5L16 17L12 14L8 17L9.5 11.5L5 8.5H10.5L12 3Z" opacity="0.9"/>
                 <path d="M19 3L19.8 5.2L22 6L19.8 6.8L19 9L18.2 6.8L16 6L18.2 5.2L19 3Z" opacity="0.7"/>
               </svg>
-              <input class="ask-ai-input" type="text" placeholder="Ask AI…" />
+              <input class="ask-ai-input" type="text" placeholder="Ask your AI team agents…" />
             </div>
             <button class="ask-ai-send" aria-label="Send AI query">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
