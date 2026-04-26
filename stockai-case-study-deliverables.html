@@ -2796,18 +2796,41 @@ body[data-page-direction="backward"] .page.active {
   width: 28px; height: 28px; border-radius: 999px;
   display: grid; place-items: center;
   background: #ffffff;
-  border: 1px solid var(--border);
-  color: var(--neutral-500);
+  border: 1.5px solid var(--neutral-300);
+  color: var(--neutral-700);
   cursor: pointer;
-  z-index: 5;
-  box-shadow: var(--shadow-sm);
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(15,23,42,0.10), 0 1px 3px rgba(15,23,42,0.06);
   transition: background 140ms ease, color 140ms ease, transform 220ms cubic-bezier(0.34,1.56,0.64,1);
 }
 .rail-expand:hover {
   background: var(--accent-soft);
   color: var(--accent);
-  transform: translateX(2px);
+  border-color: var(--accent);
 }
+.app-rail.expanded .rail-expand svg { transform: rotate(180deg); transition: transform 240ms cubic-bezier(0.34,1.56,0.64,1); }
+
+/* Expanded rail — shows text labels next to icons */
+.app-rail.expanded { width: 188px; align-items: stretch; padding: 56px 12px 16px; }
+.app-rail.expanded .rail-icon {
+  width: 100%; height: 36px; border-radius: var(--r-md);
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 10px; justify-content: flex-start;
+}
+.app-rail.expanded .rail-icon::after {
+  content: attr(data-label);
+  font-size: 13px; font-weight: 500;
+  color: var(--neutral-700);
+  white-space: nowrap;
+}
+.app-rail.expanded .rail-icon.active::after,
+.app-rail.expanded .rail-icon#railCanvas.active::after { color: var(--accent); font-weight: 600; }
+.app-rail.expanded .rail-beta-badge {
+  position: static;
+  margin-left: auto;
+  transform: none;
+}
+.app-rail.expanded .rail-avatar { padding: 8px 10px; }
 .hifi-wrapper.hifi-dark .rail-expand {
   background: #0d1322;
   border-color: rgba(99,140,255,0.32);
@@ -6986,26 +7009,26 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
     <div class="app-shell">
 
       <!-- Nav Rail -->
-      <nav class="app-rail">
-        <button class="rail-expand" title="Expand sidebar" aria-label="Expand sidebar">
+      <nav class="app-rail" id="appRail">
+        <button class="rail-expand" id="railExpandBtn" title="Expand sidebar" aria-label="Expand sidebar" onclick="document.getElementById('appRail').classList.toggle('expanded')">
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" aria-hidden="true">
             <polyline points="9 6 15 12 9 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="rail-icon" title="Home">
+        <div class="rail-icon" data-label="Home" title="Home">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#a1a1aa" stroke-width="1.8" stroke-linejoin="round"/></svg>
         </div>
-        <div class="rail-icon active" title="Replenishment">
+        <div class="rail-icon active" data-label="Replenishment" title="Replenishment">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#2f6fed" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#2f6fed" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#2f6fed" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#2f6fed" stroke-width="1.8"/></svg>
         </div>
-        <div class="rail-icon rail-icon--canvas" title="Canvas" id="railCanvas">
+        <div class="rail-icon rail-icon--canvas" data-label="Canvas Mode" title="Canvas" id="railCanvas">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
             <path d="M7 3H4a1 1 0 0 0-1 1v3M17 3h3a1 1 0 0 1 1 1v3M7 21H4a1 1 0 0 1-1-1v-3M17 21h3a1 1 0 0 0 1-1v-3" stroke="#a1a1aa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span class="rail-beta-badge">Beta</span>
           <span class="cave-tooltip" id="railBetaTooltip">Canvas — Beta</span>
         </div>
-        <div class="rail-icon" title="Team">
+        <div class="rail-icon" data-label="Agents" title="Agents">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#a1a1aa" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#a1a1aa" stroke-width="1.8"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#a1a1aa" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
         <div style="flex:1"></div>
