@@ -5482,6 +5482,8 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 /* =====================================================
    HOME VIEW (page-5 internal)
    ===================================================== */
+/* Force [hidden] to win over the display:flex on the views below */
+.app-main[hidden] { display: none !important; }
 .app-main--home {
   flex: 1; display: flex; flex-direction: column;
   gap: 16px; padding: 24px 32px 40px;
