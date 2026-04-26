@@ -3056,6 +3056,18 @@ body[data-page-direction="backward"] .page.active {
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
 }
 .product-sku { font-size: 11.5px; color: var(--neutral-400); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.product-flag {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 4px; padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10.5px; font-weight: 600;
+  line-height: 1.2; white-space: nowrap;
+}
+.product-flag.is-danger {
+  background: rgba(239,68,68,0.10);
+  color: #b91c1c;
+  border: 1px solid rgba(239,68,68,0.28);
+}
 
 /* Stock cell */
 .stock-units { font-size: 14px; font-weight: 400; color: var(--neutral-900); }
@@ -7433,6 +7445,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                     <div>
                       <div class="product-name">Leather Crossbody Bag</div>
                       <div class="product-sku">BAG-2024-BRN-045</div>
+                      <span class="product-flag is-danger">
+                        <svg width="9" height="9" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Expected stockout in 14 days
+                      </span>
                     </div>
                   </div>
                 </td>
@@ -7477,7 +7493,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                   <div style="font-size:11px;color:#92400e;margin-top:4px;font-weight:600;">Overridden · -34% from AI</div>
                   <div class="override-warn">
                     <svg width="11" height="11" fill="none" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span>Coverage drops to <strong>47%</strong>. Expected stockout in <strong>14 days</strong>.</span>
+                    <span>Coverage drops to <strong>47%</strong>.</span>
                   </div>
                 </td>
                 <td>
