@@ -2232,7 +2232,11 @@ body[data-page-direction="backward"] .page.active {
   border-color: var(--border);
 }
 .hifi-wrapper.hifi-dark .app-main {
-  background: #060906;
+  background:
+    linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px),
+    #060906;
+  background-size: 24px 24px, 24px 24px, 100% 100%;
   background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%, 100% 100%;
 }
 .hifi-wrapper.hifi-dark .replen-header,
@@ -2314,20 +2318,20 @@ body[data-page-direction="backward"] .page.active {
   background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.30);
 }
 
-/* ── Dark mode: table wrap ─────────────────────────────── */
+/* ── Dark mode: table wrap (transparent — cards float on app-main) ─── */
 .hifi-wrapper.hifi-dark .product-table-wrap {
-  background: #18181d;
-  border-color: var(--border);
+  background: transparent;
+  border: none;
 }
 .hifi-wrapper.hifi-dark .table-footer {
-  background: #18181d; border-color: var(--border);
+  background: #0d120e; border-color: rgba(34,197,94,0.10);
 }
 
 /* ── Dark mode: section banner ──── */
 .hifi-wrapper.hifi-dark .table-section-banner {
-  background: #18181d;
-  border-bottom-color: #2a2a35;
-  color: #9090aa;
+  background: #0d120e;
+  border-bottom-color: rgba(34,197,94,0.10);
+  color: #9aa89c;
 }
 .hifi-wrapper.hifi-dark .table-section-banner .inline-count {
   background: #2a2a38; color: #c4c4d4;
