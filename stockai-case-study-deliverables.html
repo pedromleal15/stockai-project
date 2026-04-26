@@ -1067,9 +1067,135 @@ body[data-page-direction="backward"] .page.active {
 }
 
 /* =====================================================
-   PAGE 2 — DESIGN AUDIT
+   PAGE 2 — DESIGN AUDIT  ·  Deep blue + glass cards
    ===================================================== */
-#page-2 { background: var(--bg); }
+#page-2 {
+  position: relative;
+  isolation: isolate;
+  color: rgba(255,255,255,0.92);
+  background:
+    radial-gradient(ellipse at 18% 8%,  rgba(99,140,255,0.28) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 65%, rgba(140,108,255,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 102%, rgba(58,90,200,0.22) 0%, transparent 60%),
+    linear-gradient(180deg, #0f1f4a 0%, #0a1838 60%, #08122d 100%);
+}
+/* Abstract dot-grid texture overlay */
+#page-2::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Soft glow blob behind cards (left) */
+#page-2::after {
+  content: ''; position: absolute;
+  top: 18%; left: -12%; width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(99,140,255,0.35) 0%, transparent 60%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+#page-2 > * { position: relative; z-index: 1; }
+
+/* Header text on blue */
+#page-2 .page-eyebrow { color: rgba(255,255,255,0.55); }
+#page-2 .page-title   { color: #ffffff; }
+#page-2 .page-subtitle { color: rgba(255,255,255,0.72); }
+#page-2 .page-header { border-bottom-color: rgba(255,255,255,0.10); }
+
+/* ===== Screens gallery — translucent glass panel ===== */
+#page-2 .screens-gallery {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.07);
+}
+#page-2 .screens-gallery-title { color: #fff; }
+#page-2 .screens-gallery-sub   { color: rgba(255,255,255,0.65); }
+#page-2 .screens-gallery .badge-neutral {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.78);
+}
+#page-2 .screen-thumb-frame {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.10);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+#page-2 .screen-thumb-frame:hover { border-color: rgba(255,255,255,0.20); }
+#page-2 .screen-thumb-label { color: rgba(255,255,255,0.85); }
+#page-2 .screen-thumb-step {
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.85);
+}
+
+/* ===== Audit problems grid — glass cards ===== */
+#page-2 .audit-problem-card {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.10);
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+#page-2 .audit-problem-card-title { color: #fff; }
+#page-2 .audit-problem-card-count { color: rgba(255,255,255,0.62); }
+#page-2 .audit-problem-title      { color: #ffffff; }
+#page-2 .audit-problem-desc       { color: rgba(255,255,255,0.78); }
+#page-2 .audit-heuristic {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.13);
+  color: rgba(255,255,255,0.82);
+}
+
+/* ===== Audit screen mockups (Screen 1 / Screen 2) — glass shell ===== */
+#page-2 .audit-screen {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.10);
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+#page-2 .audit-screen-header { border-bottom-color: rgba(255,255,255,0.08); }
+#page-2 .audit-screen-title  { color: #ffffff; }
+/* Inner mock screen stays white for fidelity, with subtle bezel */
+#page-2 .mock-screen {
+  background: #ffffff;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+#page-2 .annotation {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+}
+#page-2 .annotation-text       { color: rgba(255,255,255,0.85); }
+#page-2 .annotation-text strong { color: #ffffff; }
+#page-2 .annotation-num {
+  background: rgba(255,255,255,0.10);
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* Adjust badge variants on blue bg */
+#page-2 .badge-warning {
+  background: rgba(249,115,22,0.18);
+  border-color: rgba(249,115,22,0.40);
+  color: #fdba74;
+}
+#page-2 .badge-critical {
+  background: rgba(239,68,68,0.18);
+  border-color: rgba(239,68,68,0.40);
+  color: #fca5a5;
+}
+#page-2 .badge-error {
+  background: rgba(239,68,68,0.18);
+  border-color: rgba(239,68,68,0.40);
+  color: #fca5a5;
+}
 
 .audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
 .audit-screen { padding: 0; overflow: hidden; }
