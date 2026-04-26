@@ -3572,15 +3572,17 @@ body[data-page-direction="backward"] .page.active {
 }
 .ask-ai-bar {
   display: flex; align-items: center; gap: 6px; flex-shrink: 0;
-  width: 200px; height: 20.19px;
+  width: 240px; height: 20.19px;
 }
 .ask-ai-bar-icon {
   width: 14px; height: 14px; flex-shrink: 0; color: #7c3aed; opacity: 0.85;
 }
 .ask-ai-input {
-  width: 88px; border: none; background: transparent; outline: none;
+  width: 100%; min-width: 0; flex: 1;
+  border: none; background: transparent; outline: none;
   font-family: var(--font); font-size: 12.5px; color: #4c1d95;
   caret-color: #7c3aed;
+  text-overflow: ellipsis;
 }
 .ask-ai-input::placeholder { color: #7c3aed; opacity: 0.65; }
 .ask-ai-send {
