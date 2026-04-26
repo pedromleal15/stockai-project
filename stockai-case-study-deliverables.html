@@ -1241,6 +1241,18 @@ body[data-page-direction="backward"] .page.active {
   background: rgba(255,255,255,0.10);
   color: #ffffff;
 }
+/* Force all diag-dots to red with a soft pulse — preserves the hover scale */
+#page-2 .diag-dot,
+#page-2 .diag-item.sev-critical .diag-dot,
+#page-2 .diag-item.sev-high     .diag-dot {
+  background: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.30);
+  animation: diagDotPulse 2.4s ease-in-out infinite;
+}
+@keyframes diagDotPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(239,68,68,0.28); }
+  50%      { box-shadow: 0 0 0 6px rgba(239,68,68,0.10); }
+}
 
 /* ===== Copy refactor table — translucent ===== */
 #page-2 .audit-refactor {
