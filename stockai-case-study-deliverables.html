@@ -10,12 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =====================================================
-   FOUNDAY DESIGN TOKENS
+   FOUNDAY DESIGN TOKENS — synced with founday-design-system
+   Source: github.com/pedromleal15/founday-design-system
+   Live:   founday-design-system.vercel.app
+   Powered by Pedro Leal for Founday
    ===================================================== */
 :root {
+  /* Color — neutral scale */
   --neutral-0:   #ffffff;
   --neutral-50:  #f7f7f8;
-  --neutral-100: #f3f3f5;
+  --neutral-100: #f7f7f7;        /* prototype override (DS #f3f3f5) */
   --neutral-150: #ececee;
   --neutral-200: #e5e7eb;
   --neutral-300: #d4d4d8;
@@ -23,26 +27,84 @@
   --neutral-500: #717182;
   --neutral-700: #3f3f46;
   --neutral-900: #0a0a0a;
+
+  /* Color — brand / semantic */
   --primary:        #0a0a0a;
   --primary-hover:  #1f1f22;
   --primary-fg:     #ffffff;
-  --accent:         #2f6fed;
-  --accent-soft:    #e7efff;
-  --warning:        #ea580c;
+  --accent:         #2f6fed;        /* nav/tab active */
+  --accent-soft:    #e7efff;        /* nav icon background */
+  --warning:        #ea580c;        /* "below target" */
   --warning-soft:   #fff1e9;
   --success:        #16a34a;
-  --success-soft:   #e8f6ee;
+  --success-soft:   #e8f6ee;        /* prototype extension */
   --destructive:    #ef4444;
+  --link:           #2f6fed;
+
+  /* Color — surfaces */
   --bg:             #f5f5f7;
   --surface:        #ffffff;
-  --border:         #e5e7eb;
-  --border-strong:  #d4d4d8;
-  --font:           "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --r-sm:  4px;  --r-md:  6px;  --r-lg:  8px;
-  --r-xl:  12px; --r-2xl: 16px; --r-full: 9999px;
-  --shadow-xs: 0 1px 2px rgba(16,24,40,0.04);
-  --shadow-sm: 0 1px 3px rgba(16,24,40,0.06), 0 1px 2px -1px rgba(16,24,40,0.05);
+  --surface-muted:  #f7f7f8;
+  --border:         var(--neutral-200);
+  --border-strong:  var(--neutral-300);
+  --ring:           rgba(47,111,237,0.28);
+
+  /* Typography */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font:      var(--font-sans);  /* legacy alias used across prototype */
+
+  /* Type scale (size / line-height) */
+  --fs-xs:   12px; --lh-xs:   16px;
+  --fs-sm:   13px; --lh-sm:   18px;
+  --fs-base: 14px; --lh-base: 20px;
+  --fs-md:   15px; --lh-md:   22px;
+  --fs-lg:   16px; --lh-lg:   24px;
+  --fs-xl:   20px; --lh-xl:   28px;
+  --fs-2xl:  24px; --lh-2xl:  32px;
+  --fs-3xl:  32px; --lh-3xl:  40px;
+
+  /* Weights */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Spacing scale (4-point grid) */
+  --s-0:  0px;
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  20px;
+  --s-6:  24px;
+  --s-8:  32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+
+  /* Radius */
+  --r-sm:   4px;
+  --r-md:   6px;
+  --r-lg:   8px;
+  --r-xl:   12px;
+  --r-2xl:  16px;
+  --r-full: 9999px;
+
+  /* Elevation */
+  --shadow-xs: 0 1px 2px 0 rgba(16,24,40,0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(16,24,40,0.06), 0 1px 2px -1px rgba(16,24,40,0.05);
   --shadow-md: 0 4px 12px -2px rgba(16,24,40,0.08), 0 2px 4px -2px rgba(16,24,40,0.04);
+  --shadow-lg: 0 12px 32px -8px rgba(16,24,40,0.12);
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Layout */
+  --sidebar-w: 256px;
+  --rail-w:    72px;
 }
 
 /* =====================================================
@@ -84,6 +146,75 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav-brandname { color: white; font-weight: 600; font-size: 14px; }
 .nav-divider { color: #3f3f46; font-size: 18px; margin: 0 4px; }
 .nav-case { color: var(--neutral-500); font-size: 13px; }
+.nav-ds-badge {
+  margin-left: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  background: rgba(47,111,237,0.10);
+  border: 1px solid rgba(47,111,237,0.25);
+  color: #93c5fd;
+  font-size: 11px; font-weight: var(--fw-semibold); letter-spacing: 0.02em;
+  text-decoration: none; white-space: nowrap;
+  transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.nav-ds-badge:hover { background: rgba(47,111,237,0.18); color: #ffffff; transform: translateY(-1px); }
+.nav-ds-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #2f6fed;
+  box-shadow: 0 0 0 0 rgba(47,111,237,0.6);
+  animation: navDsPulse 1.8s ease-out infinite;
+}
+@keyframes navDsPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(47,111,237,0.55); }
+  100% { box-shadow: 0 0 0 8px rgba(47,111,237,0); }
+}
+@media (max-width: 1024px) { .nav-ds-badge { display: none; } }
+
+/* ===== CASE FOOTER ===== */
+.case-footer {
+  background: var(--neutral-900);
+  border-top: 1px solid rgba(47,111,237,0.18);
+  padding: 28px 32px;
+  color: #9aa3c0;
+}
+.case-footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.case-footer-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-full);
+  background: rgba(47,111,237,0.10);
+  border: 1px solid rgba(47,111,237,0.28);
+  color: #93c5fd;
+  font-size: 12px; font-weight: var(--fw-semibold); letter-spacing: 0.02em;
+  text-decoration: none; white-space: nowrap;
+  transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.case-footer-badge:hover { background: rgba(47,111,237,0.20); color: #fff; transform: translateY(-1px); }
+.case-footer-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #2f6fed;
+  box-shadow: 0 0 0 0 rgba(47,111,237,0.6);
+  animation: navDsPulse 1.8s ease-out infinite;
+}
+.case-footer-meta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; flex-wrap: wrap;
+}
+.case-footer-meta a {
+  color: #cbd5e1; text-decoration: none;
+  transition: color var(--dur-base) var(--ease-out);
+}
+.case-footer-meta a:hover { color: #fff; text-decoration: underline; }
+.case-footer-sep { color: #475569; }
+@media (max-width: 768px) {
+  .case-footer { padding: 20px 16px; }
+  .case-footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
 
 /* ===== CONTACT BUTTON ===== */
 @keyframes contact-glow-spin {
@@ -2864,6 +2995,30 @@ body[data-page-direction="backward"] .page.active {
 .hifi-wrapper.hifi-dark .rail-divider { background: rgba(99,140,255,0.20); }
 .hifi-wrapper.hifi-dark .rail-user-avatar { box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 2px #0d1322; }
 
+/* Rail dark/light theme toggle (above Sarah avatar) */
+.rail-theme-toggle {
+  width: 32px; height: 32px; border-radius: 10px;
+  display: grid; place-items: center;
+  background: var(--neutral-100);
+  border: 1px solid var(--border);
+  color: var(--neutral-700);
+  cursor: pointer; padding: 0;
+  margin-bottom: 6px;
+  transition: background 160ms ease, color 160ms ease, transform 220ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 160ms ease;
+}
+.rail-theme-toggle:hover {
+  background: var(--accent-soft); color: var(--accent);
+  transform: translateY(-1px); box-shadow: 0 4px 10px -4px rgba(47,111,237,0.30);
+}
+.rail-theme-icon { width: 16px; height: 16px; }
+.rail-theme-moon { display: none; }
+.hifi-wrapper.hifi-dark .rail-theme-toggle {
+  background: rgba(47,111,237,0.10); border-color: rgba(47,111,237,0.18); color: #fde047;
+}
+.hifi-wrapper.hifi-dark .rail-theme-sun { display: none; }
+.hifi-wrapper.hifi-dark .rail-theme-moon { display: block; }
+.app-rail.expanded .rail-theme-toggle { width: auto; padding: 0 10px; }
+
 /* Expand sidebar — circular button straddling the right edge of the rail */
 .rail-expand {
   position: absolute;
@@ -5631,7 +5786,8 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 .chat-msg-bubble {
   padding: 8px 11px; border-radius: 12px;
   font-size: 12.5px; line-height: 1.4;
-  background: var(--neutral-100); color: var(--neutral-900);
+  background: #ffffff; color: var(--neutral-900);
+  border: 1px solid var(--border);
   white-space: pre-wrap; word-wrap: break-word;
 }
 .hifi-wrapper.hifi-dark .chat-msg-bubble { background: rgba(47,111,237,0.10); color: #ecf0fb; }
@@ -5759,6 +5915,502 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 .home-grid-2 .home-card:nth-child(2) { animation-delay: 300ms; }
 .home-leaderboard { animation-delay: 360ms; }
 
+/* ==== HOME — GRID BACKGROUND, NEW LAYOUT, NEW CARDS ==== */
+.app-main--home {
+  position: relative;
+  background-color: var(--neutral-50);
+  background-image:
+    linear-gradient(rgba(47,111,237,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47,111,237,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+.app-main--home::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 18% 8%, rgba(122,167,255,0.16), transparent 70%),
+    radial-gradient(50% 35% at 85% 92%, rgba(167,139,250,0.12), transparent 70%);
+  z-index: 0;
+}
+.app-main--home > * { position: relative; z-index: 1; }
+.hifi-wrapper.hifi-dark .app-main--home {
+  background-color: #060912;
+  background-image:
+    linear-gradient(rgba(122,167,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122,167,255,0.07) 1px, transparent 1px);
+}
+.hifi-wrapper.hifi-dark .app-main--home::before {
+  background:
+    radial-gradient(60% 40% at 18% 8%, rgba(122,167,255,0.10), transparent 70%),
+    radial-gradient(50% 35% at 85% 92%, rgba(124,58,237,0.10), transparent 70%);
+}
+
+/* New row layouts */
+.home-grid-pair {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+@media (max-width: 1023px) { .home-grid-pair { grid-template-columns: 1fr; } }
+.home-chat-row { display: block; }
+.home-chat-row .home-chat { min-height: 280px; }
+
+/* Iconsax-style icon containers (replacing emojis) */
+.icn-tile {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--g1, #2f6fed), var(--g2, #1d4ed8));
+  color: #fff; box-shadow: 0 6px 14px -6px rgba(47,111,237,0.45);
+}
+.icn-tile svg { width: 20px; height: 20px; }
+
+/* Streak flame as iconsax SVG */
+.streak-flame-svg {
+  width: 40px; height: 40px;
+  filter: drop-shadow(0 4px 10px rgba(249,115,22,0.35));
+  animation: streakFlame 1.6s ease-in-out infinite;
+  transform-origin: 50% 80%;
+}
+
+/* Streak badge icons */
+.streak-badge svg { width: 12px; height: 12px; }
+.streak-badge { transition: transform 180ms cubic-bezier(0.34,1.56,0.64,1), background 160ms; }
+.streak-badge:hover { transform: translateY(-1px) scale(1.04); background: var(--accent-soft); color: var(--accent); }
+
+/* Greeting sun icon */
+.greet-sun {
+  display: inline-block; width: 14px; height: 14px;
+  vertical-align: -2px; margin-left: 4px; color: #ffffff;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.55));
+  animation: greetSpin 9s linear infinite;
+}
+@keyframes greetSpin { to { transform: rotate(360deg); } }
+
+/* "Good morning, Sarah" left→right white glow shimmer (text only) */
+.home-hero-greet {
+  background: linear-gradient(
+    100deg,
+    rgba(255,255,255,0.85) 0%,
+    rgba(255,255,255,0.85) 35%,
+    #ffffff 50%,
+    rgba(255,255,255,0.85) 65%,
+    rgba(255,255,255,0.85) 100%
+  );
+  background-size: 220% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: greetShimmer 3.4s ease-in-out infinite;
+}
+@keyframes greetShimmer {
+  0%   { background-position: 120% 0; }
+  60%  { background-position: -20% 0; }
+  100% { background-position: -20% 0; }
+}
+
+/* Hero CTA — comet glow (same pattern as .contact-btn) */
+.home-hero-cta { position: relative; overflow: hidden; border-radius: 999px; }
+.home-hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 240%; aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(253,224,71,0.95) 12%,
+    rgba(253,224,71,0.30) 22%,
+    transparent 32%,
+    transparent 100%
+  );
+  animation: contact-glow-spin 2.8s linear infinite;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.home-hero-cta::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 999px;
+  background: #ffffff;
+  pointer-events: none;
+}
+.home-hero-cta-inner {
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: 8px;
+  color: #1e3a8a;
+}
+
+/* Chat card — subtle violet tint + glow + Bebas title with star */
+.home-chat {
+  background: linear-gradient(155deg, #ffffff 0%, #f3efff 60%, #ede5ff 100%);
+  border-color: rgba(124,58,237,0.16);
+  box-shadow:
+    0 1px 2px rgba(15,23,42,0.04),
+    0 14px 30px -16px rgba(124,58,237,0.30);
+  position: relative; overflow: hidden;
+}
+.hifi-wrapper.hifi-dark .home-chat {
+  background: linear-gradient(155deg, #0d1322 0%, #161034 100%);
+  border-color: rgba(167,139,250,0.22);
+}
+.home-chat::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit; pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 0% 0%, rgba(167,139,250,0.18), transparent 60%),
+    radial-gradient(50% 60% at 100% 100%, rgba(124,58,237,0.14), transparent 60%);
+  animation: chatGlow 5.5s ease-in-out infinite;
+}
+@keyframes chatGlow {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 1; }
+}
+.home-chat > * { position: relative; z-index: 1; }
+.home-chat .home-card-title {
+  font-family: 'Bebas Neue', 'Poppins', sans-serif;
+  font-size: 20px; font-weight: 400; letter-spacing: 0.03em;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(95deg, #2f6fed 0%, #7c3aed 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.chat-title-spark {
+  display: inline-block; width: 16px; height: 16px;
+  color: #7c3aed;
+  filter: drop-shadow(0 0 4px rgba(167,139,250,0.55));
+  animation: chatSparkSpin 4s ease-in-out infinite;
+}
+@keyframes chatSparkSpin {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50%      { transform: rotate(20deg) scale(1.12); }
+}
+
+/* Chat avatars upgrade — circular tiles with iconsax */
+.chat-avatar svg { width: 13px; height: 13px; }
+.chat-avatar { transition: transform 200ms cubic-bezier(0.34,1.56,0.64,1); }
+.chat-avatars:hover .chat-avatar { transform: translateX(-2px); }
+.chat-avatars:hover .chat-avatar:hover { transform: translateY(-2px) scale(1.12); z-index: 2; }
+.chat-msg-avatar svg { width: 12px; height: 12px; }
+
+/* ===== NEW CARD 1 — Today's Quest (gamification) ===== */
+.home-quest {
+  position: relative; overflow: hidden; gap: 14px;
+  background: linear-gradient(160deg, #ffffff 0%, #f3f6ff 100%);
+}
+.hifi-wrapper.hifi-dark .home-quest { background: linear-gradient(160deg, #0d1322 0%, #131b30 100%); }
+.home-quest::after {
+  content: ''; position: absolute; inset: -40% -20% auto auto;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(124,58,237,0.18), transparent 70%);
+  pointer-events: none;
+}
+.quest-row { display: flex; align-items: center; gap: 16px; }
+.quest-ring {
+  position: relative; width: 78px; height: 78px; flex-shrink: 0;
+  overflow: visible;
+}
+.quest-ring svg {
+  width: 100%; height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+.quest-ring-bg { stroke: var(--neutral-100); }
+.hifi-wrapper.hifi-dark .quest-ring-bg { stroke: rgba(122,167,255,0.10); }
+.quest-ring-fill {
+  stroke: url(#questGrad);
+  stroke-dasharray: 219.9;
+  stroke-dashoffset: 65.97; /* 70% filled */
+  animation: questRingDraw 1.6s cubic-bezier(0.16,1,0.3,1) both;
+  filter: drop-shadow(0 2px 6px rgba(47,111,237,0.30));
+}
+@keyframes questRingDraw { from { stroke-dashoffset: 219.9; } }
+.quest-ring-text {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-size: 15px; font-weight: 700; color: var(--neutral-900);
+  letter-spacing: -0.02em;
+}
+.hifi-wrapper.hifi-dark .quest-ring-text { color: #ecf0fb; }
+.quest-ring-text small { font-size: 9.5px; font-weight: 600; color: var(--neutral-500); display: block; margin-top: 1px; }
+.quest-info { flex: 1; min-width: 0; }
+.quest-label { font-size: 12.5px; font-weight: 600; color: var(--neutral-900); }
+.hifi-wrapper.hifi-dark .quest-label { color: #ecf0fb; }
+.quest-sub { font-size: 11.5px; color: var(--neutral-500); margin-top: 3px; line-height: 1.4; }
+.quest-reward {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 8px; padding: 4px 10px; border-radius: 99px;
+  font-size: 11px; font-weight: 700; color: #fff;
+  background: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%);
+  box-shadow: 0 4px 12px -4px rgba(236,72,153,0.45);
+  animation: questRewardPulse 2.4s ease-in-out infinite;
+}
+.quest-reward svg { width: 11px; height: 11px; }
+@keyframes questRewardPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.quest-meta { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--neutral-500); }
+.quest-meta strong { color: var(--neutral-900); font-weight: 700; }
+.hifi-wrapper.hifi-dark .quest-meta strong { color: #ecf0fb; }
+.quest-level-bar {
+  position: relative; height: 4px; flex: 1; min-width: 60px;
+  background: var(--neutral-100); border-radius: 99px; overflow: hidden;
+}
+.hifi-wrapper.hifi-dark .quest-level-bar { background: rgba(122,167,255,0.10); }
+.quest-level-fill {
+  position: absolute; inset: 0; width: 62%;
+  background: linear-gradient(90deg, #2f6fed, #7c3aed);
+  border-radius: 99px;
+  animation: questLevelFill 1.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes questLevelFill { from { width: 0; } }
+.quest-cta {
+  margin-top: 4px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 10px;
+  padding: 8px 14px; font-size: 12px; font-weight: 600;
+  cursor: pointer; align-self: flex-start;
+  transition: transform 180ms cubic-bezier(0.34,1.56,0.64,1), background 160ms, box-shadow 160ms;
+  box-shadow: 0 4px 14px -4px rgba(47,111,237,0.45);
+}
+.quest-cta:hover { transform: translateY(-2px); background: var(--primary-hover); box-shadow: 0 8px 20px -6px rgba(47,111,237,0.55); }
+.quest-cta svg { width: 12px; height: 12px; }
+.quest-spark { position: absolute; pointer-events: none; opacity: 0; }
+.quest-spark-1 { top: 14px; right: 30px; animation: questSpark 3s ease-in-out infinite; }
+.quest-spark-2 { bottom: 18px; right: 60px; animation: questSpark 3s ease-in-out infinite 1s; }
+.quest-spark-3 { top: 50%; right: 14px; animation: questSpark 3s ease-in-out infinite 2s; }
+@keyframes questSpark { 0%,100% { opacity: 0; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1); } }
+
+/* ===== NEW CARD 2 — Marketing Pulse / Campaign ===== */
+.home-campaign {
+  position: relative; overflow: hidden; gap: 14px;
+  background:
+    linear-gradient(140deg, #1d4ed8 0%, #2f6fed 50%, #7c3aed 100%);
+  border: none; color: #fff;
+  box-shadow: 0 14px 32px -14px rgba(124,58,237,0.55);
+}
+.home-campaign::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(40% 60% at 90% -10%, rgba(255,255,255,0.18), transparent 60%),
+    radial-gradient(35% 50% at -10% 100%, rgba(253,224,71,0.18), transparent 60%);
+}
+.home-campaign > * { position: relative; }
+.campaign-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; opacity: 0.92;
+}
+.campaign-live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #fde047; box-shadow: 0 0 0 0 rgba(253,224,71,0.6);
+  animation: campaignLive 1.6s ease-out infinite;
+}
+@keyframes campaignLive {
+  0% { box-shadow: 0 0 0 0 rgba(253,224,71,0.6); }
+  100% { box-shadow: 0 0 0 10px rgba(253,224,71,0); }
+}
+.campaign-title {
+  font-family: 'Bebas Neue', 'Poppins', sans-serif;
+  font-size: 26px; font-weight: 400; line-height: 1.05;
+  letter-spacing: 0.01em; color: #fff;
+}
+.campaign-countdown {
+  display: flex; gap: 8px; align-items: stretch;
+}
+.campaign-countdown-cell {
+  flex: 1; min-width: 0;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.16);
+  text-align: center;
+}
+.campaign-countdown-num {
+  font-family: 'Bebas Neue', 'Poppins', sans-serif;
+  font-size: 24px; line-height: 1; color: #fff; font-weight: 400;
+}
+.campaign-countdown-label {
+  font-size: 9.5px; font-weight: 600; opacity: 0.8;
+  text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;
+}
+.campaign-readiness { display: flex; flex-direction: column; gap: 6px; }
+.campaign-readiness-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11.5px; opacity: 0.92;
+}
+.campaign-readiness-row strong { color: #fde047; font-weight: 700; }
+.campaign-readiness-bar {
+  height: 6px; border-radius: 99px; background: rgba(255,255,255,0.18); overflow: hidden;
+}
+.campaign-readiness-fill {
+  height: 100%; width: 78%;
+  background: linear-gradient(90deg, #fde047 0%, #fb923c 100%);
+  border-radius: 99px;
+  animation: campaignFill 1.6s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes campaignFill { from { width: 0; } }
+.campaign-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.campaign-tag {
+  font-size: 10.5px; font-weight: 600;
+  padding: 3px 9px; border-radius: 99px;
+  background: rgba(255,255,255,0.15); color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.campaign-cta {
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 10px;
+  background: #fff; color: #1e3a8a;
+  border: none; font-size: 12px; font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 16px -4px rgba(0,0,0,0.30);
+  transition: transform 180ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 180ms;
+}
+.campaign-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -6px rgba(0,0,0,0.40); }
+.campaign-cta svg { width: 12px; height: 12px; }
+.campaign-orbit {
+  position: absolute; right: -40px; top: -40px; pointer-events: none;
+  width: 200px; height: 200px; opacity: 0.65;
+}
+.campaign-orbit svg { width: 100%; height: 100%; animation: campaignOrbit 18s linear infinite; }
+@keyframes campaignOrbit { to { transform: rotate(360deg); } }
+
+/* Hero shine sweep */
+.home-hero { position: relative; }
+.home-hero::after {
+  content: ''; position: absolute; top: 0; left: -40%; width: 28%; height: 100%;
+  background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  animation: heroShine 6.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes heroShine {
+  0% { left: -40%; opacity: 0; }
+  20%, 35% { opacity: 1; }
+  60% { left: 130%; opacity: 0; }
+  100% { left: 130%; opacity: 0; }
+}
+
+/* Insights icon dot becomes small SVG-ready dot tile */
+.insight-icn {
+  width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0;
+  display: grid; place-items: center; color: #fff;
+  margin-top: 1px;
+  background: linear-gradient(135deg, var(--g1, #f97316), var(--g2, #ea580c));
+}
+.insight-icn svg { width: 12px; height: 12px; }
+.insight-item:hover .insight-icn { transform: scale(1.08) rotate(-5deg); }
+.insight-icn { transition: transform 240ms cubic-bezier(0.34,1.56,0.64,1); }
+
+/* Leaderboard flame icon */
+.lb-flame { display: inline-flex; vertical-align: -2px; margin-right: 3px; color: #f97316; }
+.lb-flame svg { width: 11px; height: 11px; }
+
+/* Pulse on number counters */
+@keyframes numPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+.fx-num-pulse { display: inline-block; animation: numPulse 3.4s ease-in-out infinite; }
+
+/* ==== Subtle motion + glow on Week / Critical / Leaderboard ==== */
+
+/* Soft hover glow on the lower row cards */
+.home-week, .home-critical, .home-leaderboard {
+  position: relative; overflow: hidden;
+  transition: transform 280ms cubic-bezier(0.16,1,0.3,1),
+              box-shadow 280ms ease,
+              border-color 280ms ease;
+}
+.home-week::after, .home-critical::after, .home-leaderboard::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(60% 80% at 100% 0%, rgba(47,111,237,0.10), transparent 60%),
+    radial-gradient(50% 70% at 0% 100%, rgba(124,58,237,0.06), transparent 60%);
+  opacity: 0; transition: opacity 320ms ease;
+}
+.home-week:hover, .home-critical:hover, .home-leaderboard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(47,111,237,0.18);
+  box-shadow: 0 16px 36px -16px rgba(47,111,237,0.28);
+}
+.home-week:hover::after, .home-critical:hover::after, .home-leaderboard:hover::after { opacity: 1; }
+
+/* Sparkline draws in on view */
+.home-week-spark path[stroke] {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: weekSparkDraw 1.6s cubic-bezier(0.16,1,0.3,1) 200ms both;
+}
+@keyframes weekSparkDraw { to { stroke-dashoffset: 0; } }
+
+/* KPI value count-up subtle scale on enter */
+.home-week-kpis .home-kpi-value {
+  animation: kpiPop 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.home-week-kpis .home-kpi:nth-child(1) .home-kpi-value { animation-delay: 80ms; }
+.home-week-kpis .home-kpi:nth-child(2) .home-kpi-value { animation-delay: 200ms; }
+.home-week-kpis .home-kpi:nth-child(3) .home-kpi-value { animation-delay: 320ms; }
+@keyframes kpiPop { from { opacity: 0; transform: translateY(4px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+/* Critical pill — soft pulse on the actually-critical one only */
+.critical-pill.is-critical {
+  animation: criticalPillPulse 2.6s ease-in-out infinite;
+}
+@keyframes criticalPillPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  50%      { box-shadow: 0 0 0 5px rgba(239,68,68,0.10); }
+}
+
+/* Critical row hover — slide right + soft tint */
+.critical-row {
+  transition: background 220ms ease, transform 280ms cubic-bezier(0.16,1,0.3,1);
+  border-radius: 8px;
+}
+.critical-row:hover { background: rgba(47,111,237,0.04); transform: translateX(2px); }
+.hifi-wrapper.hifi-dark .critical-row:hover { background: rgba(47,111,237,0.10); }
+
+/* Critical thumb subtle scale + glow on hover */
+.critical-row img { transition: transform 320ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 220ms ease; }
+.critical-row:hover img { transform: scale(1.06); box-shadow: 0 4px 12px -4px rgba(15,23,42,0.18); }
+
+/* Leaderboard alignment + hover */
+.lb-table th, .lb-table td { vertical-align: middle; }
+.lb-table th:nth-child(1), .lb-table td:nth-child(1) { text-align: center; width: 56px; }
+.lb-table th:nth-child(3), .lb-table td:nth-child(3),
+.lb-table th:nth-child(4), .lb-table td:nth-child(4),
+.lb-table th:nth-child(5), .lb-table td:nth-child(5) {
+  text-align: center; font-variant-numeric: tabular-nums;
+}
+.lb-table td:nth-child(5) .lb-flame { margin-right: 4px; }
+.lb-table tbody tr {
+  transition: background 220ms ease;
+}
+.lb-table tbody tr:hover:not(.lb-me) { background: rgba(47,111,237,0.04); }
+.hifi-wrapper.hifi-dark .lb-table tbody tr:hover:not(.lb-me) { background: rgba(47,111,237,0.08); }
+.lb-avatar { transition: transform 280ms cubic-bezier(0.34,1.56,0.64,1); }
+.lb-table tbody tr:hover .lb-avatar { transform: scale(1.08) rotate(-3deg); }
+.lb-rank { transition: transform 280ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 220ms ease; }
+.lb-table tbody tr:hover .lb-rank { transform: scale(1.08); }
+
+/* Leaderboard top-1 medal soft halo */
+.lb-rank-1 {
+  position: relative;
+  animation: lbRank1Halo 2.6s ease-in-out infinite;
+}
+@keyframes lbRank1Halo {
+  0%, 100% { box-shadow: 0 2px 8px rgba(217,119,6,0.30), 0 0 0 0 rgba(251,191,36,0); }
+  50%      { box-shadow: 0 2px 8px rgba(217,119,6,0.30), 0 0 0 6px rgba(251,191,36,0.15); }
+}
+
+/* Sarah row keeps its existing tint, adds subtle inner glow */
+.lb-me { position: relative; }
+.lb-me::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(47,111,237,0.10), transparent 30%);
+  opacity: 0.6;
+}
+
 /* =====================================================
    AGENTS VIEW
    ===================================================== */
@@ -5768,6 +6420,12 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
   background: var(--neutral-50);
   overflow-y: auto;
 }
+/* Pull the replen-style header in agents to span full width */
+.agents-replen-header { margin: -28px -32px 0; }
+.hifi-wrapper.hifi-dark .agents-replen-header { background: #0d1322; border-bottom-color: rgba(47,111,237,0.14); }
+.hifi-wrapper.hifi-dark .agents-replen-header .replen-name { color: #ecf0fb; }
+.hifi-wrapper.hifi-dark .agents-replen-header .replen-meta { color: #9aa3c0; }
+@media (max-width: 1023px) { .agents-replen-header { margin: -20px -14px 0; } }
 .hifi-wrapper.hifi-dark .app-main--agents { background: #060912; }
 .agents-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
 .agents-title {
@@ -5899,14 +6557,134 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 /* =====================================================
    RESPONSIVE — Tablet (768–1279px)
    ===================================================== */
-@media (max-width: 1279px) {
-  .home-hero { grid-template-columns: 1fr; gap: 16px; }
-  .home-hero-illust { display: none; }
-  .home-grid-3 { grid-template-columns: 1fr; }
+/* =====================================================
+   RESPONSIVE — HI-FI ECOSYSTEM (Home / Replenishment / Canva / Agents)
+   Placed at the end of the stylesheet so these overrides win the cascade.
+   Breakpoints: 1280 (desktop snug), 1024 (tablet land), 768 (tablet portrait)
+   ===================================================== */
+@media (max-width: 1280px) {
+  #page-5 { padding: 24px 20px 48px; }
+  .hifi-wrapper { border-radius: var(--r-lg); }
+
+  .replen-header { padding: 16px 20px; }
+  .replen-name { font-size: 18px; }
+  .ai-banner { margin: 16px 20px 0; padding: 12px 16px; }
+  .ai-banner-title { font-size: 13px; }
+  .ai-banner-sub { font-size: 11.5px; }
+  .product-table-wrap { margin: 16px 20px 24px; }
+
+  .action-bar-row.action-bar-top > .action-bar-left { flex-wrap: wrap; }
+  .action-bar-row.action-bar-top .stat-card {
+    min-width: calc(50% - 6px); flex-basis: calc(50% - 6px);
+  }
+
+  .product-table th:nth-child(2),
+  .product-table td:nth-child(2) { width: auto; min-width: 180px; }
+  .product-table th:nth-child(5),
+  .product-table td:nth-child(5) { width: auto; min-width: 150px; }
+
+  .home-hero { grid-template-columns: 1fr 200px; padding: 22px 24px; }
+  .home-hero-title { font-size: 30px; }
+  .home-hero-illust svg { width: 200px; height: 170px; }
+  .home-grid-3 { grid-template-columns: 1fr 1fr; }
+  .home-chat { grid-column: 1 / -1; }
   .home-grid-2 { grid-template-columns: 1fr; }
-  .home-week-kpis { gap: 16px; }
+
   .agents-grid { grid-template-columns: repeat(2, 1fr); }
-  .home-hero-title { font-size: 28px; }
+}
+
+@media (max-width: 1024px) {
+  #page-5 { padding: 20px 16px 40px; }
+  .app-shell { min-height: 640px; flex-direction: column; }
+  .app-rail {
+    width: 100%; height: 56px;
+    flex-direction: row; align-items: center;
+    padding: 0 12px; gap: 4px;
+    border-right: none; border-bottom: 1px solid var(--border);
+    overflow-x: auto; overflow-y: hidden;
+  }
+  .app-rail .rail-expand,
+  .app-rail .rail-divider,
+  .app-rail .rail-user-name,
+  .app-rail .rail-avatar { display: none; }
+  .app-rail .rail-user { margin-right: 8px; padding: 2px 6px; }
+  .app-rail .rail-icon { width: 40px; height: 40px; flex-shrink: 0; }
+  .app-rail > div[style*="flex:1"] { display: none; }
+
+  .product-table-wrap { margin: 12px 16px 24px; }
+  .table-content-wrap > .table-block { overflow-x: auto; }
+  .product-table { min-width: 980px; }
+
+  .ai-banner { margin: 12px 16px 0; flex-wrap: wrap; gap: 10px; }
+  .ai-banner-actions { flex-wrap: wrap; }
+
+  /* Section banner (mode toggle + actions): stack groups vertically */
+  .table-section-banner {
+    flex-direction: column; align-items: stretch;
+    gap: 10px; padding: 12px;
+  }
+  .table-section-banner > div:nth-child(1),
+  .table-section-banner .mode-toggle {
+    width: 100%; overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  .table-section-banner > div:nth-child(2) {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .table-section-banner .btn-sm { font-size: 11.5px !important; padding: 0 9px !important; }
+
+  /* Search bar: wrap into 2 rows (search row + chips row) */
+  .table-search-bar {
+    flex-wrap: wrap; gap: 8px; padding: 10px 12px;
+    overflow: hidden;
+  }
+  .table-search-bar .table-search-input {
+    flex: 1 1 160px; min-width: 0;
+  }
+  .table-search-bar .ask-ai-bar { width: 170px; flex-shrink: 1; min-width: 0; }
+  .table-search-bar .ask-ai-bar .ask-ai-input { width: 100%; flex: 1; min-width: 0; }
+  .table-search-bar .ask-ai-divider { display: none; }
+  .table-search-bar .qf-bar {
+    width: 100%; order: 99;
+    overflow-x: auto; flex-wrap: nowrap;
+    padding-top: 6px; border-top: 1px solid var(--border);
+  }
+  .table-search-bar .qf-chip { flex-shrink: 0; }
+
+  .home-hero { grid-template-columns: 1fr; gap: 16px; padding: 22px 22px; }
+  .home-hero-illust { display: none; }
+  .home-hero-title { font-size: 26px; }
+  .home-grid-3 { grid-template-columns: 1fr; }
+  .home-chat { grid-column: auto; }
+  .home-week-kpis { gap: 14px; }
+  .home-week-spark { height: 50px; }
+
+  .agents-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .agents-title { font-size: 26px; }
+  .agent-modal-card { width: min(380px, 92vw); }
+}
+
+@media (max-width: 768px) {
+  #page-5 { padding: 16px 12px 32px; }
+  .replen-header { padding: 12px 14px; }
+  .replen-name { font-size: 16px; }
+  .replen-meta { font-size: 11.5px; }
+  .product-table-wrap { margin: 10px 12px 20px; }
+  .ai-banner { margin: 10px 12px 0; padding: 12px; }
+  .ai-banner-icon { width: 32px; height: 32px; }
+  .ai-banner-actions { width: 100%; justify-content: flex-end; }
+
+  .app-main--home { padding: 18px 14px 32px; }
+  .home-hero { padding: 18px; }
+  .home-hero-title { font-size: 22px; }
+  .home-hero-stats { gap: 8px; font-size: 12px; }
+  .home-hero-stat-sep { display: none; }
+
+  .app-main--agents { padding: 20px 14px 32px; }
+  .agents-grid { grid-template-columns: 1fr; }
+  .agents-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .agents-title { font-size: 22px; }
 }
 
 </style>
@@ -5921,7 +6699,11 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
     <div class="nav-brandmark"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(0,200) scale(0.1,-0.1)" fill="#ffffff"><path d="M10 1995 c0 0 0 -447 0 -993 l-1 -993 990 0 991 1 0 990 1 991 -990 2 c-545 1 -991 2 -991 2z m1440 -776 l0 -230 -205 2 c-174 2 -208 0 -221 -13 -13 -13 -16 -49 -15 -222 l0 -206 -229 0 -230 0 0 333 c0 390 2 400 85 484 80 80 91 81 483 82 l332 1 0 -231z m0 -524 l0 -145 -126 0 c-69 0 -134 5 -145 10 -17 10 -19 22 -19 133 0 82 4 127 12 135 8 8 55 12 145 12 l133 0 0 -145z"/></g></svg></div>
     <span class="nav-brandname">Founday</span>
     <span class="nav-divider">/</span>
-    <span class="nav-case">StockAI — Replenishment Redesign</span>
+    <span class="nav-case">StockAI — Replenishment Redesign - Ready for Introduction Phase</span>
+    <a class="nav-ds-badge" href="https://founday-design-system.vercel.app" target="_blank" rel="noopener noreferrer" title="Powered by Pedro Leal for Founday">
+      <span class="nav-ds-dot"></span>
+      Powered by Pedro Leal for Founday
+    </a>
   </div>
 
   <!-- LinkedIn button -->
@@ -7545,6 +8327,16 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
           </svg>
         </button>
 
+        <button class="rail-theme-toggle" id="railThemeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode" onclick="toggleHifiDark()">
+          <svg class="rail-theme-icon rail-theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg class="rail-theme-icon rail-theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>
+          </svg>
+        </button>
+
         <div class="rail-user" title="Sarah Chen">
           <div class="rail-user-avatar">
             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces&auto=format" alt="Sarah Chen" loading="lazy" />
@@ -8810,7 +9602,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
         <!-- Hero -->
         <div class="home-hero">
           <div class="home-hero-text">
-            <div class="home-hero-greet">Good morning, Sarah ☀️</div>
+            <div class="home-hero-greet">Good morning, Sarah <svg class="greet-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></div>
             <div class="home-hero-title"><span class="fx-count" data-count-to="43">43</span> items need your eye today</div>
             <div class="home-hero-stats">
               <div class="home-hero-stat"><strong>3</strong> cycles this week</div>
@@ -8820,8 +9612,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <div class="home-hero-stat"><strong>2.3h</strong> saved by AI</div>
             </div>
             <button class="home-hero-cta" onclick="window.setHifiView && setHifiView('replenishment')">
-              Start today's replenishment
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="home-hero-cta-inner">
+                Start today's replenishment
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
             </button>
           </div>
           <div class="home-hero-illust" aria-hidden="true">
@@ -8857,13 +9651,28 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
           </div>
         </div>
 
-        <!-- Row 2: Streak / Chat / Insights -->
-        <div class="home-grid-3">
+        <!-- Row 2a: Streak | Today's Quest (gamification) -->
+        <div class="home-grid-pair">
           <!-- Streak card -->
           <div class="home-card home-streak">
             <div class="home-card-eyebrow">Replenishment streak</div>
             <div class="streak-row">
-              <div class="streak-flame" aria-hidden="true">🔥</div>
+              <svg class="streak-flame-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#fde047"/>
+                    <stop offset="55%" stop-color="#f97316"/>
+                    <stop offset="100%" stop-color="#ef4444"/>
+                  </linearGradient>
+                  <linearGradient id="flameCore" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"  stop-color="#fff7ed"/>
+                    <stop offset="100%" stop-color="#fde047"/>
+                  </linearGradient>
+                </defs>
+                <!-- Iconsax-style Flame (Bold) -->
+                <path d="M16.55 8.31c-.42-.81-.95-1.55-1.55-2.21-1.5-1.66-3.42-2.84-4.65-3.45-.5-.25-1.05.16-1 .72.16 1.49.31 4.13-.55 5.27-.93 1.22-2.4-.34-2.55-1.83-.06-.59-.7-.94-1.18-.61C3.5 7.36 2 9.95 2 13.05 2 17.99 6.03 22 11 22s9-4.01 9-8.95c0-1.71-.49-3.31-1.45-4.74z" fill="url(#flameGrad)"/>
+                <path d="M11.4 19.96c2.2 0 3.99-1.79 3.99-3.99 0-1.71-1.47-3.45-2.5-4.46-.25-.25-.66-.25-.91-.01-1.04.99-2.57 2.69-2.57 4.47 0 2.2 1.79 3.99 3.99 3.99z" fill="url(#flameCore)"/>
+              </svg>
               <div>
                 <div class="streak-value"><span class="fx-count" data-count-to="12">12</span> weeks</div>
                 <div class="streak-tag">above 95% in-stock</div>
@@ -8874,29 +9683,93 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <div class="streak-progress-meta">2 cycles to <strong>Pro Planner</strong></div>
             </div>
             <div class="streak-badges">
-              <span class="streak-badge" title="First 1k cycle"><span>🏅</span>1k cycles</span>
-              <span class="streak-badge" title="AI Trust"><span>🤝</span>AI Trust</span>
-              <span class="streak-badge" title="Zero stockouts"><span>🛡️</span>Zero outs</span>
+              <span class="streak-badge" title="First 1k cycle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9.5 14.5L8 22l4-2 4 2-1.5-7.5"/></svg>
+                1k cycles
+              </span>
+              <span class="streak-badge" title="AI Trust">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+                AI Trust
+              </span>
+              <span class="streak-badge" title="Zero stockouts">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/></svg>
+                Zero outs
+              </span>
             </div>
           </div>
 
-          <!-- Chat card -->
+          <!-- Today's Quest (gamification) -->
+          <div class="home-card home-quest">
+            <span class="quest-spark quest-spark-1"><svg width="10" height="10" viewBox="0 0 10 10" fill="#fde047" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5l-3.8 1.2L5 10l-1.2-3.8L0 5l3.8-1.2L5 0Z"/></svg></span>
+            <span class="quest-spark quest-spark-2"><svg width="8" height="8" viewBox="0 0 10 10" fill="#a78bfa" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5l-3.8 1.2L5 10l-1.2-3.8L0 5l3.8-1.2L5 0Z"/></svg></span>
+            <span class="quest-spark quest-spark-3"><svg width="9" height="9" viewBox="0 0 10 10" fill="#60a5fa" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5l-3.8 1.2L5 10l-1.2-3.8L0 5l3.8-1.2L5 0Z"/></svg></span>
+            <div class="home-card-eyebrow">Today's quest</div>
+            <div class="quest-row">
+              <div class="quest-ring" aria-hidden="true">
+                <svg viewBox="0 0 80 80">
+                  <defs>
+                    <linearGradient id="questGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#2f6fed"/>
+                      <stop offset="100%" stop-color="#7c3aed"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="quest-ring-bg" cx="40" cy="40" r="35" fill="none" stroke-width="6"/>
+                  <circle class="quest-ring-fill" cx="40" cy="40" r="35" fill="none" stroke-width="6" stroke-linecap="round"/>
+                </svg>
+                <div class="quest-ring-text"><span><span class="fx-count" data-count-to="7">7</span>/10<small>approvals</small></span></div>
+              </div>
+              <div class="quest-info">
+                <div class="quest-label">Approve 10 AI recommendations</div>
+                <div class="quest-sub">Finish today to keep your 12-week streak alive.</div>
+                <span class="quest-reward">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+                  +250 XP
+                </span>
+              </div>
+            </div>
+            <div class="quest-meta">
+              <span><strong>Lvl 8</strong></span>
+              <div class="quest-level-bar"><div class="quest-level-fill"></div></div>
+              <span>Lvl 9</span>
+            </div>
+            <button class="quest-cta" onclick="window.setHifiView && setHifiView('replenishment')">
+              Continue quest
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 2b: Chat full-width -->
+        <div class="home-chat-row">
           <div class="home-card home-chat" id="homeChatCard">
             <div class="home-card-header">
               <div>
-                <div class="home-card-title">Chat with your team agents</div>
+                <div class="home-card-title">
+                  <svg class="chat-title-spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.7 5.3L19 9l-5.3 1.7L12 16l-1.7-5.3L5 9l5.3-1.7L12 2Z"/><path d="M19 14l.9 2.5 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.5Z"/></svg>
+                  Chat with your team agents
+                </div>
                 <div class="home-card-sub">5 specialists online</div>
               </div>
               <div class="chat-avatars" aria-hidden="true">
-                <span class="chat-avatar" style="--g1:#3b82f6;--g2:#7c3aed">📊</span>
-                <span class="chat-avatar" style="--g1:#10b981;--g2:#16a34a">📦</span>
-                <span class="chat-avatar" style="--g1:#f59e0b;--g2:#ea580c">📈</span>
-                <span class="chat-avatar" style="--g1:#ec4899;--g2:#be185d">🤝</span>
+                <span class="chat-avatar" style="--g1:#3b82f6;--g2:#7c3aed" title="Sales">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>
+                </span>
+                <span class="chat-avatar" style="--g1:#10b981;--g2:#16a34a" title="Replenishment">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+                </span>
+                <span class="chat-avatar" style="--g1:#f59e0b;--g2:#ea580c" title="Forecasting">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-5 4 3 5-7"/></svg>
+                </span>
+                <span class="chat-avatar" style="--g1:#ec4899;--g2:#be185d" title="Supplier">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 4-4 6 6"/><path d="M14 14l3 3 4-4-7-7-3 3"/></svg>
+                </span>
               </div>
             </div>
             <div class="chat-stream" id="chatStream" role="log" aria-live="polite">
               <div class="chat-msg chat-msg--bot">
-                <span class="chat-msg-avatar" style="--g1:#3b82f6;--g2:#7c3aed">📊</span>
+                <span class="chat-msg-avatar" style="--g1:#3b82f6;--g2:#7c3aed">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>
+                </span>
                 <div class="chat-msg-bubble">Hi Sarah! Got a question about replenishment, forecasting, or pricing? Just ask — your team is on it.</div>
               </div>
             </div>
@@ -8907,7 +9780,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               </button>
             </form>
           </div>
+        </div>
 
+        <!-- Row 2c: AI Insights | Campaign Pulse -->
+        <div class="home-grid-pair">
           <!-- AI Insights -->
           <div class="home-card home-insights">
             <div class="home-card-header">
@@ -8915,26 +9791,70 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <span class="home-card-pill">3 new</span>
             </div>
             <div class="insight-item">
-              <div class="insight-dot" style="background:#f97316"></div>
+              <div class="insight-icn" style="--g1:#fb923c;--g2:#f97316" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>
+              </div>
               <div>
                 <div class="insight-title">Seasonality spike on 3 SKUs</div>
                 <div class="insight-sub">Bags +18% next 2 weeks — review quantities</div>
               </div>
             </div>
             <div class="insight-item">
-              <div class="insight-dot" style="background:#ef4444"></div>
+              <div class="insight-icn" style="--g1:#f87171;--g2:#ef4444" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+              </div>
               <div>
                 <div class="insight-title">Coverage on Bags trending down 8%</div>
                 <div class="insight-sub">Consider lifting target to 95%</div>
               </div>
             </div>
             <div class="insight-item">
-              <div class="insight-dot" style="background:#10b981"></div>
+              <div class="insight-icn" style="--g1:#34d399;--g2:#10b981" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
               <div>
                 <div class="insight-title">Override pattern detected</div>
                 <div class="insight-sub">You under-ride AI by ~20% on watches</div>
               </div>
             </div>
+          </div>
+
+          <!-- Campaign Pulse (marketing) -->
+          <div class="home-card home-campaign">
+            <div class="campaign-orbit" aria-hidden="true">
+              <svg viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.18)" stroke-dasharray="3 6"/>
+                <circle cx="100" cy="100" r="55" stroke="rgba(255,255,255,0.12)" stroke-dasharray="2 5"/>
+                <circle cx="100" cy="20" r="6" fill="#fde047"/>
+                <circle cx="180" cy="100" r="4" fill="#a78bfa"/>
+                <circle cx="100" cy="180" r="3.5" fill="#fff"/>
+              </svg>
+            </div>
+            <div class="campaign-eyebrow">
+              <span class="campaign-live-dot"></span>
+              Marketing pulse
+            </div>
+            <div class="campaign-title">Spring drop launches in</div>
+            <div class="campaign-countdown" aria-hidden="true">
+              <div class="campaign-countdown-cell"><div class="campaign-countdown-num">05</div><div class="campaign-countdown-label">Days</div></div>
+              <div class="campaign-countdown-cell"><div class="campaign-countdown-num">14</div><div class="campaign-countdown-label">Hrs</div></div>
+              <div class="campaign-countdown-cell"><div class="campaign-countdown-num">38</div><div class="campaign-countdown-label">Min</div></div>
+              <div class="campaign-countdown-cell"><div class="campaign-countdown-num" id="campaignSec">21</div><div class="campaign-countdown-label">Sec</div></div>
+            </div>
+            <div class="campaign-readiness">
+              <div class="campaign-readiness-row"><span>Coverage readiness</span><strong>78%</strong></div>
+              <div class="campaign-readiness-bar"><div class="campaign-readiness-fill"></div></div>
+              <div class="campaign-readiness-row"><span>+47% search buzz on featured SKUs</span><span style="opacity:0.85;">Last 7d</span></div>
+            </div>
+            <div class="campaign-tags">
+              <span class="campaign-tag">Sneakers</span>
+              <span class="campaign-tag">Crossbody bags</span>
+              <span class="campaign-tag">Watches</span>
+            </div>
+            <button class="campaign-cta" onclick="window.setHifiView && setHifiView('replenishment')">
+              Boost coverage now
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
           </div>
         </div>
 
@@ -9008,11 +9928,11 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <tr><th>Rank</th><th>Planner</th><th>Cycles</th><th>Accuracy</th><th>Streak</th></tr>
             </thead>
             <tbody>
-              <tr><td><span class="lb-rank lb-rank-1">1</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#f59e0b,#ea580c)">MR</div>Marcus Reyes</div></td><td>48</td><td>97.4%</td><td>🔥 18</td></tr>
-              <tr class="lb-me"><td><span class="lb-rank">2</span></td><td><div class="lb-user"><div class="lb-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=64&h=64&fit=crop&crop=faces&auto=format" alt=""></div>Sarah Chen <span class="lb-you">you</span></div></td><td>43</td><td>96.2%</td><td>🔥 12</td></tr>
-              <tr><td><span class="lb-rank">3</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">JK</div>Jamie Kim</div></td><td>41</td><td>95.8%</td><td>🔥 9</td></tr>
-              <tr><td><span class="lb-rank">4</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">AP</div>Aisha Patel</div></td><td>39</td><td>95.1%</td><td>🔥 7</td></tr>
-              <tr><td><span class="lb-rank">5</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#ec4899,#be185d)">DL</div>Daniel Liu</div></td><td>36</td><td>94.6%</td><td>🔥 5</td></tr>
+              <tr><td><span class="lb-rank lb-rank-1">1</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#f59e0b,#ea580c)">MR</div>Marcus Reyes</div></td><td>48</td><td>97.4%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>18</td></tr>
+              <tr class="lb-me"><td><span class="lb-rank">2</span></td><td><div class="lb-user"><div class="lb-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=64&h=64&fit=crop&crop=faces&auto=format" alt=""></div>Sarah Chen <span class="lb-you">you</span></div></td><td>43</td><td>96.2%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>12</td></tr>
+              <tr><td><span class="lb-rank">3</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">JK</div>Jamie Kim</div></td><td>41</td><td>95.8%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>9</td></tr>
+              <tr><td><span class="lb-rank">4</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">AP</div>Aisha Patel</div></td><td>39</td><td>95.1%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>7</td></tr>
+              <tr><td><span class="lb-rank">5</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#ec4899,#be185d)">DL</div>Daniel Liu</div></td><td>36</td><td>94.6%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>5</td></tr>
             </tbody>
           </table>
         </div>
@@ -9022,10 +9942,16 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
            AGENTS VIEW (toggled by rail Agents icon)
            ============================================================ -->
       <div class="app-main app-main--agents" id="appMainAgents" hidden>
-        <div class="agents-header">
-          <div>
-            <div class="agents-title">Your AI team</div>
-            <div class="agents-sub"><span id="agentsCount">6</span> specialists ready to help</div>
+        <div class="replen-header agents-replen-header">
+          <div class="replen-title-group">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
+              <a href="#" style="font-size:13px;color:var(--neutral-500);text-decoration:none;display:flex;align-items:center;gap:4px;">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6" stroke="#717182" stroke-width="2"/></svg>
+                Agents
+              </a>
+            </div>
+            <div class="replen-name">Your AI team</div>
+            <div class="replen-meta"><span id="agentsCount">6</span>&nbsp;specialists &nbsp;·&nbsp; Pre-built + custom &nbsp;·&nbsp; Apr 26, 2026</div>
           </div>
           <button class="btn btn-primary agents-new-btn" onclick="openAgentModal()">
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -9485,6 +10411,27 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
   </div>
 
 </section>
+
+<!-- =====================================================
+     CASE FOOTER
+     ===================================================== -->
+<footer class="case-footer">
+  <div class="case-footer-inner">
+    <a class="case-footer-badge" href="https://founday-design-system.vercel.app" target="_blank" rel="noopener noreferrer" title="Powered by Pedro Leal for Founday">
+      <span class="case-footer-dot"></span>
+      Powered by Pedro Leal for Founday
+    </a>
+    <div class="case-footer-meta">
+      <span>StockAI — Replenishment Redesign · Senior PD case</span>
+      <span class="case-footer-sep">·</span>
+      <a href="https://www.linkedin.com/in/pedromleals/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span class="case-footer-sep">·</span>
+      <a href="https://github.com/pedromleal15/founday-design-system" target="_blank" rel="noopener noreferrer">Design System</a>
+      <span class="case-footer-sep">·</span>
+      <span>© 2026 Pedro Leal</span>
+    </div>
+  </div>
+</footer>
 
 <!-- =====================================================
      JAVASCRIPT — Tab navigation
@@ -10493,6 +11440,14 @@ function setHifiView(view) {
     wrapper.classList.remove('canvas-mode');
   }
 
+  // Dismiss replenishment-only tooltips when leaving that view
+  if (view !== 'replenishment') {
+    ['caveTooltip', 'darkTooltip', 'railBetaTooltip', 'zoomInTooltip', 'zoomOutTooltip'].forEach(id => {
+      const t = document.getElementById(id);
+      if (t) { t.classList.remove('visible'); t.dataset.dismissed = '1'; }
+    });
+  }
+
   // Update rail active state
   const rail = wrapper.querySelector('.app-rail');
   if (rail) {
@@ -10540,6 +11495,17 @@ if (document.readyState === 'loading') {
   bindHifiRailNav();
 }
 
+/* ===== Campaign countdown seconds ===== */
+(function startCampaignCountdown() {
+  const el = document.getElementById('campaignSec');
+  if (!el) return;
+  let s = 21;
+  setInterval(() => {
+    s = (s - 1 + 60) % 60;
+    el.textContent = String(s).padStart(2, '0');
+  }, 1000);
+})();
+
 /* ===== CHAT (Home) ===== */
 const chatHistory = [];
 
@@ -10553,7 +11519,7 @@ function appendChatMsg(role, text, opts = {}) {
     const av = document.createElement('span');
     av.className = 'chat-msg-avatar';
     av.style.cssText = '--g1:#3b82f6;--g2:#7c3aed';
-    av.textContent = '📊';
+    av.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>';
     wrap.appendChild(av);
   }
   const bub = document.createElement('div');
