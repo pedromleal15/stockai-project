@@ -10,12 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =====================================================
-   FOUNDAY DESIGN TOKENS
+   FOUNDAY DESIGN TOKENS — synced with founday-design-system
+   Source: github.com/pedromleal15/founday-design-system
+   Live:   founday-design-system.vercel.app
+   Powered by Pedro Leal for Founday
    ===================================================== */
 :root {
+  /* Color — neutral scale */
   --neutral-0:   #ffffff;
   --neutral-50:  #f7f7f8;
-  --neutral-100: #f7f7f7;
+  --neutral-100: #f7f7f7;        /* prototype override (DS #f3f3f5) */
   --neutral-150: #ececee;
   --neutral-200: #e5e7eb;
   --neutral-300: #d4d4d8;
@@ -23,26 +27,84 @@
   --neutral-500: #717182;
   --neutral-700: #3f3f46;
   --neutral-900: #0a0a0a;
+
+  /* Color — brand / semantic */
   --primary:        #0a0a0a;
   --primary-hover:  #1f1f22;
   --primary-fg:     #ffffff;
-  --accent:         #2f6fed;
-  --accent-soft:    #e7efff;
-  --warning:        #ea580c;
+  --accent:         #2f6fed;        /* nav/tab active */
+  --accent-soft:    #e7efff;        /* nav icon background */
+  --warning:        #ea580c;        /* "below target" */
   --warning-soft:   #fff1e9;
   --success:        #16a34a;
-  --success-soft:   #e8f6ee;
+  --success-soft:   #e8f6ee;        /* prototype extension */
   --destructive:    #ef4444;
+  --link:           #2f6fed;
+
+  /* Color — surfaces */
   --bg:             #f5f5f7;
   --surface:        #ffffff;
-  --border:         #e5e7eb;
-  --border-strong:  #d4d4d8;
-  --font:           "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --r-sm:  4px;  --r-md:  6px;  --r-lg:  8px;
-  --r-xl:  12px; --r-2xl: 16px; --r-full: 9999px;
-  --shadow-xs: 0 1px 2px rgba(16,24,40,0.04);
-  --shadow-sm: 0 1px 3px rgba(16,24,40,0.06), 0 1px 2px -1px rgba(16,24,40,0.05);
+  --surface-muted:  #f7f7f8;
+  --border:         var(--neutral-200);
+  --border-strong:  var(--neutral-300);
+  --ring:           rgba(47,111,237,0.28);
+
+  /* Typography */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font:      var(--font-sans);  /* legacy alias used across prototype */
+
+  /* Type scale (size / line-height) */
+  --fs-xs:   12px; --lh-xs:   16px;
+  --fs-sm:   13px; --lh-sm:   18px;
+  --fs-base: 14px; --lh-base: 20px;
+  --fs-md:   15px; --lh-md:   22px;
+  --fs-lg:   16px; --lh-lg:   24px;
+  --fs-xl:   20px; --lh-xl:   28px;
+  --fs-2xl:  24px; --lh-2xl:  32px;
+  --fs-3xl:  32px; --lh-3xl:  40px;
+
+  /* Weights */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Spacing scale (4-point grid) */
+  --s-0:  0px;
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  20px;
+  --s-6:  24px;
+  --s-8:  32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+
+  /* Radius */
+  --r-sm:   4px;
+  --r-md:   6px;
+  --r-lg:   8px;
+  --r-xl:   12px;
+  --r-2xl:  16px;
+  --r-full: 9999px;
+
+  /* Elevation */
+  --shadow-xs: 0 1px 2px 0 rgba(16,24,40,0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(16,24,40,0.06), 0 1px 2px -1px rgba(16,24,40,0.05);
   --shadow-md: 0 4px 12px -2px rgba(16,24,40,0.08), 0 2px 4px -2px rgba(16,24,40,0.04);
+  --shadow-lg: 0 12px 32px -8px rgba(16,24,40,0.12);
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Layout */
+  --sidebar-w: 256px;
+  --rail-w:    72px;
 }
 
 /* =====================================================
@@ -84,6 +146,30 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav-brandname { color: white; font-weight: 600; font-size: 14px; }
 .nav-divider { color: #3f3f46; font-size: 18px; margin: 0 4px; }
 .nav-case { color: var(--neutral-500); font-size: 13px; }
+.nav-ds-badge {
+  margin-left: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  background: rgba(47,111,237,0.10);
+  border: 1px solid rgba(47,111,237,0.25);
+  color: #93c5fd;
+  font-size: 11px; font-weight: var(--fw-semibold); letter-spacing: 0.02em;
+  text-decoration: none; white-space: nowrap;
+  transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.nav-ds-badge:hover { background: rgba(47,111,237,0.18); color: #ffffff; transform: translateY(-1px); }
+.nav-ds-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #2f6fed;
+  box-shadow: 0 0 0 0 rgba(47,111,237,0.6);
+  animation: navDsPulse 1.8s ease-out infinite;
+}
+@keyframes navDsPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(47,111,237,0.55); }
+  100% { box-shadow: 0 0 0 8px rgba(47,111,237,0); }
+}
+@media (max-width: 1024px) { .nav-ds-badge { display: none; } }
 
 /* ===== CONTACT BUTTON ===== */
 @keyframes contact-glow-spin {
@@ -6569,6 +6655,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
     <span class="nav-brandname">Founday</span>
     <span class="nav-divider">/</span>
     <span class="nav-case">StockAI — Replenishment Redesign - Ready for Introduction Phase</span>
+    <a class="nav-ds-badge" href="https://founday-design-system.vercel.app" target="_blank" rel="noopener noreferrer" title="Powered by Pedro Leal for Founday">
+      <span class="nav-ds-dot"></span>
+      Powered by Pedro Leal for Founday
+    </a>
   </div>
 
   <!-- LinkedIn button -->
