@@ -5822,10 +5822,104 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 /* Greeting sun icon */
 .greet-sun {
   display: inline-block; width: 14px; height: 14px;
-  vertical-align: -2px; margin-left: 4px; color: #fde047;
+  vertical-align: -2px; margin-left: 4px; color: #ffffff;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.55));
   animation: greetSpin 9s linear infinite;
 }
 @keyframes greetSpin { to { transform: rotate(360deg); } }
+
+/* "Good morning, Sarah" left→right white glow shimmer (text only) */
+.home-hero-greet {
+  background: linear-gradient(
+    100deg,
+    rgba(255,255,255,0.85) 0%,
+    rgba(255,255,255,0.85) 35%,
+    #ffffff 50%,
+    rgba(255,255,255,0.85) 65%,
+    rgba(255,255,255,0.85) 100%
+  );
+  background-size: 220% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: greetShimmer 3.4s ease-in-out infinite;
+}
+@keyframes greetShimmer {
+  0%   { background-position: 120% 0; }
+  60%  { background-position: -20% 0; }
+  100% { background-position: -20% 0; }
+}
+
+/* Hero CTA — rotating glow border */
+.home-hero-cta { position: relative; isolation: isolate; overflow: visible; }
+.home-hero-cta::before {
+  content: '';
+  position: absolute; inset: -3px;
+  border-radius: 999px;
+  padding: 3px;
+  background: conic-gradient(from 0deg,
+    rgba(255,255,255,0) 0%,
+    rgba(253,224,71,0.95) 12%,
+    rgba(167,139,250,0.95) 28%,
+    rgba(255,255,255,0) 45%,
+    rgba(255,255,255,0) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: ctaSpin 3.6s linear infinite;
+  z-index: -1;
+  filter: drop-shadow(0 0 10px rgba(167,139,250,0.55));
+}
+@keyframes ctaSpin { to { transform: rotate(360deg); } }
+
+/* Chat card — subtle violet tint + glow + Bebas title with star */
+.home-chat {
+  background: linear-gradient(155deg, #ffffff 0%, #f3efff 60%, #ede5ff 100%);
+  border-color: rgba(124,58,237,0.16);
+  box-shadow:
+    0 1px 2px rgba(15,23,42,0.04),
+    0 14px 30px -16px rgba(124,58,237,0.30);
+  position: relative; overflow: hidden;
+}
+.hifi-wrapper.hifi-dark .home-chat {
+  background: linear-gradient(155deg, #0d1322 0%, #161034 100%);
+  border-color: rgba(167,139,250,0.22);
+}
+.home-chat::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit; pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 0% 0%, rgba(167,139,250,0.18), transparent 60%),
+    radial-gradient(50% 60% at 100% 100%, rgba(124,58,237,0.14), transparent 60%);
+  animation: chatGlow 5.5s ease-in-out infinite;
+}
+@keyframes chatGlow {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 1; }
+}
+.home-chat > * { position: relative; z-index: 1; }
+.home-chat .home-card-title {
+  font-family: 'Bebas Neue', 'Poppins', sans-serif;
+  font-size: 20px; font-weight: 400; letter-spacing: 0.03em;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(95deg, #2f6fed 0%, #7c3aed 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.chat-title-spark {
+  display: inline-block; width: 16px; height: 16px;
+  color: #7c3aed;
+  filter: drop-shadow(0 0 4px rgba(167,139,250,0.55));
+  animation: chatSparkSpin 4s ease-in-out infinite;
+}
+@keyframes chatSparkSpin {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50%      { transform: rotate(20deg) scale(1.12); }
+}
 
 /* Chat avatars upgrade — circular tiles with iconsax */
 .chat-avatar svg { width: 13px; height: 13px; }
@@ -9352,7 +9446,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
           <div class="home-card home-chat" id="homeChatCard">
             <div class="home-card-header">
               <div>
-                <div class="home-card-title">Chat with your team agents</div>
+                <div class="home-card-title">
+                  <svg class="chat-title-spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.7 5.3L19 9l-5.3 1.7L12 16l-1.7-5.3L5 9l5.3-1.7L12 2Z"/><path d="M19 14l.9 2.5 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.5Z"/></svg>
+                  Chat with your team agents
+                </div>
                 <div class="home-card-sub">5 specialists online</div>
               </div>
               <div class="chat-avatars" aria-hidden="true">
