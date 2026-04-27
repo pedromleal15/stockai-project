@@ -6289,6 +6289,12 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
   background: var(--neutral-50);
   overflow-y: auto;
 }
+/* Pull the replen-style header in agents to span full width */
+.agents-replen-header { margin: -28px -32px 0; }
+.hifi-wrapper.hifi-dark .agents-replen-header { background: #0d1322; border-bottom-color: rgba(47,111,237,0.14); }
+.hifi-wrapper.hifi-dark .agents-replen-header .replen-name { color: #ecf0fb; }
+.hifi-wrapper.hifi-dark .agents-replen-header .replen-meta { color: #9aa3c0; }
+@media (max-width: 1023px) { .agents-replen-header { margin: -20px -14px 0; } }
 .hifi-wrapper.hifi-dark .app-main--agents { background: #060912; }
 .agents-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
 .agents-title {
@@ -9801,10 +9807,16 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
            AGENTS VIEW (toggled by rail Agents icon)
            ============================================================ -->
       <div class="app-main app-main--agents" id="appMainAgents" hidden>
-        <div class="agents-header">
-          <div>
-            <div class="agents-title">Your AI team</div>
-            <div class="agents-sub"><span id="agentsCount">6</span> specialists ready to help</div>
+        <div class="replen-header agents-replen-header">
+          <div class="replen-title-group">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
+              <a href="#" style="font-size:13px;color:var(--neutral-500);text-decoration:none;display:flex;align-items:center;gap:4px;">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6" stroke="#717182" stroke-width="2"/></svg>
+                Agents
+              </a>
+            </div>
+            <div class="replen-name">Your AI team</div>
+            <div class="replen-meta"><span id="agentsCount">6</span>&nbsp;specialists &nbsp;·&nbsp; Pre-built + custom &nbsp;·&nbsp; Apr 26, 2026</div>
           </div>
           <button class="btn btn-primary agents-new-btn" onclick="openAgentModal()">
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
