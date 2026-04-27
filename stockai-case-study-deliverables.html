@@ -2864,6 +2864,30 @@ body[data-page-direction="backward"] .page.active {
 .hifi-wrapper.hifi-dark .rail-divider { background: rgba(99,140,255,0.20); }
 .hifi-wrapper.hifi-dark .rail-user-avatar { box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 2px #0d1322; }
 
+/* Rail dark/light theme toggle (above Sarah avatar) */
+.rail-theme-toggle {
+  width: 32px; height: 32px; border-radius: 10px;
+  display: grid; place-items: center;
+  background: var(--neutral-100);
+  border: 1px solid var(--border);
+  color: var(--neutral-700);
+  cursor: pointer; padding: 0;
+  margin-bottom: 6px;
+  transition: background 160ms ease, color 160ms ease, transform 220ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 160ms ease;
+}
+.rail-theme-toggle:hover {
+  background: var(--accent-soft); color: var(--accent);
+  transform: translateY(-1px); box-shadow: 0 4px 10px -4px rgba(47,111,237,0.30);
+}
+.rail-theme-icon { width: 16px; height: 16px; }
+.rail-theme-moon { display: none; }
+.hifi-wrapper.hifi-dark .rail-theme-toggle {
+  background: rgba(47,111,237,0.10); border-color: rgba(47,111,237,0.18); color: #fde047;
+}
+.hifi-wrapper.hifi-dark .rail-theme-sun { display: none; }
+.hifi-wrapper.hifi-dark .rail-theme-moon { display: block; }
+.app-rail.expanded .rail-theme-toggle { width: auto; padding: 0 10px; }
+
 /* Expand sidebar — circular button straddling the right edge of the rail */
 .rail-expand {
   position: absolute;
@@ -5852,28 +5876,25 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
   100% { background-position: -20% 0; }
 }
 
-/* Hero CTA — rotating glow border */
+/* Hero CTA — comet glow travels along the stroke (pill outline) */
 .home-hero-cta { position: relative; isolation: isolate; overflow: visible; }
-.home-hero-cta::before {
-  content: '';
-  position: absolute; inset: -3px;
-  border-radius: 999px;
-  padding: 3px;
-  background: conic-gradient(from 0deg,
-    rgba(255,255,255,0) 0%,
-    rgba(253,224,71,0.95) 12%,
-    rgba(167,139,250,0.95) 28%,
-    rgba(255,255,255,0) 45%,
-    rgba(255,255,255,0) 100%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  animation: ctaSpin 3.6s linear infinite;
-  z-index: -1;
-  filter: drop-shadow(0 0 10px rgba(167,139,250,0.55));
+.home-hero-cta-glow {
+  position: absolute; inset: -2px;
+  width: calc(100% + 4px); height: calc(100% + 4px);
+  border-radius: 999px; pointer-events: none;
+  overflow: visible;
 }
-@keyframes ctaSpin { to { transform: rotate(360deg); } }
+.home-hero-cta-glow rect {
+  fill: none;
+  stroke: url(#ctaGlowGrad);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 60 460;
+  stroke-dashoffset: 0;
+  animation: ctaStrokeTravel 3.2s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(253,224,71,0.7)) drop-shadow(0 0 10px rgba(167,139,250,0.55));
+}
+@keyframes ctaStrokeTravel { to { stroke-dashoffset: -520; } }
 
 /* Chat card — subtle violet tint + glow + Bebas title with star */
 .home-chat {
@@ -8046,6 +8067,16 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
           </svg>
         </button>
 
+        <button class="rail-theme-toggle" id="railThemeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode" onclick="toggleHifiDark()">
+          <svg class="rail-theme-icon rail-theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg class="rail-theme-icon rail-theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>
+          </svg>
+        </button>
+
         <div class="rail-user" title="Sarah Chen">
           <div class="rail-user-avatar">
             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=128&h=128&fit=crop&crop=faces&auto=format" alt="Sarah Chen" loading="lazy" />
@@ -9321,6 +9352,16 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <div class="home-hero-stat"><strong>2.3h</strong> saved by AI</div>
             </div>
             <button class="home-hero-cta" onclick="window.setHifiView && setHifiView('replenishment')">
+              <svg class="home-hero-cta-glow" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ctaGlowGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%"  stop-color="#fde047" stop-opacity="0"/>
+                    <stop offset="50%" stop-color="#fde047" stop-opacity="1"/>
+                    <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <rect x="1" y="1" width="98%" height="96%" rx="999" ry="999"/>
+              </svg>
               Start today's replenishment
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
