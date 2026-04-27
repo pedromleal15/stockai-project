@@ -5876,33 +5876,39 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
   100% { background-position: -20% 0; }
 }
 
-/* Hero CTA — comet glow that runs along the pill outline */
-.home-hero-cta { position: relative; overflow: visible; }
+/* Hero CTA — comet glow (same pattern as .contact-btn) */
+.home-hero-cta { position: relative; overflow: hidden; border-radius: 999px; }
 .home-hero-cta::before {
   content: '';
-  position: absolute; inset: -2px;
-  border-radius: 9999px;
-  padding: 2px; /* the visual stroke thickness */
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 240%; aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
   background: conic-gradient(
     from 0deg,
-    transparent 0deg 280deg,
-    rgba(253,224,71,0.0) 290deg,
-    rgba(253,224,71,1) 320deg,
-    #ffffff 340deg,
-    rgba(167,139,250,1) 355deg,
-    rgba(167,139,250,0) 360deg
+    transparent 0%,
+    rgba(253,224,71,0.95) 12%,
+    rgba(253,224,71,0.30) 22%,
+    transparent 32%,
+    transparent 100%
   );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  animation: ctaCometSpin 3.2s linear infinite;
-  filter:
-    drop-shadow(0 0 4px rgba(253,224,71,0.95))
-    drop-shadow(0 0 10px rgba(167,139,250,0.75));
+  animation: contact-glow-spin 2.8s linear infinite;
+  border-radius: 50%;
   pointer-events: none;
 }
-@keyframes ctaCometSpin { to { transform: rotate(360deg); } }
+.home-hero-cta::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 999px;
+  background: #ffffff;
+  pointer-events: none;
+}
+.home-hero-cta-inner {
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: 8px;
+  color: #1e3a8a;
+}
 
 /* Chat card — subtle violet tint + glow + Bebas title with star */
 .home-chat {
@@ -9360,8 +9366,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <div class="home-hero-stat"><strong>2.3h</strong> saved by AI</div>
             </div>
             <button class="home-hero-cta" onclick="window.setHifiView && setHifiView('replenishment')">
-              Start today's replenishment
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="home-hero-cta-inner">
+                Start today's replenishment
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
             </button>
           </div>
           <div class="home-hero-illust" aria-hidden="true">
