@@ -5899,14 +5899,101 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 /* =====================================================
    RESPONSIVE — Tablet (768–1279px)
    ===================================================== */
-@media (max-width: 1279px) {
-  .home-hero { grid-template-columns: 1fr; gap: 16px; }
-  .home-hero-illust { display: none; }
-  .home-grid-3 { grid-template-columns: 1fr; }
+/* =====================================================
+   RESPONSIVE — HI-FI ECOSYSTEM (Home / Replenishment / Canva / Agents)
+   Placed at the end of the stylesheet so these overrides win the cascade.
+   Breakpoints: 1280 (desktop snug), 1024 (tablet land), 768 (tablet portrait)
+   ===================================================== */
+@media (max-width: 1280px) {
+  #page-5 { padding: 24px 20px 48px; }
+  .hifi-wrapper { border-radius: var(--r-lg); }
+
+  .replen-header { padding: 16px 20px; }
+  .replen-name { font-size: 18px; }
+  .ai-banner { margin: 16px 20px 0; padding: 12px 16px; }
+  .ai-banner-title { font-size: 13px; }
+  .ai-banner-sub { font-size: 11.5px; }
+  .product-table-wrap { margin: 16px 20px 24px; }
+
+  .action-bar-row.action-bar-top > .action-bar-left { flex-wrap: wrap; }
+  .action-bar-row.action-bar-top .stat-card {
+    min-width: calc(50% - 6px); flex-basis: calc(50% - 6px);
+  }
+
+  .product-table th:nth-child(2),
+  .product-table td:nth-child(2) { width: auto; min-width: 180px; }
+  .product-table th:nth-child(5),
+  .product-table td:nth-child(5) { width: auto; min-width: 150px; }
+
+  .home-hero { grid-template-columns: 1fr 200px; padding: 22px 24px; }
+  .home-hero-title { font-size: 30px; }
+  .home-hero-illust svg { width: 200px; height: 170px; }
+  .home-grid-3 { grid-template-columns: 1fr 1fr; }
+  .home-chat { grid-column: 1 / -1; }
   .home-grid-2 { grid-template-columns: 1fr; }
-  .home-week-kpis { gap: 16px; }
+
   .agents-grid { grid-template-columns: repeat(2, 1fr); }
-  .home-hero-title { font-size: 28px; }
+}
+
+@media (max-width: 1024px) {
+  #page-5 { padding: 20px 16px 40px; }
+  .app-shell { min-height: 640px; flex-direction: column; }
+  .app-rail {
+    width: 100%; height: 56px;
+    flex-direction: row; align-items: center;
+    padding: 0 12px; gap: 4px;
+    border-right: none; border-bottom: 1px solid var(--border);
+    overflow-x: auto; overflow-y: hidden;
+  }
+  .app-rail .rail-expand,
+  .app-rail .rail-divider,
+  .app-rail .rail-user-name,
+  .app-rail .rail-avatar { display: none; }
+  .app-rail .rail-user { margin-right: 8px; padding: 2px 6px; }
+  .app-rail .rail-icon { width: 40px; height: 40px; flex-shrink: 0; }
+  .app-rail > div[style*="flex:1"] { display: none; }
+
+  .product-table-wrap { margin: 12px 16px 24px; }
+  .table-content-wrap > .table-block { overflow-x: auto; }
+  .product-table { min-width: 980px; }
+
+  .ai-banner { margin: 12px 16px 0; flex-wrap: wrap; gap: 10px; }
+  .ai-banner-actions { flex-wrap: wrap; }
+  .table-section-banner { flex-wrap: wrap; gap: 8px; padding: 8px 12px; }
+
+  .home-hero { grid-template-columns: 1fr; gap: 16px; padding: 22px 22px; }
+  .home-hero-illust { display: none; }
+  .home-hero-title { font-size: 26px; }
+  .home-grid-3 { grid-template-columns: 1fr; }
+  .home-chat { grid-column: auto; }
+  .home-week-kpis { gap: 14px; }
+  .home-week-spark { height: 50px; }
+
+  .agents-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .agents-title { font-size: 26px; }
+  .agent-modal-card { width: min(380px, 92vw); }
+}
+
+@media (max-width: 768px) {
+  #page-5 { padding: 16px 12px 32px; }
+  .replen-header { padding: 12px 14px; }
+  .replen-name { font-size: 16px; }
+  .replen-meta { font-size: 11.5px; }
+  .product-table-wrap { margin: 10px 12px 20px; }
+  .ai-banner { margin: 10px 12px 0; padding: 12px; }
+  .ai-banner-icon { width: 32px; height: 32px; }
+  .ai-banner-actions { width: 100%; justify-content: flex-end; }
+
+  .app-main--home { padding: 18px 14px 32px; }
+  .home-hero { padding: 18px; }
+  .home-hero-title { font-size: 22px; }
+  .home-hero-stats { gap: 8px; font-size: 12px; }
+  .home-hero-stat-sep { display: none; }
+
+  .app-main--agents { padding: 20px 14px 32px; }
+  .agents-grid { grid-template-columns: 1fr; }
+  .agents-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .agents-title { font-size: 22px; }
 }
 
 </style>
