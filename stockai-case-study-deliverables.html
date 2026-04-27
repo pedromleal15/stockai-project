@@ -5759,6 +5759,293 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
 .home-grid-2 .home-card:nth-child(2) { animation-delay: 300ms; }
 .home-leaderboard { animation-delay: 360ms; }
 
+/* ==== HOME — GRID BACKGROUND, NEW LAYOUT, NEW CARDS ==== */
+.app-main--home {
+  position: relative;
+  background-color: var(--neutral-50);
+  background-image:
+    linear-gradient(rgba(47,111,237,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47,111,237,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+.app-main--home::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 18% 8%, rgba(122,167,255,0.16), transparent 70%),
+    radial-gradient(50% 35% at 85% 92%, rgba(167,139,250,0.12), transparent 70%);
+  z-index: 0;
+}
+.app-main--home > * { position: relative; z-index: 1; }
+.hifi-wrapper.hifi-dark .app-main--home {
+  background-color: #060912;
+  background-image:
+    linear-gradient(rgba(122,167,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122,167,255,0.07) 1px, transparent 1px);
+}
+.hifi-wrapper.hifi-dark .app-main--home::before {
+  background:
+    radial-gradient(60% 40% at 18% 8%, rgba(122,167,255,0.10), transparent 70%),
+    radial-gradient(50% 35% at 85% 92%, rgba(124,58,237,0.10), transparent 70%);
+}
+
+/* New row layouts */
+.home-grid-pair {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+@media (max-width: 1023px) { .home-grid-pair { grid-template-columns: 1fr; } }
+.home-chat-row { display: block; }
+.home-chat-row .home-chat { min-height: 280px; }
+
+/* Iconsax-style icon containers (replacing emojis) */
+.icn-tile {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--g1, #2f6fed), var(--g2, #1d4ed8));
+  color: #fff; box-shadow: 0 6px 14px -6px rgba(47,111,237,0.45);
+}
+.icn-tile svg { width: 20px; height: 20px; }
+
+/* Streak flame as iconsax SVG */
+.streak-flame-svg {
+  width: 40px; height: 40px;
+  filter: drop-shadow(0 4px 10px rgba(249,115,22,0.35));
+  animation: streakFlame 1.6s ease-in-out infinite;
+  transform-origin: 50% 80%;
+}
+
+/* Streak badge icons */
+.streak-badge svg { width: 12px; height: 12px; }
+.streak-badge { transition: transform 180ms cubic-bezier(0.34,1.56,0.64,1), background 160ms; }
+.streak-badge:hover { transform: translateY(-1px) scale(1.04); background: var(--accent-soft); color: var(--accent); }
+
+/* Greeting sun icon */
+.greet-sun {
+  display: inline-block; width: 14px; height: 14px;
+  vertical-align: -2px; margin-left: 4px; color: #fde047;
+  animation: greetSpin 9s linear infinite;
+}
+@keyframes greetSpin { to { transform: rotate(360deg); } }
+
+/* Chat avatars upgrade — circular tiles with iconsax */
+.chat-avatar svg { width: 13px; height: 13px; }
+.chat-avatar { transition: transform 200ms cubic-bezier(0.34,1.56,0.64,1); }
+.chat-avatars:hover .chat-avatar { transform: translateX(-2px); }
+.chat-avatars:hover .chat-avatar:hover { transform: translateY(-2px) scale(1.12); z-index: 2; }
+.chat-msg-avatar svg { width: 12px; height: 12px; }
+
+/* ===== NEW CARD 1 — Today's Quest (gamification) ===== */
+.home-quest {
+  position: relative; overflow: hidden; gap: 14px;
+  background: linear-gradient(160deg, #ffffff 0%, #f3f6ff 100%);
+}
+.hifi-wrapper.hifi-dark .home-quest { background: linear-gradient(160deg, #0d1322 0%, #131b30 100%); }
+.home-quest::after {
+  content: ''; position: absolute; inset: -40% -20% auto auto;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(124,58,237,0.18), transparent 70%);
+  pointer-events: none;
+}
+.quest-row { display: flex; align-items: center; gap: 16px; }
+.quest-ring {
+  position: relative; width: 78px; height: 78px; flex-shrink: 0;
+}
+.quest-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.quest-ring-bg { stroke: var(--neutral-100); }
+.hifi-wrapper.hifi-dark .quest-ring-bg { stroke: rgba(122,167,255,0.10); }
+.quest-ring-fill {
+  stroke: url(#questGrad);
+  stroke-dasharray: 219.9;
+  stroke-dashoffset: 65.97; /* 70% filled */
+  animation: questRingDraw 1.6s cubic-bezier(0.16,1,0.3,1) both;
+  filter: drop-shadow(0 2px 6px rgba(47,111,237,0.30));
+}
+@keyframes questRingDraw { from { stroke-dashoffset: 219.9; } }
+.quest-ring-text {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-size: 15px; font-weight: 700; color: var(--neutral-900);
+  letter-spacing: -0.02em;
+}
+.hifi-wrapper.hifi-dark .quest-ring-text { color: #ecf0fb; }
+.quest-ring-text small { font-size: 9.5px; font-weight: 600; color: var(--neutral-500); display: block; margin-top: 1px; }
+.quest-info { flex: 1; min-width: 0; }
+.quest-label { font-size: 12.5px; font-weight: 600; color: var(--neutral-900); }
+.hifi-wrapper.hifi-dark .quest-label { color: #ecf0fb; }
+.quest-sub { font-size: 11.5px; color: var(--neutral-500); margin-top: 3px; line-height: 1.4; }
+.quest-reward {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 8px; padding: 4px 10px; border-radius: 99px;
+  font-size: 11px; font-weight: 700; color: #fff;
+  background: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%);
+  box-shadow: 0 4px 12px -4px rgba(236,72,153,0.45);
+  animation: questRewardPulse 2.4s ease-in-out infinite;
+}
+.quest-reward svg { width: 11px; height: 11px; }
+@keyframes questRewardPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.quest-meta { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--neutral-500); }
+.quest-meta strong { color: var(--neutral-900); font-weight: 700; }
+.hifi-wrapper.hifi-dark .quest-meta strong { color: #ecf0fb; }
+.quest-level-bar {
+  position: relative; height: 4px; flex: 1; min-width: 60px;
+  background: var(--neutral-100); border-radius: 99px; overflow: hidden;
+}
+.hifi-wrapper.hifi-dark .quest-level-bar { background: rgba(122,167,255,0.10); }
+.quest-level-fill {
+  position: absolute; inset: 0; width: 62%;
+  background: linear-gradient(90deg, #2f6fed, #7c3aed);
+  border-radius: 99px;
+  animation: questLevelFill 1.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes questLevelFill { from { width: 0; } }
+.quest-cta {
+  margin-top: 4px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 10px;
+  padding: 8px 14px; font-size: 12px; font-weight: 600;
+  cursor: pointer; align-self: flex-start;
+  transition: transform 180ms cubic-bezier(0.34,1.56,0.64,1), background 160ms, box-shadow 160ms;
+  box-shadow: 0 4px 14px -4px rgba(47,111,237,0.45);
+}
+.quest-cta:hover { transform: translateY(-2px); background: var(--primary-hover); box-shadow: 0 8px 20px -6px rgba(47,111,237,0.55); }
+.quest-cta svg { width: 12px; height: 12px; }
+.quest-spark { position: absolute; pointer-events: none; opacity: 0; }
+.quest-spark-1 { top: 14px; right: 30px; animation: questSpark 3s ease-in-out infinite; }
+.quest-spark-2 { bottom: 18px; right: 60px; animation: questSpark 3s ease-in-out infinite 1s; }
+.quest-spark-3 { top: 50%; right: 14px; animation: questSpark 3s ease-in-out infinite 2s; }
+@keyframes questSpark { 0%,100% { opacity: 0; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1); } }
+
+/* ===== NEW CARD 2 — Marketing Pulse / Campaign ===== */
+.home-campaign {
+  position: relative; overflow: hidden; gap: 14px;
+  background:
+    linear-gradient(140deg, #1d4ed8 0%, #2f6fed 50%, #7c3aed 100%);
+  border: none; color: #fff;
+  box-shadow: 0 14px 32px -14px rgba(124,58,237,0.55);
+}
+.home-campaign::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(40% 60% at 90% -10%, rgba(255,255,255,0.18), transparent 60%),
+    radial-gradient(35% 50% at -10% 100%, rgba(253,224,71,0.18), transparent 60%);
+}
+.home-campaign > * { position: relative; }
+.campaign-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; opacity: 0.92;
+}
+.campaign-live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #fde047; box-shadow: 0 0 0 0 rgba(253,224,71,0.6);
+  animation: campaignLive 1.6s ease-out infinite;
+}
+@keyframes campaignLive {
+  0% { box-shadow: 0 0 0 0 rgba(253,224,71,0.6); }
+  100% { box-shadow: 0 0 0 10px rgba(253,224,71,0); }
+}
+.campaign-title {
+  font-family: 'Bebas Neue', 'Poppins', sans-serif;
+  font-size: 26px; font-weight: 400; line-height: 1.05;
+  letter-spacing: 0.01em; color: #fff;
+}
+.campaign-countdown {
+  display: flex; gap: 8px; align-items: stretch;
+}
+.campaign-countdown-cell {
+  flex: 1; min-width: 0;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.16);
+  text-align: center;
+}
+.campaign-countdown-num {
+  font-family: 'Bebas Neue', 'Poppins', sans-serif;
+  font-size: 24px; line-height: 1; color: #fff; font-weight: 400;
+}
+.campaign-countdown-label {
+  font-size: 9.5px; font-weight: 600; opacity: 0.8;
+  text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;
+}
+.campaign-readiness { display: flex; flex-direction: column; gap: 6px; }
+.campaign-readiness-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11.5px; opacity: 0.92;
+}
+.campaign-readiness-row strong { color: #fde047; font-weight: 700; }
+.campaign-readiness-bar {
+  height: 6px; border-radius: 99px; background: rgba(255,255,255,0.18); overflow: hidden;
+}
+.campaign-readiness-fill {
+  height: 100%; width: 78%;
+  background: linear-gradient(90deg, #fde047 0%, #fb923c 100%);
+  border-radius: 99px;
+  animation: campaignFill 1.6s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes campaignFill { from { width: 0; } }
+.campaign-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.campaign-tag {
+  font-size: 10.5px; font-weight: 600;
+  padding: 3px 9px; border-radius: 99px;
+  background: rgba(255,255,255,0.15); color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.campaign-cta {
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 10px;
+  background: #fff; color: #1e3a8a;
+  border: none; font-size: 12px; font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 16px -4px rgba(0,0,0,0.30);
+  transition: transform 180ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 180ms;
+}
+.campaign-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -6px rgba(0,0,0,0.40); }
+.campaign-cta svg { width: 12px; height: 12px; }
+.campaign-orbit {
+  position: absolute; right: -40px; top: -40px; pointer-events: none;
+  width: 200px; height: 200px; opacity: 0.65;
+}
+.campaign-orbit svg { width: 100%; height: 100%; animation: campaignOrbit 18s linear infinite; }
+@keyframes campaignOrbit { to { transform: rotate(360deg); } }
+
+/* Hero shine sweep */
+.home-hero { position: relative; }
+.home-hero::after {
+  content: ''; position: absolute; top: 0; left: -40%; width: 28%; height: 100%;
+  background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  animation: heroShine 6.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes heroShine {
+  0% { left: -40%; opacity: 0; }
+  20%, 35% { opacity: 1; }
+  60% { left: 130%; opacity: 0; }
+  100% { left: 130%; opacity: 0; }
+}
+
+/* Insights icon dot becomes small SVG-ready dot tile */
+.insight-icn {
+  width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0;
+  display: grid; place-items: center; color: #fff;
+  margin-top: 1px;
+  background: linear-gradient(135deg, var(--g1, #f97316), var(--g2, #ea580c));
+}
+.insight-icn svg { width: 12px; height: 12px; }
+.insight-item:hover .insight-icn { transform: scale(1.08) rotate(-5deg); }
+.insight-icn { transition: transform 240ms cubic-bezier(0.34,1.56,0.64,1); }
+
+/* Leaderboard flame icon */
+.lb-flame { display: inline-flex; vertical-align: -2px; margin-right: 3px; color: #f97316; }
+.lb-flame svg { width: 11px; height: 11px; }
+
+/* Pulse on number counters */
+@keyframes numPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+.fx-num-pulse { display: inline-block; animation: numPulse 3.4s ease-in-out infinite; }
+
 /* =====================================================
    AGENTS VIEW
    ===================================================== */
@@ -8930,7 +9217,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
         <!-- Hero -->
         <div class="home-hero">
           <div class="home-hero-text">
-            <div class="home-hero-greet">Good morning, Sarah ☀️</div>
+            <div class="home-hero-greet">Good morning, Sarah <svg class="greet-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></div>
             <div class="home-hero-title"><span class="fx-count" data-count-to="43">43</span> items need your eye today</div>
             <div class="home-hero-stats">
               <div class="home-hero-stat"><strong>3</strong> cycles this week</div>
@@ -8977,13 +9264,23 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
           </div>
         </div>
 
-        <!-- Row 2: Streak / Chat / Insights -->
-        <div class="home-grid-3">
+        <!-- Row 2a: Streak | Today's Quest (gamification) -->
+        <div class="home-grid-pair">
           <!-- Streak card -->
           <div class="home-card home-streak">
             <div class="home-card-eyebrow">Replenishment streak</div>
             <div class="streak-row">
-              <div class="streak-flame" aria-hidden="true">🔥</div>
+              <svg class="streak-flame-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#fde047"/>
+                    <stop offset="50%" stop-color="#f97316"/>
+                    <stop offset="100%" stop-color="#ef4444"/>
+                  </linearGradient>
+                </defs>
+                <path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z" fill="url(#flameGrad)" stroke="#c2410c" stroke-width="1.1" stroke-linejoin="round"/>
+                <path d="M12 12c.4 1.6-.5 2.5-1.5 3.4C9.5 16.4 9 17.4 9 18.4a3 3 0 0 0 6 0c0-1.4-.9-2.3-1.7-3.3-.8-1-1.4-1.9-1.3-3.1Z" fill="#fde047" opacity="0.85"/>
+              </svg>
               <div>
                 <div class="streak-value"><span class="fx-count" data-count-to="12">12</span> weeks</div>
                 <div class="streak-tag">above 95% in-stock</div>
@@ -8994,13 +9291,64 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <div class="streak-progress-meta">2 cycles to <strong>Pro Planner</strong></div>
             </div>
             <div class="streak-badges">
-              <span class="streak-badge" title="First 1k cycle"><span>🏅</span>1k cycles</span>
-              <span class="streak-badge" title="AI Trust"><span>🤝</span>AI Trust</span>
-              <span class="streak-badge" title="Zero stockouts"><span>🛡️</span>Zero outs</span>
+              <span class="streak-badge" title="First 1k cycle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9.5 14.5L8 22l4-2 4 2-1.5-7.5"/></svg>
+                1k cycles
+              </span>
+              <span class="streak-badge" title="AI Trust">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+                AI Trust
+              </span>
+              <span class="streak-badge" title="Zero stockouts">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/></svg>
+                Zero outs
+              </span>
             </div>
           </div>
 
-          <!-- Chat card -->
+          <!-- Today's Quest (gamification) -->
+          <div class="home-card home-quest">
+            <span class="quest-spark quest-spark-1"><svg width="10" height="10" viewBox="0 0 10 10" fill="#fde047" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5l-3.8 1.2L5 10l-1.2-3.8L0 5l3.8-1.2L5 0Z"/></svg></span>
+            <span class="quest-spark quest-spark-2"><svg width="8" height="8" viewBox="0 0 10 10" fill="#a78bfa" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5l-3.8 1.2L5 10l-1.2-3.8L0 5l3.8-1.2L5 0Z"/></svg></span>
+            <span class="quest-spark quest-spark-3"><svg width="9" height="9" viewBox="0 0 10 10" fill="#60a5fa" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5l-3.8 1.2L5 10l-1.2-3.8L0 5l3.8-1.2L5 0Z"/></svg></span>
+            <div class="home-card-eyebrow">Today's quest</div>
+            <div class="quest-row">
+              <div class="quest-ring" aria-hidden="true">
+                <svg viewBox="0 0 80 80">
+                  <defs>
+                    <linearGradient id="questGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#2f6fed"/>
+                      <stop offset="100%" stop-color="#7c3aed"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="quest-ring-bg" cx="40" cy="40" r="35" fill="none" stroke-width="6"/>
+                  <circle class="quest-ring-fill" cx="40" cy="40" r="35" fill="none" stroke-width="6" stroke-linecap="round"/>
+                </svg>
+                <div class="quest-ring-text"><span><span class="fx-count" data-count-to="7">7</span>/10<small>approvals</small></span></div>
+              </div>
+              <div class="quest-info">
+                <div class="quest-label">Approve 10 AI recommendations</div>
+                <div class="quest-sub">Finish today to keep your 12-week streak alive.</div>
+                <span class="quest-reward">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+                  +250 XP
+                </span>
+              </div>
+            </div>
+            <div class="quest-meta">
+              <span><strong>Lvl 8</strong></span>
+              <div class="quest-level-bar"><div class="quest-level-fill"></div></div>
+              <span>Lvl 9</span>
+            </div>
+            <button class="quest-cta" onclick="window.setHifiView && setHifiView('replenishment')">
+              Continue quest
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 2b: Chat full-width -->
+        <div class="home-chat-row">
           <div class="home-card home-chat" id="homeChatCard">
             <div class="home-card-header">
               <div>
@@ -9008,15 +9356,25 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
                 <div class="home-card-sub">5 specialists online</div>
               </div>
               <div class="chat-avatars" aria-hidden="true">
-                <span class="chat-avatar" style="--g1:#3b82f6;--g2:#7c3aed">📊</span>
-                <span class="chat-avatar" style="--g1:#10b981;--g2:#16a34a">📦</span>
-                <span class="chat-avatar" style="--g1:#f59e0b;--g2:#ea580c">📈</span>
-                <span class="chat-avatar" style="--g1:#ec4899;--g2:#be185d">🤝</span>
+                <span class="chat-avatar" style="--g1:#3b82f6;--g2:#7c3aed" title="Sales">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>
+                </span>
+                <span class="chat-avatar" style="--g1:#10b981;--g2:#16a34a" title="Replenishment">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+                </span>
+                <span class="chat-avatar" style="--g1:#f59e0b;--g2:#ea580c" title="Forecasting">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-5 4 3 5-7"/></svg>
+                </span>
+                <span class="chat-avatar" style="--g1:#ec4899;--g2:#be185d" title="Supplier">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 4-4 6 6"/><path d="M14 14l3 3 4-4-7-7-3 3"/></svg>
+                </span>
               </div>
             </div>
             <div class="chat-stream" id="chatStream" role="log" aria-live="polite">
               <div class="chat-msg chat-msg--bot">
-                <span class="chat-msg-avatar" style="--g1:#3b82f6;--g2:#7c3aed">📊</span>
+                <span class="chat-msg-avatar" style="--g1:#3b82f6;--g2:#7c3aed">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>
+                </span>
                 <div class="chat-msg-bubble">Hi Sarah! Got a question about replenishment, forecasting, or pricing? Just ask — your team is on it.</div>
               </div>
             </div>
@@ -9027,7 +9385,10 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               </button>
             </form>
           </div>
+        </div>
 
+        <!-- Row 2c: AI Insights | Campaign Pulse -->
+        <div class="home-grid-pair">
           <!-- AI Insights -->
           <div class="home-card home-insights">
             <div class="home-card-header">
@@ -9035,26 +9396,70 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <span class="home-card-pill">3 new</span>
             </div>
             <div class="insight-item">
-              <div class="insight-dot" style="background:#f97316"></div>
+              <div class="insight-icn" style="--g1:#fb923c;--g2:#f97316" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>
+              </div>
               <div>
                 <div class="insight-title">Seasonality spike on 3 SKUs</div>
                 <div class="insight-sub">Bags +18% next 2 weeks — review quantities</div>
               </div>
             </div>
             <div class="insight-item">
-              <div class="insight-dot" style="background:#ef4444"></div>
+              <div class="insight-icn" style="--g1:#f87171;--g2:#ef4444" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+              </div>
               <div>
                 <div class="insight-title">Coverage on Bags trending down 8%</div>
                 <div class="insight-sub">Consider lifting target to 95%</div>
               </div>
             </div>
             <div class="insight-item">
-              <div class="insight-dot" style="background:#10b981"></div>
+              <div class="insight-icn" style="--g1:#34d399;--g2:#10b981" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
               <div>
                 <div class="insight-title">Override pattern detected</div>
                 <div class="insight-sub">You under-ride AI by ~20% on watches</div>
               </div>
             </div>
+          </div>
+
+          <!-- Campaign Pulse (marketing) -->
+          <div class="home-card home-campaign">
+            <div class="campaign-orbit" aria-hidden="true">
+              <svg viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.18)" stroke-dasharray="3 6"/>
+                <circle cx="100" cy="100" r="55" stroke="rgba(255,255,255,0.12)" stroke-dasharray="2 5"/>
+                <circle cx="100" cy="20" r="6" fill="#fde047"/>
+                <circle cx="180" cy="100" r="4" fill="#a78bfa"/>
+                <circle cx="100" cy="180" r="3.5" fill="#fff"/>
+              </svg>
+            </div>
+            <div class="campaign-eyebrow">
+              <span class="campaign-live-dot"></span>
+              Marketing pulse
+            </div>
+            <div class="campaign-title">Spring drop launches in</div>
+            <div class="campaign-countdown" aria-hidden="true">
+              <div class="campaign-countdown-cell"><div class="campaign-countdown-num">05</div><div class="campaign-countdown-label">Days</div></div>
+              <div class="campaign-countdown-cell"><div class="campaign-countdown-num">14</div><div class="campaign-countdown-label">Hrs</div></div>
+              <div class="campaign-countdown-cell"><div class="campaign-countdown-num">38</div><div class="campaign-countdown-label">Min</div></div>
+              <div class="campaign-countdown-cell"><div class="campaign-countdown-num" id="campaignSec">21</div><div class="campaign-countdown-label">Sec</div></div>
+            </div>
+            <div class="campaign-readiness">
+              <div class="campaign-readiness-row"><span>Coverage readiness</span><strong>78%</strong></div>
+              <div class="campaign-readiness-bar"><div class="campaign-readiness-fill"></div></div>
+              <div class="campaign-readiness-row"><span>+47% search buzz on featured SKUs</span><span style="opacity:0.85;">Last 7d</span></div>
+            </div>
+            <div class="campaign-tags">
+              <span class="campaign-tag">Sneakers</span>
+              <span class="campaign-tag">Crossbody bags</span>
+              <span class="campaign-tag">Watches</span>
+            </div>
+            <button class="campaign-cta" onclick="window.setHifiView && setHifiView('replenishment')">
+              Boost coverage now
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
           </div>
         </div>
 
@@ -9128,11 +9533,11 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <tr><th>Rank</th><th>Planner</th><th>Cycles</th><th>Accuracy</th><th>Streak</th></tr>
             </thead>
             <tbody>
-              <tr><td><span class="lb-rank lb-rank-1">1</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#f59e0b,#ea580c)">MR</div>Marcus Reyes</div></td><td>48</td><td>97.4%</td><td>🔥 18</td></tr>
-              <tr class="lb-me"><td><span class="lb-rank">2</span></td><td><div class="lb-user"><div class="lb-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=64&h=64&fit=crop&crop=faces&auto=format" alt=""></div>Sarah Chen <span class="lb-you">you</span></div></td><td>43</td><td>96.2%</td><td>🔥 12</td></tr>
-              <tr><td><span class="lb-rank">3</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">JK</div>Jamie Kim</div></td><td>41</td><td>95.8%</td><td>🔥 9</td></tr>
-              <tr><td><span class="lb-rank">4</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">AP</div>Aisha Patel</div></td><td>39</td><td>95.1%</td><td>🔥 7</td></tr>
-              <tr><td><span class="lb-rank">5</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#ec4899,#be185d)">DL</div>Daniel Liu</div></td><td>36</td><td>94.6%</td><td>🔥 5</td></tr>
+              <tr><td><span class="lb-rank lb-rank-1">1</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#f59e0b,#ea580c)">MR</div>Marcus Reyes</div></td><td>48</td><td>97.4%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>18</td></tr>
+              <tr class="lb-me"><td><span class="lb-rank">2</span></td><td><div class="lb-user"><div class="lb-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=64&h=64&fit=crop&crop=faces&auto=format" alt=""></div>Sarah Chen <span class="lb-you">you</span></div></td><td>43</td><td>96.2%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>12</td></tr>
+              <tr><td><span class="lb-rank">3</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">JK</div>Jamie Kim</div></td><td>41</td><td>95.8%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>9</td></tr>
+              <tr><td><span class="lb-rank">4</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">AP</div>Aisha Patel</div></td><td>39</td><td>95.1%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>7</td></tr>
+              <tr><td><span class="lb-rank">5</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#ec4899,#be185d)">DL</div>Daniel Liu</div></td><td>36</td><td>94.6%</td><td><span class="lb-flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c.7 3.5-1.6 5.6-3.4 7.5C6.7 11.4 5 13.3 5 16a7 7 0 0 0 14 0c0-3.5-2.5-5.4-4.2-8C13.3 5.5 12.6 3.7 12 2Z"/></svg></span>5</td></tr>
             </tbody>
           </table>
         </div>
@@ -10613,6 +11018,14 @@ function setHifiView(view) {
     wrapper.classList.remove('canvas-mode');
   }
 
+  // Dismiss replenishment-only tooltips when leaving that view
+  if (view !== 'replenishment') {
+    ['caveTooltip', 'darkTooltip', 'railBetaTooltip', 'zoomInTooltip', 'zoomOutTooltip'].forEach(id => {
+      const t = document.getElementById(id);
+      if (t) { t.classList.remove('visible'); t.dataset.dismissed = '1'; }
+    });
+  }
+
   // Update rail active state
   const rail = wrapper.querySelector('.app-rail');
   if (rail) {
@@ -10660,6 +11073,17 @@ if (document.readyState === 'loading') {
   bindHifiRailNav();
 }
 
+/* ===== Campaign countdown seconds ===== */
+(function startCampaignCountdown() {
+  const el = document.getElementById('campaignSec');
+  if (!el) return;
+  let s = 21;
+  setInterval(() => {
+    s = (s - 1 + 60) % 60;
+    el.textContent = String(s).padStart(2, '0');
+  }, 1000);
+})();
+
 /* ===== CHAT (Home) ===== */
 const chatHistory = [];
 
@@ -10673,7 +11097,7 @@ function appendChatMsg(role, text, opts = {}) {
     const av = document.createElement('span');
     av.className = 'chat-msg-avatar';
     av.style.cssText = '--g1:#3b82f6;--g2:#7c3aed';
-    av.textContent = '📊';
+    av.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>';
     wrap.appendChild(av);
   }
   const bub = document.createElement('div');
