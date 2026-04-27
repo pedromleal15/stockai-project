@@ -5876,25 +5876,33 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
   100% { background-position: -20% 0; }
 }
 
-/* Hero CTA — comet glow travels along the stroke (pill outline) */
-.home-hero-cta { position: relative; isolation: isolate; overflow: visible; }
-.home-hero-cta-glow {
+/* Hero CTA — comet glow that runs along the pill outline */
+.home-hero-cta { position: relative; overflow: visible; }
+.home-hero-cta::before {
+  content: '';
   position: absolute; inset: -2px;
-  width: calc(100% + 4px); height: calc(100% + 4px);
-  border-radius: 999px; pointer-events: none;
-  overflow: visible;
+  border-radius: 9999px;
+  padding: 2px; /* the visual stroke thickness */
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 280deg,
+    rgba(253,224,71,0.0) 290deg,
+    rgba(253,224,71,1) 320deg,
+    #ffffff 340deg,
+    rgba(167,139,250,1) 355deg,
+    rgba(167,139,250,0) 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: ctaCometSpin 3.2s linear infinite;
+  filter:
+    drop-shadow(0 0 4px rgba(253,224,71,0.95))
+    drop-shadow(0 0 10px rgba(167,139,250,0.75));
+  pointer-events: none;
 }
-.home-hero-cta-glow rect {
-  fill: none;
-  stroke: url(#ctaGlowGrad);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-dasharray: 60 460;
-  stroke-dashoffset: 0;
-  animation: ctaStrokeTravel 3.2s linear infinite;
-  filter: drop-shadow(0 0 6px rgba(253,224,71,0.7)) drop-shadow(0 0 10px rgba(167,139,250,0.55));
-}
-@keyframes ctaStrokeTravel { to { stroke-dashoffset: -520; } }
+@keyframes ctaCometSpin { to { transform: rotate(360deg); } }
 
 /* Chat card — subtle violet tint + glow + Bebas title with star */
 .home-chat {
@@ -9352,16 +9360,6 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
               <div class="home-hero-stat"><strong>2.3h</strong> saved by AI</div>
             </div>
             <button class="home-hero-cta" onclick="window.setHifiView && setHifiView('replenishment')">
-              <svg class="home-hero-cta-glow" preserveAspectRatio="none" aria-hidden="true">
-                <defs>
-                  <linearGradient id="ctaGlowGrad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%"  stop-color="#fde047" stop-opacity="0"/>
-                    <stop offset="50%" stop-color="#fde047" stop-opacity="1"/>
-                    <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <rect x="1" y="1" width="98%" height="96%" rx="999" ry="999"/>
-              </svg>
               Start today's replenishment
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
