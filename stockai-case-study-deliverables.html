@@ -5479,6 +5479,436 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
   .lightbox-nav { width: 40px !important; height: 40px !important; }
 }
 
+/* =====================================================
+   HOME VIEW (page-5 internal)
+   ===================================================== */
+/* Force [hidden] to win over the display:flex on the views below */
+.app-main[hidden] { display: none !important; }
+.app-main--home {
+  flex: 1; display: flex; flex-direction: column;
+  gap: 16px; padding: 24px 32px 40px;
+  background: var(--neutral-50);
+  overflow-y: auto;
+}
+.hifi-wrapper.hifi-dark .app-main--home { background: #060912; }
+
+/* Hero */
+.home-hero {
+  display: grid; grid-template-columns: 1fr 240px; gap: 24px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(124,58,237,0.18) 0%, transparent 55%),
+    linear-gradient(135deg, #1d4ed8 0%, #2f6fed 50%, #6366f1 100%);
+  border-radius: var(--r-xl);
+  padding: 28px 32px;
+  color: #ffffff;
+  position: relative; overflow: hidden;
+  box-shadow: 0 12px 32px -12px rgba(47,111,237,0.45);
+}
+.home-hero-text { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.home-hero-greet { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; opacity: 0.85; text-transform: uppercase; }
+.home-hero-title {
+  font-family: 'Bebas Neue', 'Poppins', sans-serif;
+  font-size: 36px; font-weight: 400; line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+}
+.home-hero-title .fx-count { color: #fde047; font-weight: 600; }
+.home-hero-stats { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-size: 13px; opacity: 0.92; }
+.home-hero-stat strong { color: #fff; font-weight: 700; margin-right: 4px; }
+.home-hero-stat-sep { width: 1px; height: 12px; background: rgba(255,255,255,0.30); }
+.home-hero-cta {
+  align-self: flex-start; margin-top: 6px;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #ffffff; color: #1e3a8a;
+  border: none; border-radius: 999px;
+  padding: 10px 18px; font-size: 13.5px; font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px -4px rgba(0,0,0,0.30);
+  transition: transform 220ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 220ms ease;
+}
+.home-hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 22px -6px rgba(0,0,0,0.40); }
+.home-hero-illust { display: grid; place-items: center; }
+.home-illust-float { transform-origin: center; animation: heroFloat 5s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.home-illust-spark { animation: heroSpark 3.6s ease-in-out infinite; }
+@keyframes heroFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes heroSpark { 0%,100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
+
+/* 3-col grid (Streak / Chat / Insights) */
+.home-grid-3 {
+  display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 16px;
+}
+.home-grid-2 {
+  display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px;
+}
+
+/* Card base */
+.home-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
+  display: flex; flex-direction: column;
+  animation: cardRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hifi-wrapper.hifi-dark .home-card { background: #0d1322; border-color: rgba(47,111,237,0.14); }
+.home-card-eyebrow {
+  font-size: 11px; font-weight: 600; color: var(--neutral-500);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.home-card-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 10px; margin-bottom: 14px;
+}
+.home-card-title { font-size: 14px; font-weight: 600; color: var(--neutral-900); }
+.hifi-wrapper.hifi-dark .home-card-title { color: #ecf0fb; }
+.home-card-sub { font-size: 11.5px; color: var(--neutral-500); margin-top: 2px; }
+.home-card-pill {
+  font-size: 10.5px; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent);
+}
+.home-card-link { font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500; }
+
+/* Streak */
+.home-streak { gap: 14px; }
+.streak-row { display: flex; gap: 14px; align-items: center; }
+.streak-flame { font-size: 36px; line-height: 1; animation: streakFlame 1.6s ease-in-out infinite; transform-origin: 50% 80%; }
+@keyframes streakFlame { 0%,100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.08) rotate(-2deg); } }
+.streak-value { font-size: 22px; font-weight: 700; color: var(--neutral-900); }
+.hifi-wrapper.hifi-dark .streak-value { color: #ecf0fb; }
+.streak-tag { font-size: 11px; color: var(--neutral-500); margin-top: 2px; }
+.streak-progress { display: flex; flex-direction: column; gap: 6px; }
+.streak-progress-bar { height: 6px; border-radius: 99px; background: var(--neutral-100); overflow: hidden; }
+.streak-progress-fill {
+  height: 100%; width: 78%;
+  background: linear-gradient(90deg, #f59e0b 0%, #f97316 60%, #ef4444 100%);
+  border-radius: 99px;
+  animation: streakFill 1.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes streakFill { from { width: 0; } }
+.streak-progress-meta { font-size: 11px; color: var(--neutral-500); }
+.streak-progress-meta strong { color: var(--neutral-900); font-weight: 600; }
+.hifi-wrapper.hifi-dark .streak-progress-meta strong { color: #ecf0fb; }
+.streak-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.streak-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10.5px; font-weight: 600; color: var(--neutral-700);
+  padding: 4px 8px; border-radius: 99px;
+  background: var(--neutral-100);
+  border: 1px solid var(--border);
+}
+.hifi-wrapper.hifi-dark .streak-badge { background: rgba(47,111,237,0.10); color: #d3d8e8; border-color: rgba(47,111,237,0.18); }
+
+/* Chat */
+.home-chat { gap: 0; min-height: 320px; }
+.chat-avatars { display: flex; align-items: center; }
+.chat-avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  display: grid; place-items: center;
+  font-size: 12px; color: #fff;
+  border: 2px solid #ffffff;
+  margin-left: -8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+.chat-avatar:first-child { margin-left: 0; }
+.hifi-wrapper.hifi-dark .chat-avatar { border-color: #0d1322; }
+.chat-stream {
+  flex: 1; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 10px 0;
+  min-height: 120px; max-height: 220px;
+}
+.chat-msg { display: flex; gap: 8px; align-items: flex-end; max-width: 92%; }
+.chat-msg--bot { align-self: flex-start; }
+.chat-msg--user { align-self: flex-end; flex-direction: row-reverse; }
+.chat-msg-avatar {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--g1, #2f6fed), var(--g2, #7c3aed));
+  display: grid; place-items: center; font-size: 11px; color: #fff;
+}
+.chat-msg-bubble {
+  padding: 8px 11px; border-radius: 12px;
+  font-size: 12.5px; line-height: 1.4;
+  background: var(--neutral-100); color: var(--neutral-900);
+  white-space: pre-wrap; word-wrap: break-word;
+}
+.hifi-wrapper.hifi-dark .chat-msg-bubble { background: rgba(47,111,237,0.10); color: #ecf0fb; }
+.chat-msg--user .chat-msg-bubble { background: var(--accent); color: #fff; }
+.chat-msg--bot.chat-msg--typing .chat-msg-bubble::after {
+  content: '...'; animation: typingDots 1.2s steps(4) infinite;
+}
+@keyframes typingDots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75%,100% { content: '...'; } }
+.chat-input-row {
+  display: flex; gap: 6px; align-items: center;
+  padding-top: 10px; border-top: 1px solid var(--border);
+}
+.hifi-wrapper.hifi-dark .chat-input-row { border-top-color: rgba(47,111,237,0.14); }
+.chat-input {
+  flex: 1; height: 34px; border: 1px solid var(--border); border-radius: 99px;
+  padding: 0 12px; font-family: var(--font); font-size: 12.5px;
+  background: var(--neutral-50); color: var(--neutral-900);
+  outline: none;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+.chat-input:focus { border-color: var(--accent); background: #fff; }
+.hifi-wrapper.hifi-dark .chat-input { background: #131a2c; border-color: rgba(47,111,237,0.18); color: #ecf0fb; }
+.hifi-wrapper.hifi-dark .chat-input:focus { background: #1a2236; }
+.chat-send {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  background: var(--accent); color: #fff; border: none;
+  display: grid; place-items: center; cursor: pointer;
+  transition: transform 180ms cubic-bezier(0.34,1.56,0.64,1), background 160ms ease;
+}
+.chat-send:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+/* Insights */
+.home-insights { gap: 12px; }
+.insight-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+}
+.insight-item:first-of-type { border-top: none; padding-top: 0; }
+.hifi-wrapper.hifi-dark .insight-item { border-top-color: rgba(47,111,237,0.10); }
+.insight-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+.insight-title { font-size: 12.5px; font-weight: 600; color: var(--neutral-900); }
+.hifi-wrapper.hifi-dark .insight-title { color: #ecf0fb; }
+.insight-sub { font-size: 11.5px; color: var(--neutral-500); margin-top: 2px; line-height: 1.4; }
+
+/* Week glance */
+.home-week-kpis { display: flex; gap: 24px; margin-bottom: 12px; }
+.home-kpi { flex: 1; }
+.home-kpi-label { font-size: 11px; color: var(--neutral-500); margin-bottom: 4px; }
+.home-kpi-value { font-size: 22px; font-weight: 700; color: var(--neutral-900); letter-spacing: -0.01em; }
+.hifi-wrapper.hifi-dark .home-kpi-value { color: #ecf0fb; }
+.home-kpi-delta { font-size: 11px; font-weight: 600; margin-top: 2px; }
+.home-kpi-delta.up { color: #16a34a; }
+.home-week-spark { width: 100%; height: 60px; }
+
+/* Critical items */
+.home-critical { gap: 8px; }
+.critical-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 0; border-top: 1px solid var(--border);
+}
+.critical-row:first-of-type { border-top: none; padding-top: 4px; }
+.hifi-wrapper.hifi-dark .critical-row { border-top-color: rgba(47,111,237,0.10); }
+.critical-row img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: var(--neutral-100); }
+.critical-row > div { flex: 1; min-width: 0; }
+.critical-name { font-size: 13px; font-weight: 500; color: var(--neutral-900); }
+.hifi-wrapper.hifi-dark .critical-name { color: #ecf0fb; }
+.critical-sku { font-size: 11px; color: var(--neutral-400); margin-top: 1px; }
+.critical-pill {
+  font-size: 10.5px; font-weight: 600;
+  padding: 3px 8px; border-radius: 99px; flex-shrink: 0;
+}
+.critical-pill.is-critical { background: rgba(239,68,68,0.12); color: #b91c1c; }
+.critical-pill.is-warn { background: rgba(249,115,22,0.14); color: #c2410c; }
+
+/* Leaderboard */
+.home-leaderboard { padding: 18px 18px 8px; }
+.lb-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.lb-table th {
+  text-align: left; padding: 10px 8px;
+  font-size: 11px; font-weight: 600; color: var(--neutral-500);
+  letter-spacing: 0.04em; text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.lb-table td { padding: 12px 8px; border-bottom: 1px solid var(--neutral-100); color: var(--neutral-700); }
+.lb-table tr:last-child td { border-bottom: none; }
+.hifi-wrapper.hifi-dark .lb-table th { border-bottom-color: rgba(47,111,237,0.14); color: #9aa3c0; }
+.hifi-wrapper.hifi-dark .lb-table td { border-bottom-color: rgba(47,111,237,0.08); color: #d3d8e8; }
+.lb-rank {
+  display: inline-grid; place-items: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--neutral-100); color: var(--neutral-700);
+  font-size: 11px; font-weight: 700;
+}
+.lb-rank-1 { background: linear-gradient(135deg, #fbbf24, #d97706); color: #fff; box-shadow: 0 2px 8px rgba(217,119,6,0.30); }
+.lb-user { display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--neutral-900); }
+.hifi-wrapper.hifi-dark .lb-user { color: #ecf0fb; }
+.lb-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 11px; color: #fff; font-weight: 700;
+  overflow: hidden; flex-shrink: 0;
+}
+.lb-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.lb-me { background: rgba(47,111,237,0.06); }
+.hifi-wrapper.hifi-dark .lb-me { background: rgba(47,111,237,0.12); }
+.lb-you {
+  font-size: 9.5px; font-weight: 700;
+  padding: 1px 6px; border-radius: 99px;
+  background: var(--accent); color: #fff;
+  margin-left: 4px;
+}
+
+/* Hover lift on home cards */
+.home-card { transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease, border-color 220ms ease; }
+.home-card:hover:not(.home-leaderboard):not(.home-chat) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px rgba(15,23,42,0.16);
+}
+
+/* Stagger entrance delays */
+.home-grid-3 .home-card:nth-child(1) { animation-delay: 60ms; }
+.home-grid-3 .home-card:nth-child(2) { animation-delay: 120ms; }
+.home-grid-3 .home-card:nth-child(3) { animation-delay: 180ms; }
+.home-grid-2 .home-card:nth-child(1) { animation-delay: 240ms; }
+.home-grid-2 .home-card:nth-child(2) { animation-delay: 300ms; }
+.home-leaderboard { animation-delay: 360ms; }
+
+/* =====================================================
+   AGENTS VIEW
+   ===================================================== */
+.app-main--agents {
+  flex: 1; display: flex; flex-direction: column;
+  gap: 20px; padding: 28px 32px 40px;
+  background: var(--neutral-50);
+  overflow-y: auto;
+}
+.hifi-wrapper.hifi-dark .app-main--agents { background: #060912; }
+.agents-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.agents-title {
+  font-family: 'Bebas Neue', 'Poppins', sans-serif;
+  font-size: 32px; font-weight: 400; letter-spacing: 0.02em;
+  color: var(--neutral-900);
+}
+.hifi-wrapper.hifi-dark .agents-title { color: #ecf0fb; }
+.agents-sub { font-size: 13px; color: var(--neutral-500); margin-top: 2px; }
+.agents-new-btn { gap: 6px; padding: 8px 14px; font-size: 13px; }
+.agents-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.agent-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
+  display: flex; flex-direction: column; gap: 8px;
+  animation: cardRise 0.5s cubic-bezier(0.16,1,0.3,1) both;
+  transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease;
+  text-align: left; cursor: default;
+}
+.agent-card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(15,23,42,0.18); }
+.hifi-wrapper.hifi-dark .agent-card { background: #0d1322; border-color: rgba(47,111,237,0.14); }
+.agents-grid > .agent-card:nth-child(1) { animation-delay: 60ms; }
+.agents-grid > .agent-card:nth-child(2) { animation-delay: 120ms; }
+.agents-grid > .agent-card:nth-child(3) { animation-delay: 180ms; }
+.agents-grid > .agent-card:nth-child(4) { animation-delay: 240ms; }
+.agents-grid > .agent-card:nth-child(5) { animation-delay: 300ms; }
+.agents-grid > .agent-card:nth-child(6) { animation-delay: 360ms; }
+.agents-grid > .agent-card:nth-child(7) { animation-delay: 420ms; }
+.agent-avatar {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  display: grid; place-items: center; font-size: 22px;
+  margin-bottom: 4px;
+  box-shadow: 0 4px 12px -4px var(--g2);
+}
+.agent-name { font-size: 15px; font-weight: 700; color: var(--neutral-900); letter-spacing: -0.01em; }
+.hifi-wrapper.hifi-dark .agent-name { color: #ecf0fb; }
+.agent-spec { font-size: 12.5px; color: var(--neutral-500); line-height: 1.45; min-height: 36px; }
+.agent-stats { display: flex; gap: 6px; font-size: 11px; color: var(--neutral-500); margin-top: 2px; }
+.agent-chat-btn { margin-top: 10px; height: 32px; font-size: 12.5px; padding: 0 14px; align-self: flex-start; }
+.agent-card--new {
+  border-style: dashed;
+  background: transparent;
+  cursor: pointer;
+  align-items: flex-start; justify-content: center;
+  min-height: 200px;
+  font: inherit; color: var(--neutral-500);
+}
+.agent-card--new:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.hifi-wrapper.hifi-dark .agent-card--new { border-color: rgba(47,111,237,0.30); }
+.hifi-wrapper.hifi-dark .agent-card--new:hover { border-color: var(--accent); background: rgba(47,111,237,0.12); }
+.agent-new-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--accent-soft); color: var(--accent);
+  display: grid; place-items: center;
+  margin-bottom: 4px;
+  transition: transform 220ms cubic-bezier(0.34,1.56,0.64,1);
+}
+.agent-card--new:hover .agent-new-icon { transform: rotate(90deg) scale(1.05); }
+
+/* =====================================================
+   CREATE-AGENT MODAL
+   ===================================================== */
+.agent-modal { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; }
+.agent-modal[hidden] { display: none; }
+.agent-modal-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(15,23,42,0.55);
+  backdrop-filter: blur(4px);
+  animation: modalFadeIn 220ms ease-out both;
+}
+.agent-modal-card {
+  position: relative;
+  width: min(420px, 92vw);
+  background: #ffffff;
+  border-radius: var(--r-xl);
+  padding: 22px 22px 18px;
+  box-shadow: 0 24px 60px -12px rgba(15,23,42,0.40);
+  animation: modalScaleIn 240ms cubic-bezier(0.16,1,0.3,1) both;
+}
+.hifi-wrapper.hifi-dark .agent-modal-card { background: #0d1322; box-shadow: 0 24px 60px -12px rgba(0,0,0,0.65); }
+@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalScaleIn { from { opacity: 0; transform: scale(0.92) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.agent-modal-title { font-size: 17px; font-weight: 700; color: var(--neutral-900); }
+.hifi-wrapper.hifi-dark .agent-modal-title { color: #ecf0fb; }
+.agent-modal-sub { font-size: 12.5px; color: var(--neutral-500); margin-top: 4px; margin-bottom: 16px; }
+.agent-modal-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.agent-modal-field > span { font-size: 11.5px; font-weight: 600; color: var(--neutral-700); letter-spacing: 0.02em; text-transform: uppercase; }
+.hifi-wrapper.hifi-dark .agent-modal-field > span { color: #9aa3c0; }
+.agent-modal-field input,
+.agent-modal-field textarea {
+  width: 100%; padding: 9px 12px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 13px;
+  background: var(--neutral-50); color: var(--neutral-900);
+  outline: none;
+  transition: border-color 160ms ease, background 160ms ease;
+  resize: vertical;
+}
+.agent-modal-field input:focus,
+.agent-modal-field textarea:focus { border-color: var(--accent); background: #fff; }
+.hifi-wrapper.hifi-dark .agent-modal-field input,
+.hifi-wrapper.hifi-dark .agent-modal-field textarea { background: #131a2c; border-color: rgba(47,111,237,0.18); color: #ecf0fb; }
+.agent-modal-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.agent-chip {
+  font-size: 11.5px; font-weight: 600;
+  padding: 5px 10px; border-radius: 99px;
+  background: var(--neutral-100); color: var(--neutral-700);
+  border: 1px solid var(--border); cursor: pointer;
+  transition: all 160ms ease;
+}
+.agent-chip:hover { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.hifi-wrapper.hifi-dark .agent-chip { background: rgba(47,111,237,0.10); color: #d3d8e8; border-color: rgba(47,111,237,0.18); }
+.hifi-wrapper.hifi-dark .agent-chip:hover { background: rgba(47,111,237,0.20); color: #93c5fd; }
+.agent-modal-footer { display: flex; justify-content: flex-end; gap: 8px; }
+.btn.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--neutral-700); }
+.btn.btn-ghost:hover { background: var(--neutral-100); }
+.hifi-wrapper.hifi-dark .btn.btn-ghost { background: transparent; border-color: rgba(47,111,237,0.18); color: #d3d8e8; }
+.hifi-wrapper.hifi-dark .btn.btn-ghost:hover { background: rgba(47,111,237,0.10); }
+
+/* =====================================================
+   RESPONSIVE — Tablet (768–1279px)
+   ===================================================== */
+@media (max-width: 1279px) {
+  .home-hero { grid-template-columns: 1fr; gap: 16px; }
+  .home-hero-illust { display: none; }
+  .home-grid-3 { grid-template-columns: 1fr; }
+  .home-grid-2 { grid-template-columns: 1fr; }
+  .home-week-kpis { gap: 16px; }
+  .agents-grid { grid-template-columns: repeat(2, 1fr); }
+  .home-hero-title { font-size: 28px; }
+}
+
 </style>
 </head>
 <body>
@@ -8372,6 +8802,320 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
         </div><!-- /canvas-view -->
 
       </div><!-- /app-main -->
+
+      <!-- ============================================================
+           HOME VIEW (toggled by rail Home icon)
+           ============================================================ -->
+      <div class="app-main app-main--home" id="appMainHome" hidden>
+        <!-- Hero -->
+        <div class="home-hero">
+          <div class="home-hero-text">
+            <div class="home-hero-greet">Good morning, Sarah ☀️</div>
+            <div class="home-hero-title"><span class="fx-count" data-count-to="43">43</span> items need your eye today</div>
+            <div class="home-hero-stats">
+              <div class="home-hero-stat"><strong>3</strong> cycles this week</div>
+              <div class="home-hero-stat-sep"></div>
+              <div class="home-hero-stat"><strong>96%</strong> AI accuracy</div>
+              <div class="home-hero-stat-sep"></div>
+              <div class="home-hero-stat"><strong>2.3h</strong> saved by AI</div>
+            </div>
+            <button class="home-hero-cta" onclick="window.setHifiView && setHifiView('replenishment')">
+              Start today's replenishment
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="home-hero-illust" aria-hidden="true">
+            <svg viewBox="0 0 240 200" width="240" height="200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="boxA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient>
+                <linearGradient id="boxB" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#4c1d95"/></linearGradient>
+                <linearGradient id="boxC" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#6366f1"/></linearGradient>
+              </defs>
+              <!-- Floating boxes -->
+              <g class="home-illust-float" style="--d:0">
+                <path d="M120 40 L180 65 L180 110 L120 85 Z" fill="url(#boxA)"/>
+                <path d="M120 40 L60 65 L60 110 L120 85 Z" fill="#1e3a8a" opacity="0.85"/>
+                <path d="M60 65 L120 40 L180 65 L120 90 Z" fill="#60a5fa"/>
+              </g>
+              <g class="home-illust-float" style="--d:0.3s">
+                <path d="M60 110 L100 130 L100 170 L60 150 Z" fill="url(#boxB)"/>
+                <path d="M100 130 L140 110 L140 150 L100 170 Z" fill="#5b21b6" opacity="0.85"/>
+                <path d="M60 110 L100 90 L140 110 L100 130 Z" fill="#a78bfa"/>
+              </g>
+              <g class="home-illust-float" style="--d:0.6s">
+                <path d="M150 120 L195 142 L195 182 L150 160 Z" fill="url(#boxC)"/>
+                <path d="M195 142 L225 122 L225 162 L195 182 Z" fill="#4f46e5" opacity="0.85"/>
+                <path d="M150 120 L180 100 L225 122 L195 142 Z" fill="#c4b5fd"/>
+              </g>
+              <!-- Sparkles -->
+              <g class="home-illust-spark">
+                <path d="M210 30 l3 6 6 3 -6 3 -3 6 -3 -6 -6 -3 6 -3z" fill="#7aa7ff"/>
+                <path d="M30 30 l2 4 4 2 -4 2 -2 4 -2 -4 -4 -2 4 -2z" fill="#a78bfa"/>
+                <path d="M30 180 l2.5 5 5 2.5 -5 2.5 -2.5 5 -2.5 -5 -5 -2.5 5 -2.5z" fill="#60a5fa"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Row 2: Streak / Chat / Insights -->
+        <div class="home-grid-3">
+          <!-- Streak card -->
+          <div class="home-card home-streak">
+            <div class="home-card-eyebrow">Replenishment streak</div>
+            <div class="streak-row">
+              <div class="streak-flame" aria-hidden="true">🔥</div>
+              <div>
+                <div class="streak-value"><span class="fx-count" data-count-to="12">12</span> weeks</div>
+                <div class="streak-tag">above 95% in-stock</div>
+              </div>
+            </div>
+            <div class="streak-progress">
+              <div class="streak-progress-bar"><div class="streak-progress-fill"></div></div>
+              <div class="streak-progress-meta">2 cycles to <strong>Pro Planner</strong></div>
+            </div>
+            <div class="streak-badges">
+              <span class="streak-badge" title="First 1k cycle"><span>🏅</span>1k cycles</span>
+              <span class="streak-badge" title="AI Trust"><span>🤝</span>AI Trust</span>
+              <span class="streak-badge" title="Zero stockouts"><span>🛡️</span>Zero outs</span>
+            </div>
+          </div>
+
+          <!-- Chat card -->
+          <div class="home-card home-chat" id="homeChatCard">
+            <div class="home-card-header">
+              <div>
+                <div class="home-card-title">Chat with your team agents</div>
+                <div class="home-card-sub">5 specialists online</div>
+              </div>
+              <div class="chat-avatars" aria-hidden="true">
+                <span class="chat-avatar" style="--g1:#3b82f6;--g2:#7c3aed">📊</span>
+                <span class="chat-avatar" style="--g1:#10b981;--g2:#16a34a">📦</span>
+                <span class="chat-avatar" style="--g1:#f59e0b;--g2:#ea580c">📈</span>
+                <span class="chat-avatar" style="--g1:#ec4899;--g2:#be185d">🤝</span>
+              </div>
+            </div>
+            <div class="chat-stream" id="chatStream" role="log" aria-live="polite">
+              <div class="chat-msg chat-msg--bot">
+                <span class="chat-msg-avatar" style="--g1:#3b82f6;--g2:#7c3aed">📊</span>
+                <div class="chat-msg-bubble">Hi Sarah! Got a question about replenishment, forecasting, or pricing? Just ask — your team is on it.</div>
+              </div>
+            </div>
+            <form class="chat-input-row" id="chatForm">
+              <input class="chat-input" id="chatInput" type="text" placeholder="Ask anything…" autocomplete="off">
+              <button class="chat-send" type="submit" aria-label="Send">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- AI Insights -->
+          <div class="home-card home-insights">
+            <div class="home-card-header">
+              <div class="home-card-title">AI insights</div>
+              <span class="home-card-pill">3 new</span>
+            </div>
+            <div class="insight-item">
+              <div class="insight-dot" style="background:#f97316"></div>
+              <div>
+                <div class="insight-title">Seasonality spike on 3 SKUs</div>
+                <div class="insight-sub">Bags +18% next 2 weeks — review quantities</div>
+              </div>
+            </div>
+            <div class="insight-item">
+              <div class="insight-dot" style="background:#ef4444"></div>
+              <div>
+                <div class="insight-title">Coverage on Bags trending down 8%</div>
+                <div class="insight-sub">Consider lifting target to 95%</div>
+              </div>
+            </div>
+            <div class="insight-item">
+              <div class="insight-dot" style="background:#10b981"></div>
+              <div>
+                <div class="insight-title">Override pattern detected</div>
+                <div class="insight-sub">You under-ride AI by ~20% on watches</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Week glance + Critical items -->
+        <div class="home-grid-2">
+          <div class="home-card home-week">
+            <div class="home-card-header">
+              <div class="home-card-title">This week at a glance</div>
+              <div class="home-card-sub">Apr 19 – Apr 25</div>
+            </div>
+            <div class="home-week-kpis">
+              <div class="home-kpi"><div class="home-kpi-label">Units replenished</div><div class="home-kpi-value">14,820</div><div class="home-kpi-delta up">+18%</div></div>
+              <div class="home-kpi"><div class="home-kpi-label">AI acceptance</div><div class="home-kpi-value">96.2%</div><div class="home-kpi-delta up">+1.4 pts</div></div>
+              <div class="home-kpi"><div class="home-kpi-label">Coverage avg</div><div class="home-kpi-value">89%</div><div class="home-kpi-delta up">+3 pts</div></div>
+            </div>
+            <svg class="home-week-spark" viewBox="0 0 320 60" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="weekGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2f6fed" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#2f6fed" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M 0 50 C 30 45, 60 38, 90 32 C 120 26, 150 30, 180 24 C 210 18, 240 22, 270 14 C 300 8, 320 6, 320 6 L 320 60 L 0 60 Z" fill="url(#weekGrad)"/>
+              <path d="M 0 50 C 30 45, 60 38, 90 32 C 120 26, 150 30, 180 24 C 210 18, 240 22, 270 14 C 300 8, 320 6, 320 6" fill="none" stroke="#2f6fed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="home-card home-critical">
+            <div class="home-card-header">
+              <div class="home-card-title">Critical items</div>
+              <a class="home-card-link" href="#" onclick="event.preventDefault();window.setHifiView&&setHifiView('replenishment')">See all →</a>
+            </div>
+            <div class="critical-row">
+              <img src="assets/products/sneakers.jpg" alt="">
+              <div>
+                <div class="critical-name">Classic White Sneakers</div>
+                <div class="critical-sku">SN-2024-WHT-001</div>
+              </div>
+              <span class="critical-pill is-critical">2% cov</span>
+            </div>
+            <div class="critical-row">
+              <img src="assets/products/bag.jpg" alt="">
+              <div>
+                <div class="critical-name">Leather Crossbody Bag</div>
+                <div class="critical-sku">BAG-2024-BRN-045</div>
+              </div>
+              <span class="critical-pill is-warn">18% cov</span>
+            </div>
+            <div class="critical-row">
+              <img src="assets/products/watch.jpg" alt="">
+              <div>
+                <div class="critical-name">Minimalist Watch</div>
+                <div class="critical-sku">WTH-2024-SLV-023</div>
+              </div>
+              <span class="critical-pill is-warn">22% cov</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="home-card home-leaderboard">
+          <div class="home-card-header">
+            <div>
+              <div class="home-card-title">Team leaderboard</div>
+              <div class="home-card-sub">Q2 — top inventory planners</div>
+            </div>
+            <span class="home-card-pill">5 of 24</span>
+          </div>
+          <table class="lb-table">
+            <thead>
+              <tr><th>Rank</th><th>Planner</th><th>Cycles</th><th>Accuracy</th><th>Streak</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="lb-rank lb-rank-1">1</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#f59e0b,#ea580c)">MR</div>Marcus Reyes</div></td><td>48</td><td>97.4%</td><td>🔥 18</td></tr>
+              <tr class="lb-me"><td><span class="lb-rank">2</span></td><td><div class="lb-user"><div class="lb-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=64&h=64&fit=crop&crop=faces&auto=format" alt=""></div>Sarah Chen <span class="lb-you">you</span></div></td><td>43</td><td>96.2%</td><td>🔥 12</td></tr>
+              <tr><td><span class="lb-rank">3</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">JK</div>Jamie Kim</div></td><td>41</td><td>95.8%</td><td>🔥 9</td></tr>
+              <tr><td><span class="lb-rank">4</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">AP</div>Aisha Patel</div></td><td>39</td><td>95.1%</td><td>🔥 7</td></tr>
+              <tr><td><span class="lb-rank">5</span></td><td><div class="lb-user"><div class="lb-avatar" style="background:linear-gradient(135deg,#ec4899,#be185d)">DL</div>Daniel Liu</div></td><td>36</td><td>94.6%</td><td>🔥 5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /app-main--home -->
+
+      <!-- ============================================================
+           AGENTS VIEW (toggled by rail Agents icon)
+           ============================================================ -->
+      <div class="app-main app-main--agents" id="appMainAgents" hidden>
+        <div class="agents-header">
+          <div>
+            <div class="agents-title">Your AI team</div>
+            <div class="agents-sub"><span id="agentsCount">6</span> specialists ready to help</div>
+          </div>
+          <button class="btn btn-primary agents-new-btn" onclick="openAgentModal()">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            New agent
+          </button>
+        </div>
+
+        <div class="agents-grid" id="agentsGrid">
+          <div class="agent-card" data-agent="competitive">
+            <div class="agent-avatar" style="--g1:#0ea5e9;--g2:#1e40af"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div>
+            <div class="agent-name">Competitive Watch</div>
+            <div class="agent-spec">nextail, autone, optiply marketing observations — pricing, launches, positioning shifts.</div>
+            <div class="agent-stats"><span>6 chats</span><span>•</span><span>Live tracking</span></div>
+            <button class="btn btn-secondary agent-chat-btn">Chat</button>
+          </div>
+          <div class="agent-card" data-agent="sales">
+            <div class="agent-avatar" style="--g1:#3b82f6;--g2:#7c3aed"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg></div>
+            <div class="agent-name">Sales Strategist</div>
+            <div class="agent-spec">Closes deals, finds upsell windows, and drafts outbound.</div>
+            <div class="agent-stats"><span>23 chats</span><span>•</span><span>96% accuracy</span></div>
+            <button class="btn btn-secondary agent-chat-btn">Chat</button>
+          </div>
+          <div class="agent-card" data-agent="replen">
+            <div class="agent-avatar" style="--g1:#10b981;--g2:#16a34a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg></div>
+            <div class="agent-name">Replenishment Expert</div>
+            <div class="agent-spec">Optimizes order quantities and cycle timing across SKUs.</div>
+            <div class="agent-stats"><span>41 chats</span><span>•</span><span>97% accuracy</span></div>
+            <button class="btn btn-secondary agent-chat-btn">Chat</button>
+          </div>
+          <div class="agent-card" data-agent="forecast">
+            <div class="agent-avatar" style="--g1:#f59e0b;--g2:#ea580c"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-5 4 3 5-7"/><circle cx="20" cy="5" r="1.6" fill="#fff"/></svg></div>
+            <div class="agent-name">Forecasting Analyst</div>
+            <div class="agent-spec">Predicts demand spikes and surfaces seasonality patterns.</div>
+            <div class="agent-stats"><span>17 chats</span><span>•</span><span>94% accuracy</span></div>
+            <button class="btn btn-secondary agent-chat-btn">Chat</button>
+          </div>
+          <div class="agent-card" data-agent="supplier">
+            <div class="agent-avatar" style="--g1:#ec4899;--g2:#be185d"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 4-4 6 6"/><path d="M14 14l3 3 4-4-7-7-3 3"/><path d="M3 21l3-3M18 6l3-3"/></svg></div>
+            <div class="agent-name">Supplier Negotiator</div>
+            <div class="agent-spec">Benchmarks pricing and flags better terms across vendors.</div>
+            <div class="agent-stats"><span>9 chats</span><span>•</span><span>92% accuracy</span></div>
+            <button class="btn btn-secondary agent-chat-btn">Chat</button>
+          </div>
+          <div class="agent-card" data-agent="auditor">
+            <div class="agent-avatar" style="--g1:#6366f1;--g2:#4f46e5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+            <div class="agent-name">Inventory Auditor</div>
+            <div class="agent-spec">Catches anomalies, duplicates, and data integrity issues.</div>
+            <div class="agent-stats"><span>14 chats</span><span>•</span><span>98% accuracy</span></div>
+            <button class="btn btn-secondary agent-chat-btn">Chat</button>
+          </div>
+          <button class="agent-card agent-card--new" onclick="openAgentModal()">
+            <div class="agent-new-icon">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="agent-name">Create agent</div>
+            <div class="agent-spec">Define a specialty in a few seconds.</div>
+          </button>
+        </div>
+      </div><!-- /app-main--agents -->
+
+      <!-- ============================================================
+           CREATE-AGENT MODAL
+           ============================================================ -->
+      <div class="agent-modal" id="agentModal" role="dialog" aria-modal="true" aria-labelledby="agentModalTitle" hidden>
+        <div class="agent-modal-backdrop" onclick="closeAgentModal()"></div>
+        <div class="agent-modal-card">
+          <div class="agent-modal-title" id="agentModalTitle">Create a new agent</div>
+          <div class="agent-modal-sub">Give it a name and tell it what it's an expert in.</div>
+          <label class="agent-modal-field">
+            <span>Name</span>
+            <input id="agentNameInput" type="text" placeholder="e.g. Marketing Wizard" autocomplete="off">
+          </label>
+          <label class="agent-modal-field">
+            <span>Specialty</span>
+            <textarea id="agentSpecInput" rows="3" placeholder="What is this agent an expert in? e.g. Negotiating supplier contracts and analyzing pricing trends."></textarea>
+          </label>
+          <div class="agent-modal-chips">
+            <button type="button" class="agent-chip" data-seed="Sales — closing deals, identifying upsell opportunities, and drafting outbound messages.">Sales</button>
+            <button type="button" class="agent-chip" data-seed="Marketing — campaign ideas, copy reviews, and audience segmentation.">Marketing</button>
+            <button type="button" class="agent-chip" data-seed="Finance — variance analysis, margin tracking, and budget reviews.">Finance</button>
+            <button type="button" class="agent-chip" data-seed="Replenishment — order quantity optimization and cycle timing.">Replenishment</button>
+            <button type="button" class="agent-chip" data-seed="Forecasting — demand prediction and seasonality detection.">Forecasting</button>
+          </div>
+          <div class="agent-modal-footer">
+            <button type="button" class="btn btn-ghost" onclick="closeAgentModal()">Cancel</button>
+            <button type="button" class="btn btn-primary" onclick="saveAgent()">Save agent</button>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /app-shell -->
   </div><!-- /hifi-wrapper -->
 </section>
@@ -9262,6 +10006,18 @@ if (document.readyState === 'loading') {
 
     function setCanvas(on) {
       const wrapper = document.querySelector('#page-5 .hifi-wrapper');
+      // Sync sibling views: Canvas lives inside the Replenishment app-main,
+      // so Home/Agents must be hidden and Replenishment must be visible.
+      const mainReplen = wrapper.querySelector('.app-main:not(.app-main--home):not(.app-main--agents)');
+      const mainHome   = document.getElementById('appMainHome');
+      const mainAgents = document.getElementById('appMainAgents');
+      if (on) {
+        if (mainReplen) mainReplen.hidden = false;
+        if (mainHome)   mainHome.hidden = true;
+        if (mainAgents) mainAgents.hidden = true;
+        // Clear any other rail-icon active state
+        wrapper.querySelectorAll('.app-rail .rail-icon').forEach(i => i.classList.remove('active'));
+      }
       wrapper.classList.toggle('canvas-mode', on);
       btn.classList.toggle('active', on);
       if (replenBtn) replenBtn.classList.toggle('active', !on);
@@ -9703,6 +10459,233 @@ function toggleHifiDark() {
   // highlight toolbar button when dark is on
   const ctbDark = document.querySelector('.ctb-dark-toggle');
   if (ctbDark) ctbDark.classList.toggle('active', isDark);
+}
+
+/* =====================================================
+   HOME / AGENTS — view switcher + chat + modal
+   ===================================================== */
+
+/* Cloudflare Worker URL — paste your deployed worker URL here.
+   Leave empty to use offline mock replies. */
+const STOCKAI_CHAT_URL = '';
+
+function setHifiView(view) {
+  // view: 'home' | 'replenishment' | 'canvas' | 'agents'
+  const wrapper = document.querySelector('#page-5 .hifi-wrapper');
+  if (!wrapper) return;
+  const mainReplen = wrapper.querySelector('.app-main:not(.app-main--home):not(.app-main--agents)');
+  const mainHome   = document.getElementById('appMainHome');
+  const mainAgents = document.getElementById('appMainAgents');
+  // Always restore display (in case 'hidden' attribute was set)
+  [mainReplen, mainHome, mainAgents].forEach(el => { if (el) el.hidden = true; });
+
+  if (view === 'home' && mainHome) {
+    mainHome.hidden = false;
+    wrapper.classList.remove('canvas-mode');
+  } else if (view === 'agents' && mainAgents) {
+    mainAgents.hidden = false;
+    wrapper.classList.remove('canvas-mode');
+  } else if (view === 'canvas') {
+    if (mainReplen) mainReplen.hidden = false;
+    wrapper.classList.add('canvas-mode');
+  } else { // replenishment (default)
+    if (mainReplen) mainReplen.hidden = false;
+    wrapper.classList.remove('canvas-mode');
+  }
+
+  // Update rail active state
+  const rail = wrapper.querySelector('.app-rail');
+  if (rail) {
+    rail.querySelectorAll('.rail-icon').forEach(i => i.classList.remove('active'));
+    if (view === 'home') rail.querySelector('[data-label="Home"]')?.classList.add('active');
+    else if (view === 'agents') rail.querySelector('[data-label="Agents"]')?.classList.add('active');
+    else if (view === 'canvas') rail.querySelector('#railCanvas')?.classList.add('active');
+    else rail.querySelector('[data-label="Replenishment"]')?.classList.add('active');
+  }
+
+  // Update header crumb / title
+  const crumb = document.querySelector('#page-5 .replen-title-group a');
+  const title = document.querySelector('#page-5 .replen-name');
+  if (view === 'home') {
+    if (crumb) crumb.lastChild.textContent = ' Home';
+    if (title) title.textContent = "Sarah's command center";
+  } else if (view === 'agents') {
+    if (crumb) crumb.lastChild.textContent = ' Agents';
+    if (title) title.textContent = 'Your AI team';
+  } else if (view === 'canvas') {
+    if (crumb) crumb.lastChild.textContent = ' Canvas overview';
+    if (title) title.textContent = 'My company Organization';
+  } else {
+    if (crumb) crumb.lastChild.textContent = ' Replenishment';
+    if (title) title.textContent = 'Fall Season 2024';
+  }
+}
+window.setHifiView = setHifiView;
+
+// Wire rail clicks
+function bindHifiRailNav() {
+  const rail = document.querySelector('#page-5 .app-rail');
+  if (!rail) return;
+  const home   = rail.querySelector('[data-label="Home"]');
+  const replen = rail.querySelector('[data-label="Replenishment"]');
+  const agents = rail.querySelector('[data-label="Agents"]');
+  if (home)   home.addEventListener('click', () => setHifiView('home'));
+  if (replen) replen.addEventListener('click', () => setHifiView('replenishment'));
+  if (agents) agents.addEventListener('click', () => setHifiView('agents'));
+  // Canvas already has a click via bindCanvasRail — leave it alone
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindHifiRailNav);
+} else {
+  bindHifiRailNav();
+}
+
+/* ===== CHAT (Home) ===== */
+const chatHistory = [];
+
+function appendChatMsg(role, text, opts = {}) {
+  const stream = document.getElementById('chatStream');
+  if (!stream) return null;
+  const wrap = document.createElement('div');
+  wrap.className = 'chat-msg ' + (role === 'user' ? 'chat-msg--user' : 'chat-msg--bot');
+  if (opts.typing) wrap.classList.add('chat-msg--typing');
+  if (role === 'bot') {
+    const av = document.createElement('span');
+    av.className = 'chat-msg-avatar';
+    av.style.cssText = '--g1:#3b82f6;--g2:#7c3aed';
+    av.textContent = '📊';
+    wrap.appendChild(av);
+  }
+  const bub = document.createElement('div');
+  bub.className = 'chat-msg-bubble';
+  bub.textContent = text;
+  wrap.appendChild(bub);
+  stream.appendChild(wrap);
+  stream.scrollTop = stream.scrollHeight;
+  return wrap;
+}
+
+const MOCK_REPLIES = [
+  "Looking at your last 3 cycles, accuracy is trending up 1.4 pts. Coverage on Bags is the next thing to fix — start with the Leather Crossbody.",
+  "I'd accept the AI recommendation on Classic White Sneakers (1,840 units). Demand is up 12% YoY and stockout risk is high.",
+  "For supplier negotiation: NikeLab's 12-active contracts have a 2.1% better margin window in Q3. I can draft a renegotiation memo.",
+  "Forecast says Watches will spike +18% over the next 2 weeks. Lift order target to 95% to avoid stockouts.",
+  "Your override pattern suggests you're under-trusting AI on watches by ~20%. Try matching the recommendation for one cycle and compare."
+];
+
+async function sendChatMessage(text) {
+  if (!text.trim()) return;
+  appendChatMsg('user', text);
+  chatHistory.push({ role: 'user', content: text });
+  const typing = appendChatMsg('bot', '', { typing: true });
+
+  let reply;
+  if (STOCKAI_CHAT_URL) {
+    try {
+      const r = await fetch(STOCKAI_CHAT_URL, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: chatHistory })
+      });
+      const data = await r.json();
+      reply = data.reply || data.error || '(empty response)';
+    } catch (err) {
+      reply = 'Network error — using offline reply: ' + MOCK_REPLIES[Math.floor(Math.random() * MOCK_REPLIES.length)];
+    }
+  } else {
+    await new Promise(r => setTimeout(r, 700 + Math.random() * 600));
+    reply = MOCK_REPLIES[Math.floor(Math.random() * MOCK_REPLIES.length)];
+  }
+
+  if (typing) typing.remove();
+  appendChatMsg('bot', reply);
+  chatHistory.push({ role: 'assistant', content: reply });
+}
+
+function bindChatForm() {
+  const form  = document.getElementById('chatForm');
+  const input = document.getElementById('chatInput');
+  if (!form || !input) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const v = input.value;
+    input.value = '';
+    sendChatMessage(v);
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindChatForm);
+} else {
+  bindChatForm();
+}
+
+/* ===== AGENT MODAL ===== */
+function openAgentModal() {
+  const m = document.getElementById('agentModal');
+  if (!m) return;
+  m.hidden = false;
+  setTimeout(() => document.getElementById('agentNameInput')?.focus(), 50);
+  document.addEventListener('keydown', _modalEsc);
+}
+function closeAgentModal() {
+  const m = document.getElementById('agentModal');
+  if (!m) return;
+  m.hidden = true;
+  const name = document.getElementById('agentNameInput');
+  const spec = document.getElementById('agentSpecInput');
+  if (name) name.value = '';
+  if (spec) spec.value = '';
+  document.removeEventListener('keydown', _modalEsc);
+}
+function _modalEsc(e) { if (e.key === 'Escape') closeAgentModal(); }
+function saveAgent() {
+  const name = (document.getElementById('agentNameInput')?.value || '').trim();
+  const spec = (document.getElementById('agentSpecInput')?.value || '').trim();
+  if (!name || !spec) {
+    alert('Give your agent a name and a specialty.');
+    return;
+  }
+  const grid = document.getElementById('agentsGrid');
+  if (!grid) return;
+  // Build a new card and insert before the "+ Create" card
+  const card = document.createElement('div');
+  card.className = 'agent-card';
+  const palettes = [
+    ['#3b82f6', '#7c3aed'], ['#10b981', '#16a34a'], ['#f59e0b', '#ea580c'],
+    ['#ec4899', '#be185d'], ['#6366f1', '#4f46e5'], ['#14b8a6', '#0d9488']
+  ];
+  const p = palettes[Math.floor(Math.random() * palettes.length)];
+  card.innerHTML = `
+    <div class="agent-avatar" style="--g1:${p[0]};--g2:${p[1]}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.6L18 9l-4.4 1.4L12 15l-1.6-4.6L6 9l4.4-1.4L12 3z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7L19 15z"/></svg></div>
+    <div class="agent-name">${escapeHtml(name)}</div>
+    <div class="agent-spec">${escapeHtml(spec)}</div>
+    <div class="agent-stats"><span>0 chats</span><span>•</span><span>just now</span></div>
+    <button class="btn btn-secondary agent-chat-btn">Chat</button>
+  `;
+  const newCard = grid.querySelector('.agent-card--new');
+  grid.insertBefore(card, newCard);
+  // Update count
+  const count = document.getElementById('agentsCount');
+  if (count) count.textContent = grid.querySelectorAll('.agent-card:not(.agent-card--new)').length;
+  closeAgentModal();
+}
+function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function bindAgentChips() {
+  document.querySelectorAll('.agent-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const seed = chip.dataset.seed || '';
+      const spec = document.getElementById('agentSpecInput');
+      if (spec) { spec.value = seed; spec.focus(); }
+    });
+  });
+}
+window.openAgentModal = openAgentModal;
+window.closeAgentModal = closeAgentModal;
+window.saveAgent = saveAgent;
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindAgentChips);
+} else {
+  bindAgentChips();
 }
 </script>
 
