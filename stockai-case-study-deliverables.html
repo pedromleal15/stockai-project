@@ -171,6 +171,51 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 @media (max-width: 1024px) { .nav-ds-badge { display: none; } }
 
+/* ===== CASE FOOTER ===== */
+.case-footer {
+  background: var(--neutral-900);
+  border-top: 1px solid rgba(47,111,237,0.18);
+  padding: 28px 32px;
+  color: #9aa3c0;
+}
+.case-footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.case-footer-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-full);
+  background: rgba(47,111,237,0.10);
+  border: 1px solid rgba(47,111,237,0.28);
+  color: #93c5fd;
+  font-size: 12px; font-weight: var(--fw-semibold); letter-spacing: 0.02em;
+  text-decoration: none; white-space: nowrap;
+  transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.case-footer-badge:hover { background: rgba(47,111,237,0.20); color: #fff; transform: translateY(-1px); }
+.case-footer-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #2f6fed;
+  box-shadow: 0 0 0 0 rgba(47,111,237,0.6);
+  animation: navDsPulse 1.8s ease-out infinite;
+}
+.case-footer-meta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; flex-wrap: wrap;
+}
+.case-footer-meta a {
+  color: #cbd5e1; text-decoration: none;
+  transition: color var(--dur-base) var(--ease-out);
+}
+.case-footer-meta a:hover { color: #fff; text-decoration: underline; }
+.case-footer-sep { color: #475569; }
+@media (max-width: 768px) {
+  .case-footer { padding: 20px 16px; }
+  .case-footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
 /* ===== CONTACT BUTTON ===== */
 @keyframes contact-glow-spin {
   to { transform: translate(-50%, -50%) rotate(360deg); }
@@ -10366,6 +10411,27 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover { backg
   </div>
 
 </section>
+
+<!-- =====================================================
+     CASE FOOTER
+     ===================================================== -->
+<footer class="case-footer">
+  <div class="case-footer-inner">
+    <a class="case-footer-badge" href="https://founday-design-system.vercel.app" target="_blank" rel="noopener noreferrer" title="Powered by Pedro Leal for Founday">
+      <span class="case-footer-dot"></span>
+      Powered by Pedro Leal for Founday
+    </a>
+    <div class="case-footer-meta">
+      <span>StockAI — Replenishment Redesign · Senior PD case</span>
+      <span class="case-footer-sep">·</span>
+      <a href="https://www.linkedin.com/in/pedromleals/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span class="case-footer-sep">·</span>
+      <a href="https://github.com/pedromleal15/founday-design-system" target="_blank" rel="noopener noreferrer">Design System</a>
+      <span class="case-footer-sep">·</span>
+      <span>© 2026 Pedro Leal</span>
+    </div>
+  </div>
+</footer>
 
 <!-- =====================================================
      JAVASCRIPT — Tab navigation
